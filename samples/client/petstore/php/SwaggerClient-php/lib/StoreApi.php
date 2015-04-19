@@ -33,6 +33,7 @@ class StoreApi {
    * getInventory
    *
    * Returns pet inventories by status
+   * 
    *
    * @return map[string,int]
    */
@@ -87,6 +88,7 @@ class StoreApi {
    * placeOrder
    *
    * Place an order for a pet
+   * 
    *
    * @param Order $body order placed for purchasing the pet (required)
    * @return Order
@@ -146,6 +148,7 @@ class StoreApi {
    * getOrderById
    *
    * Find purchase order by ID
+   * 
    *
    * @param string $order_id ID of pet that needs to be fetched (required)
    * @return Order
@@ -205,6 +208,7 @@ class StoreApi {
    * deleteOrder
    *
    * Delete purchase order by ID
+   * 
    *
    * @param string $order_id ID of the order that needs to be deleted (required)
    * @return void

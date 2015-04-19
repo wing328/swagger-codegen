@@ -31,11 +31,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Create user This can only be done by the logged in user.
+    /// Create user
+    /// This can only be done by the logged in user.
     /// </summary>
     /// <param name="Body">Created user object</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  CreateUser (User Body) {
       // create path and map variables
       var path = "/user".Replace("{format}","json");
@@ -79,11 +80,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Creates list of users with given input array 
+    /// Creates list of users with given input array
+    /// 
     /// </summary>
     /// <param name="Body">List of user object</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  CreateUsersWithArrayInput (List<User> Body) {
       // create path and map variables
       var path = "/user/createWithArray".Replace("{format}","json");
@@ -127,11 +129,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Creates list of users with given input array 
+    /// Creates list of users with given input array
+    /// 
     /// </summary>
     /// <param name="Body">List of user object</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  CreateUsersWithListInput (List<User> Body) {
       // create path and map variables
       var path = "/user/createWithList".Replace("{format}","json");
@@ -175,12 +178,13 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Logs user into the system 
+    /// Logs user into the system
+    /// 
     /// </summary>
     /// <param name="Username">The user name for login</param>
      /// <param name="Password">The password for login in clear text</param>
     
-    /// <returns></returns>
+    /// <returns>string</returns>
     public string  LoginUser (string Username, string Password) {
       // create path and map variables
       var path = "/user/login".Replace("{format}","json");
@@ -235,10 +239,11 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Logs out current logged in user session 
+    /// Logs out current logged in user session
+    /// 
     /// </summary>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  LogoutUser () {
       // create path and map variables
       var path = "/user/logout".Replace("{format}","json");
@@ -282,11 +287,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Get user by user name 
+    /// Get user by user name
+    /// 
     /// </summary>
     /// <param name="Username">The name that needs to be fetched. Use user1 for testing. </param>
     
-    /// <returns></returns>
+    /// <returns>User</returns>
     public User  GetUserByName (string Username) {
       // create path and map variables
       var path = "/user/{username}".Replace("{format}","json").Replace("{" + "username" + "}", apiInvoker.ParameterToString(Username));
@@ -335,12 +341,13 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Updated user This can only be done by the logged in user.
+    /// Updated user
+    /// This can only be done by the logged in user.
     /// </summary>
     /// <param name="Username">name that need to be deleted</param>
      /// <param name="Body">Updated user object</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  UpdateUser (string Username, User Body) {
       // create path and map variables
       var path = "/user/{username}".Replace("{format}","json").Replace("{" + "username" + "}", apiInvoker.ParameterToString(Username));
@@ -384,11 +391,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Delete user This can only be done by the logged in user.
+    /// Delete user
+    /// This can only be done by the logged in user.
     /// </summary>
     /// <param name="Username">The name that needs to be deleted</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  DeleteUser (string Username) {
       // create path and map variables
       var path = "/user/{username}".Replace("{format}","json").Replace("{" + "username" + "}", apiInvoker.ParameterToString(Username));

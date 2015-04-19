@@ -177,7 +177,7 @@ class PetApi
   end
 
   # Find pet by ID
-  # Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
+  # Returns a pet when ID < 10.  ID > 10 or nonintegers will simulate API error conditions
   # @param pet_id ID of pet that needs to be fetched
   # @param [Hash] opts the optional parameters
   # @return Pet

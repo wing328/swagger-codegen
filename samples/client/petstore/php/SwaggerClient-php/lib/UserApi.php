@@ -33,6 +33,7 @@ class UserApi {
    * createUser
    *
    * Create user
+   * 
    *
    * @param User $body Created user object (required)
    * @return void
@@ -86,6 +87,7 @@ class UserApi {
    * createUsersWithArrayInput
    *
    * Creates list of users with given input array
+   * 
    *
    * @param array[User] $body List of user object (required)
    * @return void
@@ -139,6 +141,7 @@ class UserApi {
    * createUsersWithListInput
    *
    * Creates list of users with given input array
+   * 
    *
    * @param array[User] $body List of user object (required)
    * @return void
@@ -192,6 +195,7 @@ class UserApi {
    * loginUser
    *
    * Logs user into the system
+   * 
    *
    * @param string $username The user name for login (required)
    * @param string $password The password for login in clear text (required)
@@ -254,6 +258,7 @@ class UserApi {
    * logoutUser
    *
    * Logs out current logged in user session
+   * 
    *
    * @return void
    */
@@ -302,6 +307,7 @@ class UserApi {
    * getUserByName
    *
    * Get user by user name
+   * 
    *
    * @param string $username The name that needs to be fetched. Use user1 for testing.  (required)
    * @return User
@@ -361,6 +367,7 @@ class UserApi {
    * updateUser
    *
    * Updated user
+   * 
    *
    * @param string $username name that need to be deleted (required)
    * @param User $body Updated user object (required)
@@ -419,6 +426,7 @@ class UserApi {
    * deleteUser
    *
    * Delete user
+   * 
    *
    * @param string $username The name that needs to be deleted (required)
    * @return void

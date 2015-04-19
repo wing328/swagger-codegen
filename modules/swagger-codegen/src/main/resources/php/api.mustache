@@ -34,8 +34,9 @@ class {{classname}} {
    * {{{nickname}}}
    *
    * {{{summary}}}
+   * {{{note}}}
    *
-{{#allParams}}   * @param {{dataType}} ${{paramName}} {{description}} {{^optional}}(required){{/optional}}{{#optional}}(optional){{/optional}}
+{{#allParams}}   * @param {{dataType}} ${{paramName}} {{{description}}} {{^optional}}(required){{/optional}}{{#optional}}(optional){{/optional}}
 {{/allParams}}   * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}
    */
    public function {{nickname}}({{#allParams}}${{paramName}}{{#optional}}=null{{/optional}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) {

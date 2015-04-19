@@ -35,6 +35,7 @@ class PetApi(object):
     
     def update_pet(self, **kwargs):
         """Update an existing pet
+        
 
         Args:
             
@@ -94,6 +95,7 @@ class PetApi(object):
     
     def add_pet(self, **kwargs):
         """Add a new pet to the store
+        
 
         Args:
             
@@ -153,6 +155,7 @@ class PetApi(object):
     
     def find_pets_by_status(self, **kwargs):
         """Finds Pets by status
+        
 
         Args:
             
@@ -218,6 +221,7 @@ class PetApi(object):
     
     def find_pets_by_tags(self, **kwargs):
         """Finds Pets by tags
+        
 
         Args:
             
@@ -283,6 +287,7 @@ class PetApi(object):
     
     def get_pet_by_id(self, **kwargs):
         """Find pet by ID
+        
 
         Args:
             
@@ -351,6 +356,7 @@ class PetApi(object):
     
     def update_pet_with_form(self, **kwargs):
         """Updates a pet in the store with form data
+        
 
         Args:
             
@@ -425,6 +431,7 @@ class PetApi(object):
     
     def delete_pet(self, **kwargs):
         """Deletes a pet
+        
 
         Args:
             
@@ -493,6 +500,7 @@ class PetApi(object):
     
     def upload_file(self, **kwargs):
         """uploads an image
+        
 
         Args:
             

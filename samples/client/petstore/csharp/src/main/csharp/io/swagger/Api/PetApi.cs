@@ -31,11 +31,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Update an existing pet 
+    /// Update an existing pet
+    /// 
     /// </summary>
     /// <param name="Body">Pet object that needs to be added to the store</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  UpdatePet (Pet Body) {
       // create path and map variables
       var path = "/pet".Replace("{format}","json");
@@ -79,11 +80,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Add a new pet to the store 
+    /// Add a new pet to the store
+    /// 
     /// </summary>
     /// <param name="Body">Pet object that needs to be added to the store</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  AddPet (Pet Body) {
       // create path and map variables
       var path = "/pet".Replace("{format}","json");
@@ -127,11 +129,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Finds Pets by status Multiple status values can be provided with comma seperated strings
+    /// Finds Pets by status
+    /// Multiple status values can be provided with comma seperated strings
     /// </summary>
     /// <param name="Status">Status values that need to be considered for filter</param>
     
-    /// <returns></returns>
+    /// <returns>List<Pet></returns>
     public List<Pet>  FindPetsByStatus (List<string> Status) {
       // create path and map variables
       var path = "/pet/findByStatus".Replace("{format}","json");
@@ -183,11 +186,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Finds Pets by tags Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
+    /// Finds Pets by tags
+    /// Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
     /// </summary>
     /// <param name="Tags">Tags to filter by</param>
     
-    /// <returns></returns>
+    /// <returns>List<Pet></returns>
     public List<Pet>  FindPetsByTags (List<string> Tags) {
       // create path and map variables
       var path = "/pet/findByTags".Replace("{format}","json");
@@ -239,11 +243,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Find pet by ID Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
+    /// Find pet by ID
+    /// Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
     /// </summary>
     /// <param name="PetId">ID of pet that needs to be fetched</param>
     
-    /// <returns></returns>
+    /// <returns>Pet</returns>
     public Pet  GetPetById (long? PetId) {
       // create path and map variables
       var path = "/pet/{petId}".Replace("{format}","json").Replace("{" + "petId" + "}", apiInvoker.ParameterToString(PetId));
@@ -292,13 +297,14 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Updates a pet in the store with form data 
+    /// Updates a pet in the store with form data
+    /// 
     /// </summary>
     /// <param name="PetId">ID of pet that needs to be updated</param>
      /// <param name="Name">Updated name of the pet</param>
      /// <param name="Status">Updated status of the pet</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  UpdatePetWithForm (string PetId, string Name, string Status) {
       // create path and map variables
       var path = "/pet/{petId}".Replace("{format}","json").Replace("{" + "petId" + "}", apiInvoker.ParameterToString(PetId));
@@ -356,12 +362,13 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Deletes a pet 
+    /// Deletes a pet
+    /// 
     /// </summary>
     /// <param name="ApiKey"></param>
      /// <param name="PetId">Pet id to delete</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  DeletePet (string ApiKey, long? PetId) {
       // create path and map variables
       var path = "/pet/{petId}".Replace("{format}","json").Replace("{" + "petId" + "}", apiInvoker.ParameterToString(PetId));
@@ -406,13 +413,14 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// uploads an image 
+    /// uploads an image
+    /// 
     /// </summary>
     /// <param name="PetId">ID of pet to update</param>
      /// <param name="AdditionalMetadata">Additional data to pass to server</param>
      /// <param name="File">file to upload</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  UploadFile (long? PetId, string AdditionalMetadata, byte[] File) {
       // create path and map variables
       var path = "/pet/{petId}/uploadImage".Replace("{format}","json").Replace("{" + "petId" + "}", apiInvoker.ParameterToString(PetId));

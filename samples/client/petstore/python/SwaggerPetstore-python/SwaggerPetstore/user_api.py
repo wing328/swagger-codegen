@@ -35,6 +35,7 @@ class UserApi(object):
     
     def create_user(self, **kwargs):
         """Create user
+        
 
         Args:
             
@@ -94,6 +95,7 @@ class UserApi(object):
     
     def create_users_with_array_input(self, **kwargs):
         """Creates list of users with given input array
+        
 
         Args:
             
@@ -153,6 +155,7 @@ class UserApi(object):
     
     def create_users_with_list_input(self, **kwargs):
         """Creates list of users with given input array
+        
 
         Args:
             
@@ -212,6 +215,7 @@ class UserApi(object):
     
     def login_user(self, **kwargs):
         """Logs user into the system
+        
 
         Args:
             
@@ -283,6 +287,7 @@ class UserApi(object):
     
     def logout_user(self, **kwargs):
         """Logs out current logged in user session
+        
 
         Args:
             
@@ -336,6 +341,7 @@ class UserApi(object):
     
     def get_user_by_name(self, **kwargs):
         """Get user by user name
+        
 
         Args:
             
@@ -404,6 +410,7 @@ class UserApi(object):
     
     def update_user(self, **kwargs):
         """Updated user
+        
 
         Args:
             
@@ -472,6 +479,7 @@ class UserApi(object):
     
     def delete_user(self, **kwargs):
         """Delete user
+        
 
         Args:
             

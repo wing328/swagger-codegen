@@ -33,6 +33,7 @@ class PetApi {
    * updatePet
    *
    * Update an existing pet
+   * 
    *
    * @param Pet $body Pet object that needs to be added to the store (required)
    * @return void
@@ -86,6 +87,7 @@ class PetApi {
    * addPet
    *
    * Add a new pet to the store
+   * 
    *
    * @param Pet $body Pet object that needs to be added to the store (required)
    * @return void
@@ -139,6 +141,7 @@ class PetApi {
    * findPetsByStatus
    *
    * Finds Pets by status
+   * 
    *
    * @param array[string] $status Status values that need to be considered for filter (required)
    * @return array[Pet]
@@ -197,6 +200,7 @@ class PetApi {
    * findPetsByTags
    *
    * Finds Pets by tags
+   * 
    *
    * @param array[string] $tags Tags to filter by (required)
    * @return array[Pet]
@@ -255,6 +259,7 @@ class PetApi {
    * getPetById
    *
    * Find pet by ID
+   * 
    *
    * @param int $pet_id ID of pet that needs to be fetched (required)
    * @return Pet
@@ -314,6 +319,7 @@ class PetApi {
    * updatePetWithForm
    *
    * Updates a pet in the store with form data
+   * 
    *
    * @param string $pet_id ID of pet that needs to be updated (required)
    * @param string $name Updated name of the pet (required)
@@ -375,6 +381,7 @@ class PetApi {
    * deletePet
    *
    * Deletes a pet
+   * 
    *
    * @param string $api_key  (required)
    * @param int $pet_id Pet id to delete (required)
@@ -432,6 +439,7 @@ class PetApi {
    * uploadFile
    *
    * uploads an image
+   * 
    *
    * @param int $pet_id ID of pet to update (required)
    * @param string $additional_metadata Additional data to pass to server (required)

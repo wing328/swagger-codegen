@@ -31,10 +31,11 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Returns pet inventories by status Returns a map of status codes to quantities
+    /// Returns pet inventories by status
+    /// Returns a map of status codes to quantities
     /// </summary>
     
-    /// <returns></returns>
+    /// <returns>Dictionary<String, int?></returns>
     public Dictionary<String, int?>  GetInventory () {
       // create path and map variables
       var path = "/store/inventory".Replace("{format}","json");
@@ -83,11 +84,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Place an order for a pet 
+    /// Place an order for a pet
+    /// 
     /// </summary>
     /// <param name="Body">order placed for purchasing the pet</param>
     
-    /// <returns></returns>
+    /// <returns>Order</returns>
     public Order  PlaceOrder (Order Body) {
       // create path and map variables
       var path = "/store/order".Replace("{format}","json");
@@ -136,11 +138,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Find purchase order by ID For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
+    /// Find purchase order by ID
+    /// For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
     /// </summary>
     /// <param name="OrderId">ID of pet that needs to be fetched</param>
     
-    /// <returns></returns>
+    /// <returns>Order</returns>
     public Order  GetOrderById (string OrderId) {
       // create path and map variables
       var path = "/store/order/{orderId}".Replace("{format}","json").Replace("{" + "orderId" + "}", apiInvoker.ParameterToString(OrderId));
@@ -189,11 +192,12 @@ namespace io.swagger.Api {
     
 
     /// <summary>
-    /// Delete purchase order by ID For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+    /// Delete purchase order by ID
+    /// For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
     /// </summary>
     /// <param name="OrderId">ID of the order that needs to be deleted</param>
     
-    /// <returns></returns>
+    /// <returns>void</returns>
     public void  DeleteOrder (string OrderId) {
       // create path and map variables
       var path = "/store/order/{orderId}".Replace("{format}","json").Replace("{" + "orderId" + "}", apiInvoker.ParameterToString(OrderId));

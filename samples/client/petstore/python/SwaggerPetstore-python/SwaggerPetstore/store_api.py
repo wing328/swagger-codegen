@@ -35,6 +35,7 @@ class StoreApi(object):
     
     def get_inventory(self, **kwargs):
         """Returns pet inventories by status
+        
 
         Args:
             
@@ -94,6 +95,7 @@ class StoreApi(object):
     
     def place_order(self, **kwargs):
         """Place an order for a pet
+        
 
         Args:
             
@@ -159,6 +161,7 @@ class StoreApi(object):
     
     def get_order_by_id(self, **kwargs):
         """Find purchase order by ID
+        
 
         Args:
             
@@ -227,6 +230,7 @@ class StoreApi(object):
     
     def delete_order(self, **kwargs):
         """Delete purchase order by ID
+        
 
         Args:
             

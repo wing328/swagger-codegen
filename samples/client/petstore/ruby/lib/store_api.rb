@@ -90,7 +90,7 @@ class StoreApi
   end
 
   # Find purchase order by ID
-  # For valid response try integer IDs with value &lt;= 5 or &gt; 10. Other values will generated exceptions
+  # For valid response try integer IDs with value <= 5 or > 10. Other values will generated exceptions
   # @param order_id ID of pet that needs to be fetched
   # @param [Hash] opts the optional parameters
   # @return Order
@@ -124,7 +124,7 @@ class StoreApi
   end
 
   # Delete purchase order by ID
-  # For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+  # For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors
   # @param order_id ID of the order that needs to be deleted
   # @param [Hash] opts the optional parameters
   # @return void

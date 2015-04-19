@@ -33,11 +33,12 @@ namespace {{package}} {
     {{#operation}}
 
     /// <summary>
-    /// {{summary}} {{notes}}
+    /// {{summary}}
+    /// {{notes}}
     /// </summary>
     {{#allParams}}/// <param name="{{paramName}}">{{description}}</param>
     {{#hasMore}} {{/hasMore}}{{/allParams}}
-    /// <returns></returns>
+    /// <returns>{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}</returns>
     public {{#returnType}}{{{returnType}}} {{/returnType}}{{^returnType}}void {{/returnType}} {{nickname}} ({{#allParams}}{{{dataType}}} {{paramName}}{{#hasMore}}, {{/hasMore}}{{/allParams}}) {
       // create path and map variables
       var path = "{{path}}".Replace("{format}","json"){{#pathParams}}.Replace("{" + "{{baseName}}" + "}", apiInvoker.ParameterToString({{{paramName}}})){{/pathParams}};
