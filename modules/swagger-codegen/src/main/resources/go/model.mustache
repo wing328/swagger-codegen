@@ -1,0 +1,14 @@
+package {{invokerPackage}}
+
+import (
+  "encoding/json"
+)
+
+{{#models}}
+{{#model}}
+type {{classname}} struct {
+  {{#vars}}{{name}}  {{{datatype}}}  `json:"{{baseName}}"`
+  {{/vars}}
+}
+{{/model}}
+{{/models}}
