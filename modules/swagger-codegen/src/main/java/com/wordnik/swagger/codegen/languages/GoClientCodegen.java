@@ -49,11 +49,8 @@ public class GoClientCodegen extends DefaultCodegen implements CodegenConfig {
     additionalProperties.put("artifactId", artifactId);
     additionalProperties.put("artifactVersion", artifactVersion);
 
-    supportingFiles.add(new SupportingFile("pom.mustache", "", "pom.xml"));
     supportingFiles.add(new SupportingFile("apiInvoker.mustache", 
       "", "ApiInvoker.go"));
-    supportingFiles.add(new SupportingFile("JsonUtil.mustache", 
-      "", "JsonUtil.go"));
     supportingFiles.add(new SupportingFile("apiException.mustache", 
       "", "ApiException.go"));
 
@@ -81,6 +78,7 @@ public class GoClientCodegen extends DefaultCodegen implements CodegenConfig {
     typeMapping.put("dateTime", "Time");
     typeMapping.put("password", "string");
     typeMapping.put("array", "array");
+    typeMapping.put("map", "map");
     typeMapping.put("map", "map");
 
   }

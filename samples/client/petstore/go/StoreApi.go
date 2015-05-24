@@ -1,39 +1,19 @@
-package io.swagger.client.api;
+package swagger;
 
-import swagger.ApiException;
-import swagger.ApiInvoker;
+import (
+  "encoding/json"
+  "fmt"
+  "net/url"
+)
 
-import io.swagger.client.model.*;
+type StoreApi struct { 
+  basePath string
+  apiInvoker ApiInvoker
+}
 
-import java.util.*;
-
-import java.util.Map;
-import io.swagger.client.model.Order;
-
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.file.FileDataBodyPart;
-
-import javax.ws.rs.core.MediaType;
-
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
-
-public class StoreApi {
-  String basePath = "http://petstore.swagger.io/v2";
-  ApiInvoker apiInvoker = ApiInvoker.getInstance();
-
-  public ApiInvoker getInvoker() {
-    return apiInvoker;
-  }
-
-  public void setBasePath(String basePath) {
-    this.basePath = basePath;
-  }
-
-  public String getBasePath() {
-    return basePath;
-  }
+func NewStoreApi() *obj{
+    return &obj{basePath:"http://petstore.swagger.io/v2", apiInvoker:ApiInvoker.GetInstance()}
+}
 
   
   /**
@@ -41,48 +21,31 @@ public class StoreApi {
    * Returns a map of status codes to quantities
    * @return Map[String]int32
    */
-  public Map[String]int32 getInventory () throws ApiException {
-    Object postBody = null;
+  func (response Map[String]int32) getInventory ()  {
+    postBody := nil
     
 
     // create path and map variables
-    String path = "/store/inventory".replaceAll("\\{format\\}","json");
+    path := "/store/inventory".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (Map[String]int32) ApiInvoker.deserialize(response, "map", Map.class);
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "map", "Map")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -91,48 +54,35 @@ public class StoreApi {
    * @param body order placed for purchasing the pet
    * @return Order
    */
-  public Order placeOrder (Order body) throws ApiException {
-    Object postBody = body;
+  func (response Order) placeOrder (body )  {
+    postBody := body
     
 
     // create path and map variables
-    String path = "/store/order".replaceAll("\\{format\\}","json");
+    path := "/store/order".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
+    
+    // body params
+    _tempBody := nil
+    if body {
+      _tempBody = body
     }
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (Order) ApiInvoker.deserialize(response, "", Order.class);
+      response := apiInvoker.CallAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "", "Order")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -141,54 +91,37 @@ public class StoreApi {
    * @param orderId ID of pet that needs to be fetched
    * @return Order
    */
-  public Order getOrderById (string orderId) throws ApiException {
-    Object postBody = null;
+  func (response Order) getOrderById (orderId )  {
+    postBody := nil
     
     // verify the required parameter 'orderId' is set
-    if (orderId == null) {
-       throw new ApiException(400, "Missing the required parameter 'orderId' when calling getOrderById");
+    if orderId == nil {
+       return 0, fmt.Error("Missing the required parameter 'orderId' when calling getOrderById")
     }
     
 
     // create path and map variables
-    String path = "/store/order/{orderId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "orderId" + "\\}", apiInvoker.escapeString(orderId.toString()));
+    path := "/store/order/{orderId}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "orderId" + "\\}", ApiInvoker.EscapeString(orderId))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (Order) ApiInvoker.deserialize(response, "", Order.class);
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "", "Order")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -197,54 +130,36 @@ public class StoreApi {
    * @param orderId ID of the order that needs to be deleted
    * @return void
    */
-  public void deleteOrder (string orderId) throws ApiException {
-    Object postBody = null;
+  func (response ) deleteOrder (orderId )  {
+    postBody := nil
     
     // verify the required parameter 'orderId' is set
-    if (orderId == null) {
-       throw new ApiException(400, "Missing the required parameter 'orderId' when calling deleteOrder");
+    if orderId == nil {
+       return 0, fmt.Error("Missing the required parameter 'orderId' when calling deleteOrder")
     }
     
 
     // create path and map variables
-    String path = "/store/order/{orderId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "orderId" + "\\}", apiInvoker.escapeString(orderId.toString()));
+    path := "/store/order/{orderId}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "orderId" + "\\}", ApiInvoker.EscapeString(orderId))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
-}

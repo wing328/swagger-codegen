@@ -1,39 +1,19 @@
-package io.swagger.client.api;
+package swagger;
 
-import swagger.ApiException;
-import swagger.ApiInvoker;
+import (
+  "encoding/json"
+  "fmt"
+  "net/url"
+)
 
-import io.swagger.client.model.*;
+type PetApi struct { 
+  basePath string
+  apiInvoker ApiInvoker
+}
 
-import java.util.*;
-
-import io.swagger.client.model.Pet;
-import java.io.File;
-
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.file.FileDataBodyPart;
-
-import javax.ws.rs.core.MediaType;
-
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
-
-public class PetApi {
-  String basePath = "http://petstore.swagger.io/v2";
-  ApiInvoker apiInvoker = ApiInvoker.getInstance();
-
-  public ApiInvoker getInvoker() {
-    return apiInvoker;
-  }
-
-  public void setBasePath(String basePath) {
-    this.basePath = basePath;
-  }
-
-  public String getBasePath() {
-    return basePath;
-  }
+func NewPetApi() *obj{
+    return &obj{basePath:"http://petstore.swagger.io/v2", apiInvoker:ApiInvoker.GetInstance()}
+}
 
   
   /**
@@ -42,48 +22,35 @@ public class PetApi {
    * @param body Pet object that needs to be added to the store
    * @return void
    */
-  public void updatePet (Pet body) throws ApiException {
-    Object postBody = body;
+  func (response ) updatePet (body )  {
+    postBody := body
     
 
     // create path and map variables
-    String path = "/pet".replaceAll("\\{format\\}","json");
+    path := "/pet".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      "application/json","application/xml",
-    };
+    contentTypes := []string { "application/json","application/xml", }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
+    
+    // body params
+    _tempBody := nil
+    if body {
+      _tempBody = body
     }
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -92,48 +59,35 @@ public class PetApi {
    * @param body Pet object that needs to be added to the store
    * @return void
    */
-  public void addPet (Pet body) throws ApiException {
-    Object postBody = body;
+  func (response ) addPet (body )  {
+    postBody := body
     
 
     // create path and map variables
-    String path = "/pet".replaceAll("\\{format\\}","json");
+    path := "/pet".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      "application/json","application/xml",
-    };
+    contentTypes := []string { "application/json","application/xml", }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
+    
+    // body params
+    _tempBody := nil
+    if body {
+      _tempBody = body
     }
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -142,50 +96,34 @@ public class PetApi {
    * @param status Status values that need to be considered for filter
    * @return []Pet
    */
-  public []Pet findPetsByStatus ([]string status) throws ApiException {
-    Object postBody = null;
+  func (response []Pet) findPetsByStatus (status )  {
+    postBody := nil
     
 
     // create path and map variables
-    String path = "/pet/findByStatus".replaceAll("\\{format\\}","json");
+    path := "/pet/findByStatus".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
-    if (status != null)
-      queryParams.put("status", ApiInvoker.parameterToString(status));
+    if status {
+      queryParams["status"] = ApiInvoker.ParameterToString(status);
+    }
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ([]Pet) ApiInvoker.deserialize(response, "array", Pet.class);
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "array", "Pet")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -194,50 +132,34 @@ public class PetApi {
    * @param tags Tags to filter by
    * @return []Pet
    */
-  public []Pet findPetsByTags ([]string tags) throws ApiException {
-    Object postBody = null;
+  func (response []Pet) findPetsByTags (tags )  {
+    postBody := nil
     
 
     // create path and map variables
-    String path = "/pet/findByTags".replaceAll("\\{format\\}","json");
+    path := "/pet/findByTags".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
-    if (tags != null)
-      queryParams.put("tags", ApiInvoker.parameterToString(tags));
+    if tags {
+      queryParams["tags"] = ApiInvoker.ParameterToString(tags);
+    }
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ([]Pet) ApiInvoker.deserialize(response, "array", Pet.class);
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "array", "Pet")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -246,54 +168,37 @@ public class PetApi {
    * @param petId ID of pet that needs to be fetched
    * @return Pet
    */
-  public Pet getPetById (int64 petId) throws ApiException {
-    Object postBody = null;
+  func (response Pet) getPetById (petId )  {
+    postBody := nil
     
     // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling getPetById");
+    if petId == nil {
+       return 0, fmt.Error("Missing the required parameter 'petId' when calling getPetById")
     }
     
 
     // create path and map variables
-    String path = "/pet/{petId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "petId" + "\\}", apiInvoker.escapeString(petId.toString()));
+    path := "/pet/{petId}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "petId" + "\\}", ApiInvoker.EscapeString(petId))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (Pet) ApiInvoker.deserialize(response, "", Pet.class);
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "", "Pet")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -304,62 +209,43 @@ public class PetApi {
    * @param status Updated status of the pet
    * @return void
    */
-  public void updatePetWithForm (string petId, string name, string status) throws ApiException {
-    Object postBody = null;
+  func (response ) updatePetWithForm (petId , name , status )  {
+    postBody := nil
     
     // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling updatePetWithForm");
+    if petId == nil {
+       return 0, fmt.Error("Missing the required parameter 'petId' when calling updatePetWithForm")
     }
     
 
     // create path and map variables
-    String path = "/pet/{petId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "petId" + "\\}", apiInvoker.escapeString(petId.toString()));
+    path := "/pet/{petId}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "petId" + "\\}", ApiInvoker.EscapeString(petId))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      "application/x-www-form-urlencoded",
-    };
+    contentTypes := []string { "application/x-www-form-urlencoded", }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      hasFields = true;
-      mp.field("name", ApiInvoker.parameterToString(name), MediaType.MULTIPART_FORM_DATA_TYPE);
-      
-      hasFields = true;
-      mp.field("status", ApiInvoker.parameterToString(status), MediaType.MULTIPART_FORM_DATA_TYPE);
-      
-      if(hasFields)
-        postBody = mp;
+    // form params
+    if name {
+      formParams["name"] = ApiInvoker.ToFormValue(name)
+    }// form params
+    if status {
+      formParams["status"] = ApiInvoker.ToFormValue(status)
     }
-    else {
-      formParams.put("name", ApiInvoker.parameterToString(name));
-      formParams.put("status", ApiInvoker.parameterToString(status));
-      
-    }
+    
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -369,55 +255,38 @@ public class PetApi {
    * @param petId Pet id to delete
    * @return void
    */
-  public void deletePet (string apiKey, int64 petId) throws ApiException {
-    Object postBody = null;
+  func (response ) deletePet (apiKey , petId )  {
+    postBody := nil
     
     // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling deletePet");
+    if petId == nil {
+       return 0, fmt.Error("Missing the required parameter 'petId' when calling deletePet")
     }
     
 
     // create path and map variables
-    String path = "/pet/{petId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "petId" + "\\}", apiInvoker.escapeString(petId.toString()));
+    path := "/pet/{petId}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "petId" + "\\}", ApiInvoker.EscapeString(petId))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
-    headerParams.put("api_key", ApiInvoker.parameterToString(apiKey));
+    headerParams["api_key"] = ApiInvoker.ParameterToString(apiKey);
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -428,63 +297,42 @@ public class PetApi {
    * @param file file to upload
    * @return void
    */
-  public void uploadFile (int64 petId, string additionalMetadata, File file) throws ApiException {
-    Object postBody = null;
+  func (response ) uploadFile (petId , additionalMetadata , file )  {
+    postBody := nil
     
     // verify the required parameter 'petId' is set
-    if (petId == null) {
-       throw new ApiException(400, "Missing the required parameter 'petId' when calling uploadFile");
+    if petId == nil {
+       return 0, fmt.Error("Missing the required parameter 'petId' when calling uploadFile")
     }
     
 
     // create path and map variables
-    String path = "/pet/{petId}/uploadImage".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "petId" + "\\}", apiInvoker.escapeString(petId.toString()));
+    path := "/pet/{petId}/uploadImage".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "petId" + "\\}", ApiInvoker.EscapeString(petId))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      "multipart/form-data",
-    };
+    contentTypes := []string { "multipart/form-data", }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      hasFields = true;
-      mp.field("additionalMetadata", ApiInvoker.parameterToString(additionalMetadata), MediaType.MULTIPART_FORM_DATA_TYPE);
-      
-      hasFields = true;
-      mp.field("file", file.getName());
-      mp.bodyPart(new FileDataBodyPart("file", file, MediaType.MULTIPART_FORM_DATA_TYPE));
-      
-      if(hasFields)
-        postBody = mp;
+    // form params
+    if additionalMetadata {
+      formParams["additionalMetadata"] = ApiInvoker.ToFormValue(additionalMetadata)
+    }// form params
+    if file {
+      formParams["file"] = "@" . ApiInvoker.ToFormValue(file)
     }
-    else {
-      formParams.put("additionalMetadata", ApiInvoker.parameterToString(additionalMetadata));
-      
-      
-    }
+    
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
-}

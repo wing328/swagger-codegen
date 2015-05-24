@@ -1,39 +1,19 @@
-package io.swagger.client.api;
+package swagger;
 
-import swagger.ApiException;
-import swagger.ApiInvoker;
+import (
+  "encoding/json"
+  "fmt"
+  "net/url"
+)
 
-import io.swagger.client.model.*;
+type UserApi struct { 
+  basePath string
+  apiInvoker ApiInvoker
+}
 
-import java.util.*;
-
-import io.swagger.client.model.User;
-import java.util.List;
-
-import com.sun.jersey.multipart.FormDataMultiPart;
-import com.sun.jersey.multipart.file.FileDataBodyPart;
-
-import javax.ws.rs.core.MediaType;
-
-import java.io.File;
-import java.util.Map;
-import java.util.HashMap;
-
-public class UserApi {
-  String basePath = "http://petstore.swagger.io/v2";
-  ApiInvoker apiInvoker = ApiInvoker.getInstance();
-
-  public ApiInvoker getInvoker() {
-    return apiInvoker;
-  }
-
-  public void setBasePath(String basePath) {
-    this.basePath = basePath;
-  }
-
-  public String getBasePath() {
-    return basePath;
-  }
+func NewUserApi() *obj{
+    return &obj{basePath:"http://petstore.swagger.io/v2", apiInvoker:ApiInvoker.GetInstance()}
+}
 
   
   /**
@@ -42,48 +22,35 @@ public class UserApi {
    * @param body Created user object
    * @return void
    */
-  public void createUser (User body) throws ApiException {
-    Object postBody = body;
+  func (response ) createUser (body )  {
+    postBody := body
     
 
     // create path and map variables
-    String path = "/user".replaceAll("\\{format\\}","json");
+    path := "/user".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
+    
+    // body params
+    _tempBody := nil
+    if body {
+      _tempBody = body
     }
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -92,48 +59,35 @@ public class UserApi {
    * @param body List of user object
    * @return void
    */
-  public void createUsersWithArrayInput ([]User body) throws ApiException {
-    Object postBody = body;
+  func (response ) createUsersWithArrayInput (body )  {
+    postBody := body
     
 
     // create path and map variables
-    String path = "/user/createWithArray".replaceAll("\\{format\\}","json");
+    path := "/user/createWithArray".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
+    
+    // body params
+    _tempBody := nil
+    if body {
+      _tempBody = body
     }
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -142,48 +96,35 @@ public class UserApi {
    * @param body List of user object
    * @return void
    */
-  public void createUsersWithListInput ([]User body) throws ApiException {
-    Object postBody = body;
+  func (response ) createUsersWithListInput (body )  {
+    postBody := body
     
 
     // create path and map variables
-    String path = "/user/createWithList".replaceAll("\\{format\\}","json");
+    path := "/user/createWithList".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
+    
+    // body params
+    _tempBody := nil
+    if body {
+      _tempBody = body
     }
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -193,52 +134,37 @@ public class UserApi {
    * @param password The password for login in clear text
    * @return string
    */
-  public string loginUser (string username, string password) throws ApiException {
-    Object postBody = null;
+  func (response string) loginUser (username , password )  {
+    postBody := nil
     
 
     // create path and map variables
-    String path = "/user/login".replaceAll("\\{format\\}","json");
+    path := "/user/login".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
-    if (username != null)
-      queryParams.put("username", ApiInvoker.parameterToString(username));
-    if (password != null)
-      queryParams.put("password", ApiInvoker.parameterToString(password));
+    if username {
+      queryParams["username"] = ApiInvoker.ParameterToString(username);
+    }
+    if password {
+      queryParams["password"] = ApiInvoker.ParameterToString(password);
+    }
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (string) ApiInvoker.deserialize(response, "", string.class);
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "", "string")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -246,48 +172,31 @@ public class UserApi {
    * 
    * @return void
    */
-  public void logoutUser () throws ApiException {
-    Object postBody = null;
+  func (response ) logoutUser ()  {
+    postBody := nil
     
 
     // create path and map variables
-    String path = "/user/logout".replaceAll("\\{format\\}","json");
+    path := "/user/logout".Replace("\\{format\\}","json")
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -296,54 +205,37 @@ public class UserApi {
    * @param username The name that needs to be fetched. Use user1 for testing. 
    * @return User
    */
-  public User getUserByName (string username) throws ApiException {
-    Object postBody = null;
+  func (response User) getUserByName (username )  {
+    postBody := nil
     
     // verify the required parameter 'username' is set
-    if (username == null) {
-       throw new ApiException(400, "Missing the required parameter 'username' when calling getUserByName");
+    if username == nil {
+       return 0, fmt.Error("Missing the required parameter 'username' when calling getUserByName")
     }
     
 
     // create path and map variables
-    String path = "/user/{username}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "username" + "\\}", apiInvoker.escapeString(username.toString()));
+    path := "/user/{username}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "username" + "\\}", ApiInvoker.EscapeString(username))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (User) ApiInvoker.deserialize(response, "", User.class);
+      response := apiInvoker.CallAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return ApiInvoker.Deserialize(response, "", "User")
+      } else {
+        return 
       }
-      else {
-        return null;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -353,54 +245,41 @@ public class UserApi {
    * @param body Updated user object
    * @return void
    */
-  public void updateUser (string username, User body) throws ApiException {
-    Object postBody = body;
+  func (response ) updateUser (username , body )  {
+    postBody := body
     
     // verify the required parameter 'username' is set
-    if (username == null) {
-       throw new ApiException(400, "Missing the required parameter 'username' when calling updateUser");
+    if username == nil {
+       return 0, fmt.Error("Missing the required parameter 'username' when calling updateUser")
     }
     
 
     // create path and map variables
-    String path = "/user/{username}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "username" + "\\}", apiInvoker.escapeString(username.toString()));
+    path := "/user/{username}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "username" + "\\}", ApiInvoker.EscapeString(username))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
+    
+    // body params
+    _tempBody := nil
+    if body {
+      _tempBody = body
     }
 
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
   /**
@@ -409,54 +288,36 @@ public class UserApi {
    * @param username The name that needs to be deleted
    * @return void
    */
-  public void deleteUser (string username) throws ApiException {
-    Object postBody = null;
+  func (response ) deleteUser (username )  {
+    postBody := nil
     
     // verify the required parameter 'username' is set
-    if (username == null) {
-       throw new ApiException(400, "Missing the required parameter 'username' when calling deleteUser");
+    if username == nil {
+       return 0, fmt.Error("Missing the required parameter 'username' when calling deleteUser")
     }
     
 
     // create path and map variables
-    String path = "/user/{username}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "username" + "\\}", apiInvoker.escapeString(username.toString()));
+    path := "/user/{username}".Replace("\\{format\\}","json")
+    path = path.Replace("\\{" + "username" + "\\}", ApiInvoker.EscapeString(username))
+    
 
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    queryParams := map[string]string {}
+    headerParams := map[string]string {}
+    formParams := map[string]string {}
 
     
     
-    String[] contentTypes = {
-      
-    };
+    contentTypes := []string {  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+    
+    
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-    try {
-      String response = apiInvoker.invokeAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return ;
+      response := apiInvoker.CallAPI(basePath, path, "DELETE", queryParams, postBody, headerParams, formParams, contentType)
+      if response {
+        return 
+      } else {
+        return nil
       }
-      else {
-        return ;
-      }
-    } catch (ApiException ex) {
-      throw ex;
-    }
   }
   
-}
