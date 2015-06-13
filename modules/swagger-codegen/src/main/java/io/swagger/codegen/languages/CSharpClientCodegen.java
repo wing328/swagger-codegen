@@ -18,11 +18,11 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
     protected String groupId = "io.swagger";
     protected String artifactId = "swagger-csharp-client";
     protected String artifactVersion = "1.0.0";
-    protected String sourceFolder = "src/main/csharp";
+    protected String sourceFolder = "src" + File.separator + "main" + File.separator + "csharp";
 
     public CSharpClientCodegen() {
         super();
-        outputFolder = "generated-code/csharp";
+        outputFolder = "generated-code" + File.separator + "csharp";
         modelTemplateFiles.put("model.mustache", ".cs");
         apiTemplateFiles.put("api.mustache", ".cs");
         templateDir = "csharp";
@@ -106,11 +106,11 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
 
     @Override
     public String apiFileFolder() {
-        return (outputFolder + "/" + sourceFolder + "/" + apiPackage().replace('.', '/')).replace('.', File.separatorChar);
+        return (outputFolder + File.separator + sourceFolder + File.separator + apiPackage().replace('.', File.separatorChar)).replace('.', File.separatorChar);
     }
 
     public String modelFileFolder() {
-        return (outputFolder + "/" + sourceFolder + "/" + modelPackage().replace('.', '/')).replace('.', File.separatorChar);
+        return (outputFolder + File.separator + sourceFolder + File.separator + modelPackage().replace('.', File.separatorChar)).replace('.', File.separatorChar);
     }
 
     @Override
