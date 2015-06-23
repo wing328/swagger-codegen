@@ -284,7 +284,7 @@ class PetApi {
    * Find pet by ID
    *
    * @param int $pet_id ID of pet that needs to be fetched (required)
-   * @return Pet
+   * @return SplFileObject
    */
    public function getPetById($pet_id) {
       
@@ -330,15 +330,15 @@ class PetApi {
       $authSettings = array('api_key', 'petstore_auth');
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings, 'SplFileObject');
 
       if(! $response) {
         return null;
       }
 
-      $responseObject = $this->apiClient->deserialize($response,'Pet');
+      $responseObject = $this->apiClient->deserialize($response,'SplFileObject', $httpHeader);
       return $responseObject;
   }
   
@@ -479,7 +479,7 @@ class PetApi {
    *
    * @param int $pet_id ID of pet to update (required)
    * @param string $additional_metadata Additional data to pass to server (required)
-   * @param string $file file to upload (required)
+   * @param SplFileObject $file file to upload (required)
    * @return void
    */
    public function uploadFile($pet_id, $additional_metadata, $file) {

@@ -346,7 +346,11 @@ class ApiClient {
    * @return string the form string
    */
   public function toFormValue($value) {
-      return $this->toString($value);
+      if ($value instanceof SplFileObject) {
+          return $value->getRealPath();
+      } else {
+          return $this->toString($value);
+      }
   }
 
   /**

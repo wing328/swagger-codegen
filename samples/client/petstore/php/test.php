@@ -2,6 +2,10 @@
 //require_once('vendor/autoload.php');
 require_once('SwaggerClient-php/SwaggerClient.php');
 
+$file = new SplFileObject("./test.php");
+if ($file instanceof SplFileObject)
+    print ($file->getPathName());
+
 // show error reporting
 //ini_set('display_errors', 1);
 //error_reporting(~0);
@@ -11,7 +15,7 @@ require_once('SwaggerClient-php/SwaggerClient.php');
 //$api_client->addDefaultHeader("test1", "value1");
 
 // to enable logging
-//SwaggerClient\Configuration::$debug = true;
+SwaggerClient\Configuration::$debug = true;
 //SwaggerClient\Configuration::$debug_file = '/var/tmp/php_debug.log';
 
 $petId = 10005; // ID of pet that needs to be fetched
@@ -24,7 +28,9 @@ try {
     // return Pet (model)
     $response = $pet_api->getPetById($petId);
     // to test __toString()
-    print ($response);
+    var_dump ($response);
+
+    exit;
 
     // add pet (post json)
     $new_pet_id = 10005;
@@ -48,7 +54,7 @@ try {
     $add_response = $pet_api->addPet($new_pet);
 
     // test upload file (exception)
-    $upload_response = $pet_api->uploadFile($petId, "test meta", NULL);
+    $upload_response = $pet_api->uploadFile($petId, "test meta", new SplFileObject("./test.php"));
 
 } catch (Exception $e) {
     echo 'Caught exception: ', $e->getMessage(), "\n";
