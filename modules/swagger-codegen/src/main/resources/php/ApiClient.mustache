@@ -422,7 +422,7 @@ class ApiClient {
       }
       $deserialized = new \SplFileObject($filename, "w");
       $byte_written = $deserialized->fwrite($data);
-      error_log("[INFO] Written $byte_written to $filename. Please move the file to a proper folder for further processing and delete the temp afterwards");
+      error_log("[INFO] Written $byte_written to $filename. Please move the file to a proper folder for further processing and delete the temp afterwards", 3, Configuration::$debug_file);
 
     } else {
       $class = "{{invokerPackage}}\\models\\".$class;
