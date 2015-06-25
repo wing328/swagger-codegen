@@ -179,7 +179,7 @@ class ApiClient {
    * @return mixed
    */
   public function callApi($resourcePath, $method, $queryParams, $postData,
-    $headerParams, $authSettings, $response_type) {
+    $headerParams, $authSettings, $responseType) {
 
     $headers = array();
 
@@ -266,8 +266,8 @@ class ApiClient {
     if ($response_info['http_code'] == 0) {
       throw new ApiException("API call to $url timed out: ".serialize($response_info), 0, null, null);
     } else if ($response_info['http_code'] >= 200 && $response_info['http_code'] <= 299 ) {
-      if ($response_type == 'SplFileObject') {
-        return array($http_body, $http_header); # return raw body if response is a file
+      if ($responseType == 'SplFileObject') {
+        return array($http_body, $http_header); // return raw body if response is a file
       }
 
       $data = json_decode($http_body);
@@ -278,7 +278,7 @@ class ApiClient {
       throw new ApiException("[".$response_info['http_code']."] Error connecting to the API ($url)",
         $response_info['http_code'], $http_header, $http_body);
     }
-    return array($data, $http_header);
+    return $data;
   }
 
   /**
@@ -385,7 +385,7 @@ class ApiClient {
    * @param string $class class name is passed as a string
    * @return object an instance of $class
    */
-  public function deserialize($data, $class, $http_header= NULL)
+  public function deserialize($data, $class, $http_header = null)
   {
     if (null === $data) {
       $deserialized = null;
@@ -406,36 +406,29 @@ class ApiClient {
         $values[] = $this->deserialize($value, $subClass);
       }
       $deserialized = $values;
-    } elseif ($class === 'DateTime') {
+    } elseif ($class == 'DateTime') {
       $deserialized = new \DateTime($data);
     } elseif (in_array($class, array('string', 'int', 'float', 'double', 'bool', 'object'))) {
       settype($data, $class);
       $deserialized = $data;
     } elseif ($class === 'SplFileObject') {
-      $http_header = <<<XML
-HTTP/1.1 200 OK
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Methods: GET, POST, DELETE, PUT
-Access-Control-Allow-Headers: Content-Type, api_key, Authorization
-Content-Type: application/json
-Content-Disposition: inline; filename="myfile.txt"
-Connection: close
-Server: Jetty(9.2.7.v20150116)
-
-XML;
-      var_dump($http_header);
-      # determine file name
-      if (preg_match('/Content-Disposition: inline; filename="(.*)"/i', $http_header, $match)) {
-        $filename = '/tmp/'.$match[1];
-        var_dump($filename);
+      # determine temp folder path
+      if (!isset(Configuration::$tempFolderPath) || '' === Configuration::$tempFolderPath) {
+        $tmpFolderPath = sys_get_temp_dir();
       } else {
-        $filename = tempnam('/tmp', '');
+        $tmpFolderPath = Configuration::tempFolderPath;
+      }
+
+      # determine file name
+      if (preg_match('/Content-Disposition: inline; filename=(.*)/i', $http_header, $match)) {
+        $filename = $tmpFolderPath.$match[1];
+      } else {
+        $filename = tempnam($tmpFolderPath, '');
       }
       $deserialized = new \SplFileObject($filename, "w");
       $byte_written = $deserialized->fwrite($data);
-      if (Configuration::$debug) {
-        error_log("Written $byte_written to $filename (as part of 'deserialize')");
-      }
+      error_log("[INFO] Written $byte_written to $filename. Please move the file to a proper folder for further processing and delete the temp afterwards");
+
     } else {
       $class = "SwaggerClient\\models\\".$class;
       $instance = new $class();

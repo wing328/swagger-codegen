@@ -62,5 +62,18 @@ class Configuration {
       self::$apiClient = new ApiClient();
   }
 
+  /*
+   * return the report for debuggin
+   */
+  public static function toDebugReport() {
+    $report  = "PHP SDK (SwaggerClient) Debug Report:\n";
+    $report .= "    OS: ".php_uname()."\n";
+    $report .= "    PHP Version: ".phpversion()."\n";
+    $report .= "    Swagger Spec Version: 1.0.0\n";
+    $report .= "    SDK Package Version: 1.0.0\n";
+
+    return $report;
+  }
+
 }
 

@@ -17,8 +17,10 @@ if ($file instanceof SplFileObject)
 // to enable logging
 SwaggerClient\Configuration::$debug = true;
 //SwaggerClient\Configuration::$debug_file = '/var/tmp/php_debug.log';
+print SwaggerClient\Configuration::toDebugReport();
+exit;
 
-$petId = 10005; // ID of pet that needs to be fetched
+$petId = 5; // ID of pet that needs to be fetched
 try {
     // get pet by id
     //$pet_api = new SwaggerClient\PetAPI($api_client);
@@ -28,7 +30,7 @@ try {
     // return Pet (model)
     $response = $pet_api->getPetById($petId);
     // to test __toString()
-    var_dump ($response);
+    print_r ($response);
 
     exit;
 

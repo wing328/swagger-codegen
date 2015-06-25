@@ -120,15 +120,16 @@ class {{classname}} {
       $authSettings = array({{#authMethods}}'{{name}}'{{#hasMore}}, {{/hasMore}}{{/authMethods}});
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            {{#returnType}}, '{{returnType}}'{{/returnType}});
 
       {{#returnType}}if(! $response) {
         return null;
       }
 
-      $responseObject = $this->apiClient->deserialize($response,'{{returnType}}');
+      $responseObject = $this->apiClient->deserialize($response,'{{returnType}}', $httpHeader);
       return $responseObject;{{/returnType}}
   }
   {{/operation}}

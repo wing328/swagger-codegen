@@ -174,7 +174,7 @@ class ApiClient {
    * @return mixed
    */
   public function callApi($resourcePath, $method, $queryParams, $postData,
-    $headerParams, $authSettings) {
+    $headerParams, $authSettings, $responseType) {
 
     $headers = array();
 
@@ -261,6 +261,10 @@ class ApiClient {
     if ($response_info['http_code'] == 0) {
       throw new ApiException("API call to $url timed out: ".serialize($response_info), 0, null, null);
     } else if ($response_info['http_code'] >= 200 && $response_info['http_code'] <= 299 ) {
+      if ($responseType == 'SplFileObject') {
+        return array($http_body, $http_header); // return raw body if response is a file
+      }
+
       $data = json_decode($http_body);
       if (json_last_error() > 0) { // if response is a string
         $data = $http_body;
@@ -376,7 +380,7 @@ class ApiClient {
    * @param string $class class name is passed as a string
    * @return object an instance of $class
    */
-  public function deserialize($data, $class)
+  public function deserialize($data, $class, $http_header = null)
   {
     if (null === $data) {
       $deserialized = null;
@@ -402,6 +406,24 @@ class ApiClient {
     } elseif (in_array($class, array('string', 'int', 'float', 'double', 'bool', 'object'))) {
       settype($data, $class);
       $deserialized = $data;
+    } elseif ($class === 'SplFileObject') {
+      # determine temp folder path
+      if (!isset(Configuration::$tempFolderPath) || '' === Configuration::$tempFolderPath) {
+        $tmpFolderPath = sys_get_temp_dir();
+      } else {
+        $tmpFolderPath = Configuration::tempFolderPath;
+      }
+
+      # determine file name
+      if (preg_match('/Content-Disposition: inline; filename=(.*)/i', $http_header, $match)) {
+        $filename = $tmpFolderPath.$match[1];
+      } else {
+        $filename = tempnam($tmpFolderPath, '');
+      }
+      $deserialized = new \SplFileObject($filename, "w");
+      $byte_written = $deserialized->fwrite($data);
+      error_log("[INFO] Written $byte_written to $filename. Please move the file to a proper folder for further processing and delete the temp afterwards");
+
     } else {
       $class = "{{invokerPackage}}\\models\\".$class;
       $instance = new $class();

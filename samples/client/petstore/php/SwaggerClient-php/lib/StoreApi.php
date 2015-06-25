@@ -96,15 +96,16 @@ class StoreApi {
       $authSettings = array('api_key');
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            , 'map[string,int]');
 
       if(! $response) {
         return null;
       }
 
-      $responseObject = $this->apiClient->deserialize($response,'map[string,int]');
+      $responseObject = $this->apiClient->deserialize($response,'map[string,int]', $httpHeader);
       return $responseObject;
   }
   
@@ -155,15 +156,16 @@ class StoreApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            , 'Order');
 
       if(! $response) {
         return null;
       }
 
-      $responseObject = $this->apiClient->deserialize($response,'Order');
+      $responseObject = $this->apiClient->deserialize($response,'Order', $httpHeader);
       return $responseObject;
   }
   
@@ -219,15 +221,16 @@ class StoreApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            , 'Order');
 
       if(! $response) {
         return null;
       }
 
-      $responseObject = $this->apiClient->deserialize($response,'Order');
+      $responseObject = $this->apiClient->deserialize($response,'Order', $httpHeader);
       return $responseObject;
   }
   
@@ -283,9 +286,10 @@ class StoreApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            );
 
       
   }

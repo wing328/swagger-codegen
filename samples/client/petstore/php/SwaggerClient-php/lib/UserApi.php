@@ -101,9 +101,10 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            );
 
       
   }
@@ -155,9 +156,10 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            );
 
       
   }
@@ -209,9 +211,10 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            );
 
       
   }
@@ -266,15 +269,16 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            , 'string');
 
       if(! $response) {
         return null;
       }
 
-      $responseObject = $this->apiClient->deserialize($response,'string');
+      $responseObject = $this->apiClient->deserialize($response,'string', $httpHeader);
       return $responseObject;
   }
   
@@ -320,9 +324,10 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            );
 
       
   }
@@ -379,15 +384,16 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            , 'User');
 
       if(! $response) {
         return null;
       }
 
-      $responseObject = $this->apiClient->deserialize($response,'User');
+      $responseObject = $this->apiClient->deserialize($response,'User', $httpHeader);
       return $responseObject;
   }
   
@@ -448,9 +454,10 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            );
 
       
   }
@@ -507,9 +514,10 @@ class UserApi {
       $authSettings = array();
 
       // make the API Call
-      $response = $this->apiClient->callAPI($resourcePath, $method,
+      list($response, $httpHeader) = $this->apiClient->callAPI($resourcePath, $method,
                                             $queryParams, $httpBody,
-                                            $headerParams, $authSettings);
+                                            $headerParams, $authSettings
+                                            );
 
       
   }
