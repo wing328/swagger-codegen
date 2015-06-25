@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -71,6 +72,24 @@ namespace IO.Swagger.Client {
                     _tempFolderPath = value  + Path.DirectorySeparatorChar;
                 }
             }
+        }
+
+        /// <summary>
+        /// Return a string contain essential information for debugging
+        /// </summary>
+        /// <value>Folder path</value>
+        public static String ToDebugReport() {
+            String report = "C# SDK (IO.Swagger.Client) Debug Report:\n";
+            report += "    OS: " + Environment.OSVersion + "\n";
+            report += "    .NET Framework Version: " + Assembly
+                     .GetExecutingAssembly()
+                     .GetReferencedAssemblies()
+                     .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
+            report += "    Swagger Spec Version: 1.0.0\n";
+            report += "    SDK Package Version: 1.0.0\n";
+
+            return report;
+
         }
     }
 }
