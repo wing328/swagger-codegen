@@ -79,7 +79,7 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
         typeMapping.put("number", "double?");
         typeMapping.put("datetime", "DateTime?");
         typeMapping.put("date", "DateTime?");
-        typeMapping.put("file", "string"); // path to file
+        typeMapping.put("file", "FileStream");
         typeMapping.put("array", "List");
         typeMapping.put("list", "List");
         typeMapping.put("map", "Dictionary");
@@ -106,11 +106,11 @@ public class CSharpClientCodegen extends DefaultCodegen implements CodegenConfig
 
     @Override
     public String apiFileFolder() {
-        return (outputFolder + "/" + sourceFolder + "/" + apiPackage().replace('.', '/')).replace('.', File.separatorChar);
+        return (outputFolder + File.separator + sourceFolder + File.separator + apiPackage().replace('.', '/')).replace('.', File.separatorChar);
     }
 
     public String modelFileFolder() {
-        return (outputFolder + "/" + sourceFolder + "/" + modelPackage().replace('.', '/')).replace('.', File.separatorChar);
+        return (outputFolder + File.separator + sourceFolder + File.separator + modelPackage().replace('.', '/')).replace('.', File.separatorChar);
     }
 
     @Override
