@@ -1,15 +1,14 @@
 require 'json'
 
 
-MyApp.add_route('POST', '/user', {
+MyApp.add_route('POST', '/user'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Create user",
   "nickname" => "create_user", 
   "responseClass" => "void", 
-  "endpoint" => "/user", 
+  "endpoint" => "/user".gsub/{(.*?)}/, ':\1', 
   "notes" => "This can only be done by the logged in user.",
   "parameters" => [
-    
     
     
     
@@ -28,15 +27,14 @@ MyApp.add_route('POST', '/user', {
 end
 
 
-MyApp.add_route('POST', '/user/createWithArray', {
+MyApp.add_route('POST', '/user/createWithArray'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Creates list of users with given input array",
   "nickname" => "create_users_with_array_input", 
   "responseClass" => "void", 
-  "endpoint" => "/user/createWithArray", 
+  "endpoint" => "/user/createWithArray".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     
     
@@ -55,15 +53,14 @@ MyApp.add_route('POST', '/user/createWithArray', {
 end
 
 
-MyApp.add_route('POST', '/user/createWithList', {
+MyApp.add_route('POST', '/user/createWithList'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Creates list of users with given input array",
   "nickname" => "create_users_with_list_input", 
   "responseClass" => "void", 
-  "endpoint" => "/user/createWithList", 
+  "endpoint" => "/user/createWithList".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     
     
@@ -82,15 +79,14 @@ MyApp.add_route('POST', '/user/createWithList', {
 end
 
 
-MyApp.add_route('GET', '/user/login', {
+MyApp.add_route('GET', '/user/login'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Logs user into the system",
   "nickname" => "login_user", 
   "responseClass" => "string", 
-  "endpoint" => "/user/login", 
+  "endpoint" => "/user/login".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     {
       "name" => "username",
       "description" => "The user name for login",
@@ -100,7 +96,6 @@ MyApp.add_route('GET', '/user/login', {
       "allowableValues" => "",
       
     },
-    
     {
       "name" => "password",
       "description" => "The password for login in clear text",
@@ -122,12 +117,12 @@ MyApp.add_route('GET', '/user/login', {
 end
 
 
-MyApp.add_route('GET', '/user/logout', {
+MyApp.add_route('GET', '/user/logout'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Logs out current logged in user session",
   "nickname" => "logout_user", 
   "responseClass" => "void", 
-  "endpoint" => "/user/logout", 
+  "endpoint" => "/user/logout".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
     
@@ -142,15 +137,14 @@ MyApp.add_route('GET', '/user/logout', {
 end
 
 
-MyApp.add_route('GET', '/user/{username}', {
+MyApp.add_route('GET', '/user/{username}'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Get user by user name",
   "nickname" => "get_user_by_name", 
   "responseClass" => "User", 
-  "endpoint" => "/user/{username}", 
+  "endpoint" => "/user/{username}".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     {
       "name" => "username",
@@ -169,15 +163,14 @@ MyApp.add_route('GET', '/user/{username}', {
 end
 
 
-MyApp.add_route('PUT', '/user/{username}', {
+MyApp.add_route('PUT', '/user/{username}'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Updated user",
   "nickname" => "update_user", 
   "responseClass" => "void", 
-  "endpoint" => "/user/{username}", 
+  "endpoint" => "/user/{username}".gsub/{(.*?)}/, ':\1', 
   "notes" => "This can only be done by the logged in user.",
   "parameters" => [
-    
     
     {
       "name" => "username",
@@ -185,7 +178,6 @@ MyApp.add_route('PUT', '/user/{username}', {
       "dataType" => "",
       "paramType" => "path",
     },
-    
     
     
     {
@@ -203,15 +195,14 @@ MyApp.add_route('PUT', '/user/{username}', {
 end
 
 
-MyApp.add_route('DELETE', '/user/{username}', {
+MyApp.add_route('DELETE', '/user/{username}'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/User",
   "summary" => "Delete user",
   "nickname" => "delete_user", 
   "responseClass" => "void", 
-  "endpoint" => "/user/{username}", 
+  "endpoint" => "/user/{username}".gsub/{(.*?)}/, ':\1', 
   "notes" => "This can only be done by the logged in user.",
   "parameters" => [
-    
     
     {
       "name" => "username",

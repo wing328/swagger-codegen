@@ -1,15 +1,14 @@
 require 'json'
 
 
-MyApp.add_route('PUT', '/pet', {
+MyApp.add_route('PUT', '/pet'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "Update an existing pet",
   "nickname" => "update_pet", 
   "responseClass" => "void", 
-  "endpoint" => "/pet", 
+  "endpoint" => "/pet".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     
     
@@ -28,15 +27,14 @@ MyApp.add_route('PUT', '/pet', {
 end
 
 
-MyApp.add_route('POST', '/pet', {
+MyApp.add_route('POST', '/pet'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "Add a new pet to the store",
   "nickname" => "add_pet", 
   "responseClass" => "void", 
-  "endpoint" => "/pet", 
+  "endpoint" => "/pet".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     
     
@@ -55,15 +53,14 @@ MyApp.add_route('POST', '/pet', {
 end
 
 
-MyApp.add_route('GET', '/pet/findByStatus', {
+MyApp.add_route('GET', '/pet/findByStatus'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "Finds Pets by status",
   "nickname" => "find_pets_by_status", 
   "responseClass" => "array[Pet]", 
-  "endpoint" => "/pet/findByStatus", 
+  "endpoint" => "/pet/findByStatus".gsub/{(.*?)}/, ':\1', 
   "notes" => "Multiple status values can be provided with comma seperated strings",
   "parameters" => [
-    
     {
       "name" => "status",
       "description" => "Status values that need to be considered for filter",
@@ -85,15 +82,14 @@ MyApp.add_route('GET', '/pet/findByStatus', {
 end
 
 
-MyApp.add_route('GET', '/pet/findByTags', {
+MyApp.add_route('GET', '/pet/findByTags'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "Finds Pets by tags",
   "nickname" => "find_pets_by_tags", 
   "responseClass" => "array[Pet]", 
-  "endpoint" => "/pet/findByTags", 
+  "endpoint" => "/pet/findByTags".gsub/{(.*?)}/, ':\1', 
   "notes" => "Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.",
   "parameters" => [
-    
     {
       "name" => "tags",
       "description" => "Tags to filter by",
@@ -115,15 +111,14 @@ MyApp.add_route('GET', '/pet/findByTags', {
 end
 
 
-MyApp.add_route('GET', '/pet/{petId}', {
+MyApp.add_route('GET', '/pet/{petId}'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "Find pet by ID",
   "nickname" => "get_pet_by_id", 
   "responseClass" => "Pet", 
-  "endpoint" => "/pet/{petId}", 
+  "endpoint" => "/pet/{petId}".gsub/{(.*?)}/, ':\1', 
   "notes" => "Returns a pet when ID < 10.  ID > 10 or nonintegers will simulate API error conditions",
   "parameters" => [
-    
     
     {
       "name" => "pet_id",
@@ -142,15 +137,14 @@ MyApp.add_route('GET', '/pet/{petId}', {
 end
 
 
-MyApp.add_route('POST', '/pet/{petId}', {
+MyApp.add_route('POST', '/pet/{petId}'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "Updates a pet in the store with form data",
   "nickname" => "update_pet_with_form", 
   "responseClass" => "void", 
-  "endpoint" => "/pet/{petId}", 
+  "endpoint" => "/pet/{petId}".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     {
       "name" => "pet_id",
@@ -169,15 +163,14 @@ MyApp.add_route('POST', '/pet/{petId}', {
 end
 
 
-MyApp.add_route('DELETE', '/pet/{petId}', {
+MyApp.add_route('DELETE', '/pet/{petId}'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "Deletes a pet",
   "nickname" => "delete_pet", 
   "responseClass" => "void", 
-  "endpoint" => "/pet/{petId}", 
+  "endpoint" => "/pet/{petId}".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     {
       "name" => "pet_id",
@@ -185,7 +178,6 @@ MyApp.add_route('DELETE', '/pet/{petId}', {
       "dataType" => "",
       "paramType" => "path",
     },
-    
     
     {
       "name" => "api_key",
@@ -203,15 +195,14 @@ MyApp.add_route('DELETE', '/pet/{petId}', {
 end
 
 
-MyApp.add_route('POST', '/pet/{petId}/uploadImage', {
+MyApp.add_route('POST', '/pet/{petId}/uploadImage'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/Pet",
   "summary" => "uploads an image",
   "nickname" => "upload_file", 
   "responseClass" => "void", 
-  "endpoint" => "/pet/{petId}/uploadImage", 
+  "endpoint" => "/pet/{petId}/uploadImage".gsub/{(.*?)}/, ':\1', 
   "notes" => "",
   "parameters" => [
-    
     
     {
       "name" => "pet_id",

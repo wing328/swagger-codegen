@@ -3,16 +3,15 @@ require 'json'
 {{#operations}}
 {{#operation}}
 
-MyApp.add_route('{{httpMethod}}', '{{path}}', {
+MyApp.add_route('{{httpMethod}}', '{{path}}'.gsub /{(.*?)}/, ':\1', {
   "resourcePath" => "/{{baseName}}",
   "summary" => "{{{summary}}}",
   "nickname" => "{{nickname}}", 
   "responseClass" => "{{#returnType}}{{returnType}}{{/returnType}}{{^returnType}}void{{/returnType}}", 
-  "endpoint" => "{{path}}", 
+  "endpoint" => "{{path}}".gsub/{(.*?)}/, ':\1', 
   "notes" => "{{{notes}}}",
   "parameters" => [
-    {{#queryParams}}
-    {
+    {{#queryParams}}{
       "name" => "{{paramName}}",
       "description" => "{{description}}",
       "dataType" => "{{swaggerDataType}}",
@@ -22,24 +21,21 @@ MyApp.add_route('{{httpMethod}}', '{{path}}', {
       {{#defaultValue}}"defaultValue" => {{{defaultValue}}}{{/defaultValue}}
     },
     {{/queryParams}}
-    {{#pathParams}}
-    {
+    {{#pathParams}}{
       "name" => "{{paramName}}",
       "description" => "{{description}}",
       "dataType" => "{{swaggerDataType}}",
       "paramType" => "path",
     },
     {{/pathParams}}
-    {{#headerParams}}
-    {
+    {{#headerParams}}{
       "name" => "{{paramName}}",
       "description" => "{{description}}",
       "dataType" => "{{swaggerDataType}}",
       "paramType" => "header",
     },
     {{/headerParams}}
-    {{#bodyParams}}
-    {
+    {{#bodyParams}}{
       "name" => "body",
       "description" => "{{description}}",
       "dataType" => "{{swaggerDataType}}",

@@ -1,0 +1,25 @@
+require 'json'
+
+module {{moduleName}}
+{{#operations}}
+  class {{classname}}
+  {{#operation}}
+    resource :{{baseName}}
+    # summary: {{{summary}}}
+    # description: {{{description}}}
+      rescue_from :all do |e|
+        {{#responses}}Rack::Response.new(['{{description}}'], {{code}},  'Content-type' => 'text/error').finish
+        {{/responses}}
+      end
+      params do
+        {{#allParams}}{{#required}}requires{{/required}}{{^required}}optional{{/required}} :{{baseName}}, type: {{datatype}}, desc: '{{description}}'{{#default}}, default: '{{default}}'{{/default}}
+        {{/allParams}}
+      end 
+      {{httpMethod}} '{{path}}'.gsub /{(.*?)}/, ':\1' do
+  
+      end
+    end
+  {{/operation}}
+  end
+{{/operations}}
+end
