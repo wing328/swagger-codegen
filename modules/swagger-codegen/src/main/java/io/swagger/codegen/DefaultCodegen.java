@@ -529,8 +529,13 @@ public class DefaultCodegen {
             final String parentModel = toModelName(parent.getSimpleRef());
             m.parent = parentModel;
             addImport(m, parentModel);
-            final ModelImpl child = (ModelImpl) composed.getChild();
-            addVars(m, child.getProperties(), child.getRequired());
+            final Model childModel = composed.getChild();
+            if (childModel instanceof ModelImpl) {
+                final ModelImpl child = (ModelImpl) composed.getChild();
+                addVars(m, child.getProperties(), child.getRequired());
+            } else {
+                LOGGER.warn("ComposedModel (" + composed.getDescription() + ") does not seem to have any properties defined: " + childModel.getClass().getSimpleName() + ", ref: " + ((RefModel) childModel).getReference());
+            }
         } else {
             ModelImpl impl = (ModelImpl) model;
             if (impl.getAdditionalProperties() != null) {
