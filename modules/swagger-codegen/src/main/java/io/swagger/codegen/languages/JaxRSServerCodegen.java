@@ -25,7 +25,7 @@ public class JaxRSServerCodegen extends JavaClientCodegen implements CodegenConf
     public JaxRSServerCodegen() {
         super.processOpts();
 
-        sourceFolder = "src/gen/java";
+        sourceFolder = "src/gen/java".replaceAll("/", File.separator);
 
         outputFolder = System.getProperty("swagger.codegen.jaxrs.genfolder", "generated-code/javaJaxRS");
         modelTemplateFiles.put("model.mustache", ".java");
@@ -84,7 +84,7 @@ public class JaxRSServerCodegen extends JavaClientCodegen implements CodegenConf
         supportingFiles.add(new SupportingFile("NotFoundException.mustache",
                 (sourceFolder + File.separator + apiPackage).replace(".", java.io.File.separator), "NotFoundException.java"));
         supportingFiles.add(new SupportingFile("web.mustache",
-                ("src/main/webapp/WEB-INF"), "web.xml"));
+                ("src/main/webapp/WEB-INF").replace("/", java.io.File.separator), "web.xml"));
 
     }
 
@@ -197,7 +197,7 @@ public class JaxRSServerCodegen extends JavaClientCodegen implements CodegenConf
     }
 
     private String implFileFolder(String output) {
-        return outputFolder + "/" + output + "/" + apiPackage().replace('.', File.separatorChar);
+        return outputFolder + File.separator + output + File.separator + apiPackage().replace('.', File.separatorChar);
     }
 
     public boolean shouldOverwrite(String filename) {
