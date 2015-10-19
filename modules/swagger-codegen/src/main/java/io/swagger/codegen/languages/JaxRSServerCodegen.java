@@ -25,8 +25,7 @@ public class JaxRSServerCodegen extends JavaClientCodegen implements CodegenConf
     public JaxRSServerCodegen() {
         super.processOpts();
 
-        sourceFolder = "src/gen/java".replaceAll("/", File.separator);
-
+        sourceFolder = "src" + File.separator + "gen" + File.separator + "java";
         outputFolder = System.getProperty("swagger.codegen.jaxrs.genfolder", "generated-code" + File.separator + "javaJaxRS");
         modelTemplateFiles.put("model.mustache", ".java");
         apiTemplateFiles.put("api.mustache", ".java");
