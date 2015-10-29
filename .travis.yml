@@ -1,7 +1,7 @@
 sudo: false
 language: java
 
-before_script: curl -sS https://getcomposer.org/installer | php
+before_script: /usr/bin/curl -sS https://getcomposer.org/installer | /usr/bin/php
 
 script: mvn verify -Psamples
 jdk:
