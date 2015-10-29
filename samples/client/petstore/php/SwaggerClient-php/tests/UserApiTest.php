@@ -1,7 +1,5 @@
 <?php
 
-require_once('../autoload.php');
-
 class UserApiTest extends \PHPUnit_Framework_TestCase
 {
 

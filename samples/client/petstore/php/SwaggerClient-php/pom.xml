@@ -48,6 +48,8 @@
                         <configuration>
                             <executable>vendor/bin/phpunit</executable>
                             <arguments>
+                                <argument>--bootstrap</argument>
+                                <argument>tests/bootstrap.php</argument>
                                 <argument>tests</argument>
                             </arguments>
                         </configuration>
