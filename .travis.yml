@@ -1,5 +1,8 @@
 sudo: false
 language: java
+
+before_script: curl -sS https://getcomposer.org/installer | php
+
 script: mvn verify -Psamples
 jdk:
   - oraclejdk7
