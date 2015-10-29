@@ -1,6 +1,8 @@
 <?php
 
-require_once('autoload.php');
+//require_once('autoload.php');
+require_once(__DIR__ . '/../autoload.php');
+
 
 class OrderApiTest extends \PHPUnit_Framework_TestCase
 {

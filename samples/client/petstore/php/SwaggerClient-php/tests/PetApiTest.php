@@ -2,7 +2,7 @@
 
 //require_once('autoload.php');
 
-require_once(__DIR__ . '/../SwaggerClient-php/autoload.php');
+require_once(__DIR__ . '/../autoload.php');
 
 class PetApiTest extends \PHPUnit_Framework_TestCase
 {
