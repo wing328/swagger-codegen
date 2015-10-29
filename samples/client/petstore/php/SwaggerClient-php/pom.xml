@@ -48,7 +48,7 @@
                         <configuration>
                             <executable>vendor/bin/phpunit</executable>
                             <arguments>
-                                <argument>--bootstrap autoload.php tests</argument>
+                                <argument>tests</argument>
                             </arguments>
                         </configuration>
                     </execution>
