@@ -414,6 +414,18 @@
             </modules>
         </profile>
         <profile>
+            <id>php</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>java</value>
+                </property>
+            </activation>
+            <modules>
+                <module>samples/client/petstore/php/SwaggerClient-php</module>
+            </modules>
+        </profile>
+        <profile>
             <id>samples</id>
             <activation>
                 <property>
@@ -422,12 +434,12 @@
                 </property>
             </activation>
             <modules>
+                <module>samples/client/petstore/php/SwaggerClient-php</module>
                 <module>samples/client/petstore/android-java</module>
                 <module>samples/client/petstore/java/default</module>
                 <module>samples/client/petstore/java/jersey2</module>
                 <module>samples/client/petstore/java/okhttp-gson</module>
                 <module>samples/client/petstore/java/retrofit</module>
-                <module>samples/client/petstore/php/SwaggerClient-php</module>
                 <module>samples/client/petstore/scala</module>
                 <module>samples/server/petstore/spring-mvc</module>
                 <!--module>samples/client/petstore/objc</module-->
