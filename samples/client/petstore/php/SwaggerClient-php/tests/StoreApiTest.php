@@ -1,6 +1,6 @@
 <?php
 
-require_once('autoload.php');
+require_once('../autoload.php');
 
 class StoreApiTest extends \PHPUnit_Framework_TestCase
 {
