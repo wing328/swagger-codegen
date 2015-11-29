@@ -114,6 +114,7 @@ public class OnlineGeneratorOptionsTest {
         try {
             FileUtils.deleteDirectory(dir);
         } catch (Exception e) {
+            System.out.println("Failed to delete " + dir);
         }
         for (InvocationCounter option : options.values()) {
             assertNotEquals(option.getCounter(), 0, String.format("Option \"%s\" wasn't processed.",
