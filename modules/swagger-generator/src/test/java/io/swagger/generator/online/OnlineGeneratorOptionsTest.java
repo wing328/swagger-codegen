@@ -109,7 +109,7 @@ public class OnlineGeneratorOptionsTest {
             outputFilename = Generator.generateClient(provider.getLanguage(), input);
         }
         System.out.println("outputFileName = " + outputFilename);
-        final File dir = new File(new File(outputFilename.replaceAll("\", File.pathSeparator)).getParent());
+        final File dir = new File(new File(outputFilename.replaceAll("\\", File.pathSeparator)).getParent());
         FileUtils.deleteDirectory(dir);
         for (InvocationCounter option : options.values()) {
             assertNotEquals(option.getCounter(), 0, String.format("Option \"%s\" wasn't processed.",
