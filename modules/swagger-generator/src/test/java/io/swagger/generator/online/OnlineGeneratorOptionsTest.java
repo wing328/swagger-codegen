@@ -112,7 +112,7 @@ public class OnlineGeneratorOptionsTest {
         final File dir = new File(new File(outputFilename).getParent());
         System.out.println("dir to be deleted = " + dir);
         try {
-            Thread.sleep(2000);
+            FileUtils.cleanDirectory(dir);
             FileUtils.deleteDirectory(dir);
         } catch (Exception e) {
             System.out.println("Failed to delete " + dir);
