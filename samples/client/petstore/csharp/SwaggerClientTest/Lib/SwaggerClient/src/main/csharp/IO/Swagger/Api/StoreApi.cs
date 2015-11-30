@@ -166,7 +166,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
@@ -214,7 +214,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
@@ -260,7 +260,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
@@ -310,7 +310,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
@@ -360,7 +360,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
@@ -412,7 +412,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
@@ -462,7 +462,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
@@ -514,7 +514,7 @@ namespace IO.Swagger.Api
 
             // to determine the Accept header
             String[] http_header_accepts = new String[] {
-                "application/json", "application/xml"
+                "application/xml"
             };
             String http_header_accept = ApiClient.SelectHeaderAccept(http_header_accepts);
             if (http_header_accept != null)
