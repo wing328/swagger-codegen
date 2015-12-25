@@ -72,6 +72,7 @@ public class PetApiTest {
     }
 
     @Test
+    @Ignore
     public void testFindPetsByTags() throws Exception {
         Pet pet = createRandomPet();
         pet.setName("monster");
