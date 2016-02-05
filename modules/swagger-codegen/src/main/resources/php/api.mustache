@@ -172,16 +172,21 @@ use \{{invokerPackage}}\ObjectSerializer;
 
         {{#formParams}}// form params
         if (${{paramName}} !== null) {
-            {{#isFile}}
-            // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
+            {{#isFile}}// PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
             // See: https://wiki.php.net/rfc/curl-file-upload
             if (function_exists('curl_file_create')) {
-                $formParams['{{baseName}}'] = curl_file_create($this->apiClient->getSerializer()->toFormValue(${{paramName}}));
+                if (is_array(${{paramName}})) {
+                    for ($x = 0; $x < count(${{paramName}}); $x++) {
+                        $formParams["{{baseName}}_$x"] = curl_file_create($this->apiClient->getSerializer()->toFormValue(${{paramName}}[$x]));
+                    }
+                } else {
+                    $formParams['{{baseName}}'] = curl_file_create($this->apiClient->getSerializer()->toFormValue(${{paramName}}));
+                }
             } else {
-               $formParams['{{baseName}}'] = '@' . $this->apiClient->getSerializer()->toFormValue(${{paramName}});
+                //$formParams['{{baseName}}'] = '@' . $this->apiClient->getSerializer()->toFormValue(${{paramName}});
+                error_log("[ERROR] Failed to add {{baseName}} (file) as curl_file_create is not defined. Please update PHP to the latest stable version to resolve the issue.", 3, $this->apiClient->getConfig()->getDebugFile());
             }
-            {{/isFile}}
-            {{^isFile}}
+            {{/isFile}}{{^isFile}}
             $formParams['{{baseName}}'] = $this->apiClient->getSerializer()->toFormValue(${{paramName}});
             {{/isFile}}
         }{{/formParams}}

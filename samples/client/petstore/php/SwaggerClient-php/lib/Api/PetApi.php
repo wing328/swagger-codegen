@@ -619,12 +619,10 @@ class PetApi
         // form params
         if ($name !== null) {
             
-            
             $formParams['name'] = $this->apiClient->getSerializer()->toFormValue($name);
             
         }// form params
         if ($status !== null) {
-            
             
             $formParams['status'] = $this->apiClient->getSerializer()->toFormValue($status);
             
@@ -825,20 +823,24 @@ class PetApi
         // form params
         if ($additional_metadata !== null) {
             
-            
             $formParams['additionalMetadata'] = $this->apiClient->getSerializer()->toFormValue($additional_metadata);
             
         }// form params
         if ($file !== null) {
-            
             // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
             // See: https://wiki.php.net/rfc/curl-file-upload
             if (function_exists('curl_file_create')) {
-                $formParams['file'] = curl_file_create($this->apiClient->getSerializer()->toFormValue($file));
+                if (is_array($file)) {
+                    for ($x = 0; $x < count($file); $x++) {
+                        $formParams["file_$x"] = curl_file_create($this->apiClient->getSerializer()->toFormValue($file[$x]));
+                    }
+                } else {
+                    $formParams['file'] = curl_file_create($this->apiClient->getSerializer()->toFormValue($file));
+                }
             } else {
-               $formParams['file'] = '@' . $this->apiClient->getSerializer()->toFormValue($file);
+                //$formParams['file'] = '@' . $this->apiClient->getSerializer()->toFormValue($file);
+                error_log("[ERROR] Failed to add file (file) as curl_file_create is not defined. Please update PHP to the latest stable version to resolve the issue.", 3, $this->apiClient->getConfig()->getDebugFile());
             }
-            
             
         }
         
