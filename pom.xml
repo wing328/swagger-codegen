@@ -259,6 +259,18 @@
         </profile>
         <!-- Samples -->
         <profile>
+            <id>objc-client</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>java</value>
+                </property>
+            </activation>
+            <modules>
+                <module>samples/client/petstore/objc/SwaggerClientTests</module>
+            </modules>
+        </profile>
+        <profile>
             <id>android-client</id>
             <activation>
                 <property>
@@ -459,6 +471,7 @@
                 </property>
             </activation>
             <modules>
+                <module>samples/client/petstore/objc/SwaggerClientTests</module>
                 <module>samples/client/petstore/android/default</module>
                 <module>samples/client/petstore/clojure</module>
                 <module>samples/client/petstore/java/default</module>
