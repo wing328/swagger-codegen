@@ -9,8 +9,9 @@ services:
 
 before_install:
   # required when sudo: required for the Ruby petstore tests
+  - rvm use system
   - gem install bundler
-  - gem install cocoapods
+  - sudo gem install cocoapods
 
 install:
 
