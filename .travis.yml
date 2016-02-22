@@ -9,7 +9,9 @@ services:
 
 before_install:
   # required when sudo: required for the Ruby petstore tests
-  - rvm use 2.0.0-p451 --install --binary --fuzzy
+  - ruby -v 
+  - rvm use 2.2.3
+  - ruby -v 
   - sudo gem install bundler
   - sudo gem install cocoapods
 
