@@ -259,18 +259,6 @@
         </profile>
         <!-- Samples -->
         <profile>
-            <id>objc-client</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>java</value>
-                </property>
-            </activation>
-            <modules>
-                <module>samples/client/petstore/objc/SwaggerClientTests</module>
-            </modules>
-        </profile>
-        <profile>
             <id>android-client</id>
             <activation>
                 <property>
