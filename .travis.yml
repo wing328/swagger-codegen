@@ -11,9 +11,8 @@ before_install:
   # required when sudo: required for the Ruby petstore tests
   - rvm use 2.2.3
   - ruby -v 
-  - sudo gem install bundler
-  - xcode-select --install
-  - sudo gem install cocoapods
+  - rvmsudo gem install bundler
+  - rvmsudo gem install cocoapods
 
 install:
 
