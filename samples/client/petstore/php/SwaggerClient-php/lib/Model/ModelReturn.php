@@ -53,19 +53,19 @@ class ModelReturn implements ArrayAccess
     static $swaggerTypes = array(
         'return' => 'int'
     );
-  
+ 
     static function swaggerTypes() {
         return self::$swaggerTypes;
     }
 
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
-      * @var string[] 
+      * @var string[]
       */
     static $attributeMap = array(
         'return' => 'return'
     );
-  
+ 
     static function attributeMap() {
         return self::$attributeMap;
     }
@@ -77,7 +77,7 @@ class ModelReturn implements ArrayAccess
     static $setters = array(
         'return' => 'setReturn'
     );
-  
+ 
     static function setters() {
         return self::$setters;
     }
@@ -89,10 +89,14 @@ class ModelReturn implements ArrayAccess
     static $getters = array(
         'return' => 'getReturn'
     );
-  
+ 
     static function getters() {
         return self::$getters;
     }
+
+    
+
+    
 
     
     /**
@@ -122,7 +126,7 @@ class ModelReturn implements ArrayAccess
     {
         return $this->return;
     }
-  
+
     /**
      * Sets return
      * @param int $return 
@@ -144,7 +148,7 @@ class ModelReturn implements ArrayAccess
     {
         return isset($this->$offset);
     }
-  
+
     /**
      * Gets offset.
      * @param  integer $offset Offset 
@@ -154,7 +158,7 @@ class ModelReturn implements ArrayAccess
     {
         return $this->$offset;
     }
-  
+ 
     /**
      * Sets value based on offset.
      * @param  integer $offset Offset 
@@ -165,7 +169,7 @@ class ModelReturn implements ArrayAccess
     {
         $this->$offset = $value;
     }
-  
+ 
     /**
      * Unsets offset.
      * @param  integer $offset Offset 
@@ -175,7 +179,7 @@ class ModelReturn implements ArrayAccess
     {
         unset($this->$offset);
     }
-  
+ 
     /**
      * Gets the string presentation of the object
      * @return string

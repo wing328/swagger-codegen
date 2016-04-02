@@ -54,20 +54,20 @@ class Name implements ArrayAccess
         'name' => 'int',
         'snake_case' => 'int'
     );
-  
+ 
     static function swaggerTypes() {
         return self::$swaggerTypes;
     }
 
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
-      * @var string[] 
+      * @var string[]
       */
     static $attributeMap = array(
         'name' => 'name',
         'snake_case' => 'snake_case'
     );
-  
+ 
     static function attributeMap() {
         return self::$attributeMap;
     }
@@ -80,7 +80,7 @@ class Name implements ArrayAccess
         'name' => 'setName',
         'snake_case' => 'setSnakeCase'
     );
-  
+ 
     static function setters() {
         return self::$setters;
     }
@@ -93,10 +93,14 @@ class Name implements ArrayAccess
         'name' => 'getName',
         'snake_case' => 'getSnakeCase'
     );
-  
+ 
     static function getters() {
         return self::$getters;
     }
+
+    
+
+    
 
     
     /**
@@ -133,7 +137,7 @@ class Name implements ArrayAccess
     {
         return $this->name;
     }
-  
+
     /**
      * Sets name
      * @param int $name 
@@ -154,7 +158,7 @@ class Name implements ArrayAccess
     {
         return $this->snake_case;
     }
-  
+
     /**
      * Sets snake_case
      * @param int $snake_case 
@@ -176,7 +180,7 @@ class Name implements ArrayAccess
     {
         return isset($this->$offset);
     }
-  
+
     /**
      * Gets offset.
      * @param  integer $offset Offset 
@@ -186,7 +190,7 @@ class Name implements ArrayAccess
     {
         return $this->$offset;
     }
-  
+ 
     /**
      * Sets value based on offset.
      * @param  integer $offset Offset 
@@ -197,7 +201,7 @@ class Name implements ArrayAccess
     {
         $this->$offset = $value;
     }
-  
+ 
     /**
      * Unsets offset.
      * @param  integer $offset Offset 
@@ -207,7 +211,7 @@ class Name implements ArrayAccess
     {
         unset($this->$offset);
     }
-  
+ 
     /**
      * Gets the string presentation of the object
      * @return string

@@ -58,14 +58,14 @@ class InlineResponse200 implements ArrayAccess
         'name' => 'string',
         'photo_urls' => 'string[]'
     );
-  
+ 
     static function swaggerTypes() {
         return self::$swaggerTypes;
     }
 
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
-      * @var string[] 
+      * @var string[]
       */
     static $attributeMap = array(
         'tags' => 'tags',
@@ -75,7 +75,7 @@ class InlineResponse200 implements ArrayAccess
         'name' => 'name',
         'photo_urls' => 'photoUrls'
     );
-  
+ 
     static function attributeMap() {
         return self::$attributeMap;
     }
@@ -92,7 +92,7 @@ class InlineResponse200 implements ArrayAccess
         'name' => 'setName',
         'photo_urls' => 'setPhotoUrls'
     );
-  
+ 
     static function setters() {
         return self::$setters;
     }
@@ -109,10 +109,17 @@ class InlineResponse200 implements ArrayAccess
         'name' => 'getName',
         'photo_urls' => 'getPhotoUrls'
     );
-  
+ 
     static function getters() {
         return self::$getters;
     }
+
+    const STATUS_AVAILABLE = "available";
+    const STATUS_PENDING = "pending";
+    const STATUS_SOLD = "sold";
+    
+
+    
 
     
     /**
@@ -177,7 +184,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return $this->tags;
     }
-  
+
     /**
      * Sets tags
      * @param \Swagger\Client\Model\Tag[] $tags 
@@ -198,7 +205,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return $this->id;
     }
-  
+
     /**
      * Sets id
      * @param int $id 
@@ -219,7 +226,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return $this->category;
     }
-  
+
     /**
      * Sets category
      * @param object $category 
@@ -240,7 +247,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return $this->status;
     }
-  
+
     /**
      * Sets status
      * @param string $status pet status in the store
@@ -264,7 +271,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return $this->name;
     }
-  
+
     /**
      * Sets name
      * @param string $name 
@@ -285,7 +292,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return $this->photo_urls;
     }
-  
+
     /**
      * Sets photo_urls
      * @param string[] $photo_urls 
@@ -307,7 +314,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return isset($this->$offset);
     }
-  
+
     /**
      * Gets offset.
      * @param  integer $offset Offset 
@@ -317,7 +324,7 @@ class InlineResponse200 implements ArrayAccess
     {
         return $this->$offset;
     }
-  
+ 
     /**
      * Sets value based on offset.
      * @param  integer $offset Offset 
@@ -328,7 +335,7 @@ class InlineResponse200 implements ArrayAccess
     {
         $this->$offset = $value;
     }
-  
+ 
     /**
      * Unsets offset.
      * @param  integer $offset Offset 
@@ -338,7 +345,7 @@ class InlineResponse200 implements ArrayAccess
     {
         unset($this->$offset);
     }
-  
+ 
     /**
      * Gets the string presentation of the object
      * @return string

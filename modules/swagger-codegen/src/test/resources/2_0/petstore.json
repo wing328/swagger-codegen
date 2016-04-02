@@ -1375,6 +1375,23 @@
           "type" : "string"
         }
       }
+    },
+    "Enum_Test" : {
+      "type" : "object",
+      "properties" : {
+        "enum_string" : {
+          "type" : "string",
+          "enum" : ["UPPER", "lower"]
+        },
+        "enum_integer" : {
+          "type" : "integer",
+          "enum" : [1, -1]
+        },
+        "enum_number" : {
+          "type" : "number",
+          "enum" : [1.1, -1.2]
+        }
+      }
     }
   }
 }

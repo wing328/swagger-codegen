@@ -53,19 +53,19 @@ class Dog extends Animal implements ArrayAccess
     static $swaggerTypes = array(
         'breed' => 'string'
     );
-  
+ 
     static function swaggerTypes() {
         return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
-      * @var string[] 
+      * @var string[]
       */
     static $attributeMap = array(
         'breed' => 'breed'
     );
-  
+ 
     static function attributeMap() {
         return parent::attributeMap() + self::$attributeMap;
     }
@@ -77,7 +77,7 @@ class Dog extends Animal implements ArrayAccess
     static $setters = array(
         'breed' => 'setBreed'
     );
-  
+ 
     static function setters() {
         return parent::setters() + self::$setters;
     }
@@ -89,10 +89,14 @@ class Dog extends Animal implements ArrayAccess
     static $getters = array(
         'breed' => 'getBreed'
     );
-  
+ 
     static function getters() {
         return parent::getters() + self::$getters;
     }
+
+    
+
+    
 
     
     /**
@@ -122,7 +126,7 @@ class Dog extends Animal implements ArrayAccess
     {
         return $this->breed;
     }
-  
+
     /**
      * Sets breed
      * @param string $breed 
@@ -144,7 +148,7 @@ class Dog extends Animal implements ArrayAccess
     {
         return isset($this->$offset);
     }
-  
+
     /**
      * Gets offset.
      * @param  integer $offset Offset 
@@ -154,7 +158,7 @@ class Dog extends Animal implements ArrayAccess
     {
         return $this->$offset;
     }
-  
+ 
     /**
      * Sets value based on offset.
      * @param  integer $offset Offset 
@@ -165,7 +169,7 @@ class Dog extends Animal implements ArrayAccess
     {
         $this->$offset = $value;
     }
-  
+ 
     /**
      * Unsets offset.
      * @param  integer $offset Offset 
@@ -175,7 +179,7 @@ class Dog extends Animal implements ArrayAccess
     {
         unset($this->$offset);
     }
-  
+ 
     /**
      * Gets the string presentation of the object
      * @return string

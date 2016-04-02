@@ -58,14 +58,14 @@ class Order implements ArrayAccess
         'status' => 'string',
         'complete' => 'bool'
     );
-  
+ 
     static function swaggerTypes() {
         return self::$swaggerTypes;
     }
 
     /** 
       * Array of attributes where the key is the local name, and the value is the original name
-      * @var string[] 
+      * @var string[]
       */
     static $attributeMap = array(
         'id' => 'id',
@@ -75,7 +75,7 @@ class Order implements ArrayAccess
         'status' => 'status',
         'complete' => 'complete'
     );
-  
+ 
     static function attributeMap() {
         return self::$attributeMap;
     }
@@ -92,7 +92,7 @@ class Order implements ArrayAccess
         'status' => 'setStatus',
         'complete' => 'setComplete'
     );
-  
+ 
     static function setters() {
         return self::$setters;
     }
@@ -109,10 +109,17 @@ class Order implements ArrayAccess
         'status' => 'getStatus',
         'complete' => 'getComplete'
     );
-  
+ 
     static function getters() {
         return self::$getters;
     }
+
+    const STATUS_PLACED = "placed";
+    const STATUS_APPROVED = "approved";
+    const STATUS_DELIVERED = "delivered";
+    
+
+    
 
     
     /**
@@ -177,7 +184,7 @@ class Order implements ArrayAccess
     {
         return $this->id;
     }
-  
+
     /**
      * Sets id
      * @param int $id 
@@ -198,7 +205,7 @@ class Order implements ArrayAccess
     {
         return $this->pet_id;
     }
-  
+
     /**
      * Sets pet_id
      * @param int $pet_id 
@@ -219,7 +226,7 @@ class Order implements ArrayAccess
     {
         return $this->quantity;
     }
-  
+
     /**
      * Sets quantity
      * @param int $quantity 
@@ -240,7 +247,7 @@ class Order implements ArrayAccess
     {
         return $this->ship_date;
     }
-  
+
     /**
      * Sets ship_date
      * @param \DateTime $ship_date 
@@ -261,7 +268,7 @@ class Order implements ArrayAccess
     {
         return $this->status;
     }
-  
+
     /**
      * Sets status
      * @param string $status Order Status
@@ -285,7 +292,7 @@ class Order implements ArrayAccess
     {
         return $this->complete;
     }
-  
+
     /**
      * Sets complete
      * @param bool $complete 
@@ -307,7 +314,7 @@ class Order implements ArrayAccess
     {
         return isset($this->$offset);
     }
-  
+
     /**
      * Gets offset.
      * @param  integer $offset Offset 
@@ -317,7 +324,7 @@ class Order implements ArrayAccess
     {
         return $this->$offset;
     }
-  
+ 
     /**
      * Sets value based on offset.
      * @param  integer $offset Offset 
@@ -328,7 +335,7 @@ class Order implements ArrayAccess
     {
         $this->$offset = $value;
     }
-  
+ 
     /**
      * Unsets offset.
      * @param  integer $offset Offset 
@@ -338,7 +345,7 @@ class Order implements ArrayAccess
     {
         unset($this->$offset);
     }
-  
+ 
     /**
      * Gets the string presentation of the object
      * @return string
