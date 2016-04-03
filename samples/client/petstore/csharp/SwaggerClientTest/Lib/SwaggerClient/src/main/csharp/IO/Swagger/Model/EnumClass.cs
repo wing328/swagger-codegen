@@ -10,11 +10,18 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-{{#models}}
-{{#model}}
-namespace {{packageName}}.Model
+namespace IO.Swagger.Model
 {
-{{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}{{>modelGeneric}}{{/isEnum}}
-{{/model}}
-{{/models}}
+        public enum EnumClass {
+            
+            [EnumMember(Value = "_abc")]
+            Abc,
+            
+            [EnumMember(Value = "-efg")]
+            efg,
+            
+            [EnumMember(Value = "(xyz)")]
+            xyz
+        }
+
 }
