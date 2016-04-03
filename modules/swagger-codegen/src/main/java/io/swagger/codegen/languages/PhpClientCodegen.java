@@ -582,7 +582,7 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
 
     @Override
     public String toEnumName(CodegenProperty property) {
-        String enumName = toModelName(property.name) + "Enum";
+        String enumName = toModelName(property.name);
 
         if (enumName.matches("\\d.*")) { // starts with number
             return "_" + enumName;
@@ -593,6 +593,7 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
 
     @Override
     public Map<String, Object> postProcessModels(Map<String, Object> objs) {
+        // process enum in models
         return postProcessModelsEnum(objs);
     }
 }
