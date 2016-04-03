@@ -14,7 +14,7 @@ using Newtonsoft.Json.Converters;
 {{#model}}
 namespace {{packageName}}.Model
 {
-{{#isEnum}}{{>enumClass}}{{/isEnum}}{{^isEnum}}{{>modelGeneric}}{{/isEnum}}
+{{#isEnum}}{{>modelEnum}}{{/isEnum}}{{^isEnum}}{{>modelGeneric}}{{/isEnum}}
 {{/model}}
 {{/models}}
 }

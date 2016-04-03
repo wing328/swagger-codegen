@@ -13,7 +13,7 @@ using Newtonsoft.Json.Converters;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// 
+    /// Name
     /// </summary>
     [DataContract]
     public partial class Name :  IEquatable<Name>

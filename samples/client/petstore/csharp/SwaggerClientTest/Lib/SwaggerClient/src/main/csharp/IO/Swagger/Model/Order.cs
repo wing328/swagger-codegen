@@ -13,25 +13,34 @@ using Newtonsoft.Json.Converters;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// 
+    /// Order
     /// </summary>
     [DataContract]
     public partial class Order :  IEquatable<Order>
     { 
-    
         /// <summary>
         /// Order Status
         /// </summary>
         /// <value>Order Status</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum {
+        public enum StatusEnum
+        {
             
+            /// <summary>
+            /// Enum Placed for "placed"
+            /// </summary>
             [EnumMember(Value = "placed")]
             Placed,
             
+            /// <summary>
+            /// Enum Approved for "approved"
+            /// </summary>
             [EnumMember(Value = "approved")]
             Approved,
             
+            /// <summary>
+            /// Enum Delivered for "delivered"
+            /// </summary>
             [EnumMember(Value = "delivered")]
             Delivered
         }
@@ -51,7 +60,7 @@ namespace IO.Swagger.Model
         /// <param name="PetId">PetId.</param>
         /// <param name="Quantity">Quantity.</param>
         /// <param name="ShipDate">ShipDate.</param>
-        /// <param name="Status">Order Status.</param>
+        /// <param name="Status">Order Status (default to StatusEnum.Placed).</param>
         /// <param name="Complete">Complete.</param>
 
         public Order(long? PetId = null, int? Quantity = null, DateTime? ShipDate = null, StatusEnum? Status = null, bool? Complete = null)
@@ -59,7 +68,15 @@ namespace IO.Swagger.Model
             this.PetId = PetId;
             this.Quantity = Quantity;
             this.ShipDate = ShipDate;
-            this.Status = Status;
+            // use default value if no "Status" provided
+            if (Status == null)
+            {
+                this.Status = StatusEnum.Placed;
+            }
+            else
+            {
+                this.Status = Status;
+            }
             this.Complete = Complete;
             
         }

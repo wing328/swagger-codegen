@@ -13,25 +13,34 @@ using Newtonsoft.Json.Converters;
 namespace IO.Swagger.Model
 {
     /// <summary>
-    /// 
+    /// Pet
     /// </summary>
     [DataContract]
     public partial class Pet :  IEquatable<Pet>
     { 
-    
         /// <summary>
         /// pet status in the store
         /// </summary>
         /// <value>pet status in the store</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum {
+        public enum StatusEnum
+        {
             
+            /// <summary>
+            /// Enum Available for "available"
+            /// </summary>
             [EnumMember(Value = "available")]
             Available,
             
+            /// <summary>
+            /// Enum Pending for "pending"
+            /// </summary>
             [EnumMember(Value = "pending")]
             Pending,
             
+            /// <summary>
+            /// Enum Sold for "sold"
+            /// </summary>
             [EnumMember(Value = "sold")]
             Sold
         }
