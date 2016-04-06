@@ -71,6 +71,7 @@
     <Compile Include="Lib\SwaggerClient\src\main\csharp\IO\Swagger\Model\Dog.cs" />
     <Compile Include="Lib\SwaggerClient\src\main\csharp\IO\Swagger\Model\EnumClass.cs" />
     <Compile Include="Lib\SwaggerClient\src\main\csharp\IO\Swagger\Model\EnumTest.cs" />
+    <Compile Include="TestEnum.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
