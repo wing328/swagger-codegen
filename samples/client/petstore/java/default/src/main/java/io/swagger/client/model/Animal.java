@@ -7,28 +7,28 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 /**
- * ModelReturn
+ * Animal
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-04-12T22:48:50.833+08:00")
-public class ModelReturn   {
+public class Animal   {
   
-  private Integer _return = null;
+  private String className = null;
 
   
   /**
    **/
-  public ModelReturn _return(Integer _return) {
-    this._return = _return;
+  public Animal className(String className) {
+    this.className = className;
     return this;
   }
   
-  @ApiModelProperty(example = "null", value = "")
-  @JsonProperty("return")
-  public Integer getReturn() {
-    return _return;
+  @ApiModelProperty(example = "null", required = true, value = "")
+  @JsonProperty("className")
+  public String getClassName() {
+    return className;
   }
-  public void setReturn(Integer _return) {
-    this._return = _return;
+  public void setClassName(String className) {
+    this.className = className;
   }
 
   
@@ -41,21 +41,21 @@ public class ModelReturn   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ModelReturn _return = (ModelReturn) o;
-    return Objects.equals(this._return, _return._return);
+    Animal animal = (Animal) o;
+    return Objects.equals(this.className, animal.className);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_return);
+    return Objects.hash(className);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ModelReturn {\n");
+    sb.append("class Animal {\n");
     
-    sb.append("    _return: ").append(toIndentedString(_return)).append("\n");
+    sb.append("    className: ").append(toIndentedString(className)).append("\n");
     sb.append("}");
     return sb.toString();
   }
