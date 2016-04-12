@@ -8,10 +8,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 
-
-
-
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-03-14T22:17:48.808+08:00")
+/**
+ * Order
+ */
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-04-12T23:06:12.393+08:00")
 public class Order   {
   
   private Long id = null;
@@ -19,7 +19,9 @@ public class Order   {
   private Integer quantity = null;
   private Date shipDate = null;
 
-
+  /**
+   * Order Status
+   */
   public enum StatusEnum {
     PLACED("placed"),
     APPROVED("approved"),
@@ -34,11 +36,11 @@ public class Order   {
     @Override
     @JsonValue
     public String toString() {
-      return value;
+      return String.valueOf(value);
     }
   }
 
-  private StatusEnum status = null;
+  private StatusEnum status = StatusEnum.PLACED;
   private Boolean complete = null;
 
   

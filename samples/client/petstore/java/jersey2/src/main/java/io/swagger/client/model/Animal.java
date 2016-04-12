@@ -7,46 +7,28 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 /**
- * Tag
+ * Animal
  */
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-04-12T23:06:12.393+08:00")
-public class Tag   {
+public class Animal   {
   
-  private Long id = null;
-  private String name = null;
+  private String className = null;
 
   
   /**
    **/
-  public Tag id(Long id) {
-    this.id = id;
+  public Animal className(String className) {
+    this.className = className;
     return this;
   }
   
-  @ApiModelProperty(example = "null", value = "")
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
+  @ApiModelProperty(example = "null", required = true, value = "")
+  @JsonProperty("className")
+  public String getClassName() {
+    return className;
   }
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  
-  /**
-   **/
-  public Tag name(String name) {
-    this.name = name;
-    return this;
-  }
-  
-  @ApiModelProperty(example = "null", value = "")
-  @JsonProperty("name")
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
-    this.name = name;
+  public void setClassName(String className) {
+    this.className = className;
   }
 
   
@@ -59,23 +41,21 @@ public class Tag   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Tag tag = (Tag) o;
-    return Objects.equals(this.id, tag.id) &&
-        Objects.equals(this.name, tag.name);
+    Animal animal = (Animal) o;
+    return Objects.equals(this.className, animal.className);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(className);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Tag {\n");
+    sb.append("class Animal {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    className: ").append(toIndentedString(className)).append("\n");
     sb.append("}");
     return sb.toString();
   }

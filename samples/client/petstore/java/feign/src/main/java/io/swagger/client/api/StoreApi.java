@@ -4,16 +4,13 @@ import io.swagger.client.ApiClient;
 
 import io.swagger.client.model.Order;
 
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import feign.*;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-03-19T15:53:31.820+08:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-04-12T23:06:03.099+08:00")
 public interface StoreApi extends ApiClient.Api {
 
 
@@ -93,5 +90,4 @@ public interface StoreApi extends ApiClient.Api {
   })
   Order placeOrder(Order body);
   
-
 }
