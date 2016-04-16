@@ -29,7 +29,7 @@ func TestGetPetById(t *testing.T) {
 		t.Errorf("Error while getting pet by id")
 		t.Log(err)
 	} else {
-		assert.Equal(resp.Id, "12830", "Pet id should be equal")
+		assert.Equal(resp.Id, 12830, "Pet id should be equal")
 		assert.Equal(resp.Name, "gopher", "Pet name should be gopher")
 		assert.Equal(resp.Status, "pending", "Pet status should be pending")
 
