@@ -7,9 +7,9 @@ import io.swagger.annotations.ApiModelProperty;
 import com.google.gson.annotations.SerializedName;
 
 
-
-
-
+/**
+ * User
+ */
 public class User   {
   
   @SerializedName("id")
@@ -180,3 +180,4 @@ public class User   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

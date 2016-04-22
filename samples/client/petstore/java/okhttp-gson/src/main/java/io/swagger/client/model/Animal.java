@@ -8,37 +8,23 @@ import com.google.gson.annotations.SerializedName;
 
 
 /**
- * Name
+ * Animal
  */
-public class Name   {
+public class Animal   {
   
-  @SerializedName("name")
-  private Integer name = null;
-  
-  @SerializedName("snake_case")
-  private Integer snakeCase = null;
+  @SerializedName("className")
+  private String className = null;
   
 
   
   /**
    **/
-  @ApiModelProperty(value = "")
-  public Integer getName() {
-    return name;
+  @ApiModelProperty(required = true, value = "")
+  public String getClassName() {
+    return className;
   }
-  public void setName(Integer name) {
-    this.name = name;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(value = "")
-  public Integer getSnakeCase() {
-    return snakeCase;
-  }
-  public void setSnakeCase(Integer snakeCase) {
-    this.snakeCase = snakeCase;
+  public void setClassName(String className) {
+    this.className = className;
   }
 
   
@@ -51,23 +37,21 @@ public class Name   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Name name = (Name) o;
-    return Objects.equals(this.name, name.name) &&
-        Objects.equals(this.snakeCase, name.snakeCase);
+    Animal animal = (Animal) o;
+    return Objects.equals(this.className, animal.className);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, snakeCase);
+    return Objects.hash(className);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Name {\n");
+    sb.append("class Animal {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    snakeCase: ").append(toIndentedString(snakeCase)).append("\n");
+    sb.append("    className: ").append(toIndentedString(className)).append("\n");
     sb.append("}");
     return sb.toString();
   }

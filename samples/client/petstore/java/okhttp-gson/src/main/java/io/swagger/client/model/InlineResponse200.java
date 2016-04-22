@@ -10,9 +10,9 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 
-
-
-
+/**
+ * InlineResponse200
+ */
 public class InlineResponse200   {
   
   @SerializedName("photoUrls")
@@ -31,27 +31,30 @@ public class InlineResponse200   {
   private List<Tag> tags = new ArrayList<Tag>();
   
 
-public enum StatusEnum {
-  @SerializedName("available")
-  AVAILABLE("available"),
+  /**
+   * pet status in the store
+   */
+  public enum StatusEnum {
+    @SerializedName("available")
+    AVAILABLE("available"),
 
-  @SerializedName("pending")
-  PENDING("pending"),
+    @SerializedName("pending")
+    PENDING("pending"),
 
-  @SerializedName("sold")
-  SOLD("sold");
+    @SerializedName("sold")
+    SOLD("sold");
 
-  private String value;
+    private String value;
 
-  StatusEnum(String value) {
-    this.value = value;
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
   }
-
-  @Override
-  public String toString() {
-    return value;
-  }
-}
 
   @SerializedName("status")
   private StatusEnum status = null;
@@ -174,3 +177,4 @@ public enum StatusEnum {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

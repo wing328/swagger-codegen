@@ -7,9 +7,9 @@ import io.swagger.annotations.ApiModelProperty;
 import com.google.gson.annotations.SerializedName;
 
 
-
-
-
+/**
+ * ModelReturn
+ */
 public class ModelReturn   {
   
   @SerializedName("return")
@@ -67,3 +67,4 @@ public class ModelReturn   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+
