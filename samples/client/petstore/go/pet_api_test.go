@@ -47,7 +47,7 @@ func TestGetPetById(t *testing.T) {
 		t.Log(err)
 	} else {
 		assert.Equal(resp.Id, int64(12830), "Pet id should be equal")
-		assert.Equal(resp.Name, "gopher", "Pet name should be gopher")
+		assert.Equal(resp.Name, "gopher222", "Pet name should be gopher")
 		assert.Equal(resp.Status, "pending", "Pet status should be pending")
 
 		//t.Log(resp)
