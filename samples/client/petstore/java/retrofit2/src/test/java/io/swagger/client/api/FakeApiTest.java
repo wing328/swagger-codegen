@@ -1,8 +1,8 @@
 package io.swagger.client.api;
 
 import io.swagger.client.ApiClient;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 
