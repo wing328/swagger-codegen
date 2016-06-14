@@ -42,61 +42,12 @@ class EnumClass(object):
                                   and the value is json key in definition.
         """
         self.swagger_types = {
-            'name': 'int',
-            'snake_case': 'int'
+            
         }
 
         self.attribute_map = {
-            'name': 'name',
-            'snake_case': 'snake_case'
+            
         }
-
-        self._name = None
-        self._snake_case = None
-
-    @property
-    def name(self):
-        """
-        Gets the name of this Name.
-
-
-        :return: The name of this Name.
-        :rtype: int
-        """
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        """
-        Sets the name of this Name.
-
-
-        :param name: The name of this Name.
-        :type: int
-        """
-        self._name = name
-
-    @property
-    def snake_case(self):
-        """
-        Gets the snake_case of this Name.
-
-
-        :return: The snake_case of this Name.
-        :rtype: int
-        """
-        return self._snake_case
-
-    @snake_case.setter
-    def snake_case(self, snake_case):
-        """
-        Sets the snake_case of this Name.
-
-
-        :param snake_case: The snake_case of this Name.
-        :type: int
-        """
-        self._snake_case = snake_case
 
     def to_dict(self):
         """

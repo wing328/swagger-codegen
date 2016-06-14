@@ -51,7 +51,7 @@ class UserApi(object):
                 config.api_client = ApiClient()
             self.api_client = config.api_client
 
-    def create_user(self, **kwargs):
+    def create_user(self, body, **kwargs):
         _return_http_data_only = True
         """
         Create user
@@ -74,12 +74,12 @@ class UserApi(object):
         """
         kwargs['_return_http_data_only'] = _return_http_data_only
         if kwargs.get('callback'):
-            return self.create_user_with_http_info(**kwargs)
+            return self.create_user_with_http_info(body, **kwargs)
         else:
-            (data) = self.create_user_with_http_info(**kwargs)
+            (data) = self.create_user_with_http_info(body, **kwargs)
             return data
 
-    def create_user_with_http_info(self, **kwargs):
+    def create_user_with_http_info(self, body, **kwargs):
         """
         Create user
         This can only be done by the logged in user.
@@ -90,11 +90,11 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.create_user_with_http_info(callback=callback_function)
+        >>> thread = api.create_user_with_http_info(body, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param User body: Created user object
+        :param User body: Created user object (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -156,7 +156,7 @@ class UserApi(object):
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
 
-    def create_users_with_array_input(self, **kwargs):
+    def create_users_with_array_input(self, body, **kwargs):
         _return_http_data_only = True
         """
         Creates list of users with given input array
@@ -179,12 +179,12 @@ class UserApi(object):
         """
         kwargs['_return_http_data_only'] = _return_http_data_only
         if kwargs.get('callback'):
-            return self.create_users_with_array_input_with_http_info(**kwargs)
+            return self.create_users_with_array_input_with_http_info(body, **kwargs)
         else:
-            (data) = self.create_users_with_array_input_with_http_info(**kwargs)
+            (data) = self.create_users_with_array_input_with_http_info(body, **kwargs)
             return data
 
-    def create_users_with_array_input_with_http_info(self, **kwargs):
+    def create_users_with_array_input_with_http_info(self, body, **kwargs):
         """
         Creates list of users with given input array
         
@@ -195,11 +195,11 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.create_users_with_array_input_with_http_info(callback=callback_function)
+        >>> thread = api.create_users_with_array_input_with_http_info(body, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param list[User] body: List of user object
+        :param list[User] body: List of user object (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -261,7 +261,7 @@ class UserApi(object):
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
 
-    def create_users_with_list_input(self, **kwargs):
+    def create_users_with_list_input(self, body, **kwargs):
         _return_http_data_only = True
         """
         Creates list of users with given input array
@@ -284,12 +284,12 @@ class UserApi(object):
         """
         kwargs['_return_http_data_only'] = _return_http_data_only
         if kwargs.get('callback'):
-            return self.create_users_with_list_input_with_http_info(**kwargs)
+            return self.create_users_with_list_input_with_http_info(body, **kwargs)
         else:
-            (data) = self.create_users_with_list_input_with_http_info(**kwargs)
+            (data) = self.create_users_with_list_input_with_http_info(body, **kwargs)
             return data
 
-    def create_users_with_list_input_with_http_info(self, **kwargs):
+    def create_users_with_list_input_with_http_info(self, body, **kwargs):
         """
         Creates list of users with given input array
         
@@ -300,11 +300,11 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.create_users_with_list_input_with_http_info(callback=callback_function)
+        >>> thread = api.create_users_with_list_input_with_http_info(body, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param list[User] body: List of user object
+        :param list[User] body: List of user object (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -576,7 +576,7 @@ class UserApi(object):
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
 
-    def login_user(self, **kwargs):
+    def login_user(self, username, password, **kwargs):
         _return_http_data_only = True
         """
         Logs user into the system
@@ -600,12 +600,12 @@ class UserApi(object):
         """
         kwargs['_return_http_data_only'] = _return_http_data_only
         if kwargs.get('callback'):
-            return self.login_user_with_http_info(**kwargs)
+            return self.login_user_with_http_info(username, password, **kwargs)
         else:
-            (data) = self.login_user_with_http_info(**kwargs)
+            (data) = self.login_user_with_http_info(username, password, **kwargs)
             return data
 
-    def login_user_with_http_info(self, **kwargs):
+    def login_user_with_http_info(self, username, password, **kwargs):
         """
         Logs user into the system
         
@@ -616,12 +616,12 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.login_user_with_http_info(callback=callback_function)
+        >>> thread = api.login_user_with_http_info(username, password, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str username: The user name for login
-        :param str password: The password for login in clear text
+        :param str username: The user name for login (required)
+        :param str password: The password for login in clear text (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -786,7 +786,7 @@ class UserApi(object):
                                             callback=params.get('callback'),
                                             _return_http_data_only=params.get('_return_http_data_only'))
 
-    def update_user(self, username, **kwargs):
+    def update_user(self, username, body, **kwargs):
         _return_http_data_only = True
         """
         Updated user
@@ -810,12 +810,12 @@ class UserApi(object):
         """
         kwargs['_return_http_data_only'] = _return_http_data_only
         if kwargs.get('callback'):
-            return self.update_user_with_http_info(username, **kwargs)
+            return self.update_user_with_http_info(username, body, **kwargs)
         else:
-            (data) = self.update_user_with_http_info(username, **kwargs)
+            (data) = self.update_user_with_http_info(username, body, **kwargs)
             return data
 
-    def update_user_with_http_info(self, username, **kwargs):
+    def update_user_with_http_info(self, username, body, **kwargs):
         """
         Updated user
         This can only be done by the logged in user.
@@ -826,12 +826,12 @@ class UserApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.update_user_with_http_info(username, callback=callback_function)
+        >>> thread = api.update_user_with_http_info(username, body, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str username: name that need to be deleted (required)
-        :param User body: Updated user object
+        :param User body: Updated user object (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
