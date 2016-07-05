@@ -1,7 +1,7 @@
 /* 
  * Swagger Petstore
  *
- * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\ 
+ * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\
  *
  * OpenAPI spec version: 1.0.0
  * Contact: apiteam@swagger.io
@@ -184,20 +184,27 @@ namespace IO.Swagger.Api
         private IO.Swagger.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
+        /// Gets or sets the default API client for making HTTP calls.
+        /// </summary>
+        /// <value>The API client.</value>
+        public ApiClient ApiClient {get; set;}
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FakeApi"/> class.
         /// </summary>
         /// <returns></returns>
         public FakeApi(String basePath)
         {
-            this.Configuration = new Configuration(new ApiClient(basePath));
+            //this.Configuration = new Configuration(new ApiClient(basePath));
+            ApiClient = new ApiClient(basePath);
 
             ExceptionFactory = IO.Swagger.Client.Configuration.DefaultExceptionFactory;
 
             // ensure API client has configuration ready
-            if (Configuration.ApiClient.Configuration == null)
+            /*if (Configuration.ApiClient.Configuration == null)
             {
                 this.Configuration.ApiClient.Configuration = this.Configuration;
-            }
+            }*/
         }
 
         /// <summary>
@@ -206,7 +213,7 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <param name="configuration">An instance of Configuration</param>
         /// <returns></returns>
-        public FakeApi(Configuration configuration = null)
+        /*public FakeApi(Configuration configuration = null)
         {
             if (configuration == null) // use the default one in Configuration
                 this.Configuration = Configuration.Default;
@@ -220,7 +227,7 @@ namespace IO.Swagger.Api
             {
                 this.Configuration.ApiClient.Configuration = this.Configuration;
             }
-        }
+        }*/
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -228,7 +235,7 @@ namespace IO.Swagger.Api
         /// <value>The base path</value>
         public String GetBasePath()
         {
-            return this.Configuration.ApiClient.RestClient.BaseUrl.ToString();
+            return this.ApiClient.RestClient.BaseUrl.ToString();
         }
 
         /// <summary>
@@ -245,7 +252,7 @@ namespace IO.Swagger.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Configuration Configuration {get; set;}
+        /*public Configuration Configuration {get; set;}*/
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
@@ -270,7 +277,7 @@ namespace IO.Swagger.Api
         [Obsolete("DefaultHeader is deprecated, please use Configuration.DefaultHeader instead.")]
         public Dictionary<String, String> DefaultHeader()
         {
-            return this.Configuration.DefaultHeader;
+            return this.ApiClient.Configuration.DefaultHeader;
         }
 
         /// <summary>
@@ -282,7 +289,7 @@ namespace IO.Swagger.Api
         [Obsolete("AddDefaultHeader is deprecated, please use Configuration.AddDefaultHeader instead.")]
         public void AddDefaultHeader(string key, string value)
         {
-            this.Configuration.AddDefaultHeader(key, value);
+            this.ApiClient.Configuration.AddDefaultHeader(key, value);
         }
 
         /// <summary>
@@ -342,7 +349,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/fake";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(ApiClient.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -352,36 +359,36 @@ namespace IO.Swagger.Api
                 "application/xml; charset=utf-8", 
                 "application/json; charset=utf-8"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
                 "application/xml; charset=utf-8", 
                 "application/json; charset=utf-8"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (integer != null) localVarFormParams.Add("integer", Configuration.ApiClient.ParameterToString(integer)); // form parameter
-            if (int32 != null) localVarFormParams.Add("int32", Configuration.ApiClient.ParameterToString(int32)); // form parameter
-            if (int64 != null) localVarFormParams.Add("int64", Configuration.ApiClient.ParameterToString(int64)); // form parameter
-            if (number != null) localVarFormParams.Add("number", Configuration.ApiClient.ParameterToString(number)); // form parameter
-            if (_float != null) localVarFormParams.Add("float", Configuration.ApiClient.ParameterToString(_float)); // form parameter
-            if (_double != null) localVarFormParams.Add("double", Configuration.ApiClient.ParameterToString(_double)); // form parameter
-            if (_string != null) localVarFormParams.Add("string", Configuration.ApiClient.ParameterToString(_string)); // form parameter
-            if (_byte != null) localVarFormParams.Add("byte", Configuration.ApiClient.ParameterToString(_byte)); // form parameter
-            if (binary != null) localVarFormParams.Add("binary", Configuration.ApiClient.ParameterToString(binary)); // form parameter
-            if (date != null) localVarFormParams.Add("date", Configuration.ApiClient.ParameterToString(date)); // form parameter
-            if (dateTime != null) localVarFormParams.Add("dateTime", Configuration.ApiClient.ParameterToString(dateTime)); // form parameter
-            if (password != null) localVarFormParams.Add("password", Configuration.ApiClient.ParameterToString(password)); // form parameter
+            if (integer != null) localVarFormParams.Add("integer", ApiClient.ParameterToString(integer)); // form parameter
+            if (int32 != null) localVarFormParams.Add("int32", ApiClient.ParameterToString(int32)); // form parameter
+            if (int64 != null) localVarFormParams.Add("int64", ApiClient.ParameterToString(int64)); // form parameter
+            if (number != null) localVarFormParams.Add("number", ApiClient.ParameterToString(number)); // form parameter
+            if (_float != null) localVarFormParams.Add("float", ApiClient.ParameterToString(_float)); // form parameter
+            if (_double != null) localVarFormParams.Add("double", ApiClient.ParameterToString(_double)); // form parameter
+            if (_string != null) localVarFormParams.Add("string", ApiClient.ParameterToString(_string)); // form parameter
+            if (_byte != null) localVarFormParams.Add("byte", ApiClient.ParameterToString(_byte)); // form parameter
+            if (binary != null) localVarFormParams.Add("binary", ApiClient.ParameterToString(binary)); // form parameter
+            if (date != null) localVarFormParams.Add("date", ApiClient.ParameterToString(date)); // form parameter
+            if (dateTime != null) localVarFormParams.Add("dateTime", ApiClient.ParameterToString(dateTime)); // form parameter
+            if (password != null) localVarFormParams.Add("password", ApiClient.ParameterToString(password)); // form parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) ApiClient.CallApi(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -457,7 +464,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/fake";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(ApiClient.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -467,36 +474,36 @@ namespace IO.Swagger.Api
                 "application/xml; charset=utf-8", 
                 "application/json; charset=utf-8"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
                 "application/xml; charset=utf-8", 
                 "application/json; charset=utf-8"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (integer != null) localVarFormParams.Add("integer", Configuration.ApiClient.ParameterToString(integer)); // form parameter
-            if (int32 != null) localVarFormParams.Add("int32", Configuration.ApiClient.ParameterToString(int32)); // form parameter
-            if (int64 != null) localVarFormParams.Add("int64", Configuration.ApiClient.ParameterToString(int64)); // form parameter
-            if (number != null) localVarFormParams.Add("number", Configuration.ApiClient.ParameterToString(number)); // form parameter
-            if (_float != null) localVarFormParams.Add("float", Configuration.ApiClient.ParameterToString(_float)); // form parameter
-            if (_double != null) localVarFormParams.Add("double", Configuration.ApiClient.ParameterToString(_double)); // form parameter
-            if (_string != null) localVarFormParams.Add("string", Configuration.ApiClient.ParameterToString(_string)); // form parameter
-            if (_byte != null) localVarFormParams.Add("byte", Configuration.ApiClient.ParameterToString(_byte)); // form parameter
-            if (binary != null) localVarFormParams.Add("binary", Configuration.ApiClient.ParameterToString(binary)); // form parameter
-            if (date != null) localVarFormParams.Add("date", Configuration.ApiClient.ParameterToString(date)); // form parameter
-            if (dateTime != null) localVarFormParams.Add("dateTime", Configuration.ApiClient.ParameterToString(dateTime)); // form parameter
-            if (password != null) localVarFormParams.Add("password", Configuration.ApiClient.ParameterToString(password)); // form parameter
+            if (integer != null) localVarFormParams.Add("integer", ApiClient.ParameterToString(integer)); // form parameter
+            if (int32 != null) localVarFormParams.Add("int32", ApiClient.ParameterToString(int32)); // form parameter
+            if (int64 != null) localVarFormParams.Add("int64", ApiClient.ParameterToString(int64)); // form parameter
+            if (number != null) localVarFormParams.Add("number", ApiClient.ParameterToString(number)); // form parameter
+            if (_float != null) localVarFormParams.Add("float", ApiClient.ParameterToString(_float)); // form parameter
+            if (_double != null) localVarFormParams.Add("double", ApiClient.ParameterToString(_double)); // form parameter
+            if (_string != null) localVarFormParams.Add("string", ApiClient.ParameterToString(_string)); // form parameter
+            if (_byte != null) localVarFormParams.Add("byte", ApiClient.ParameterToString(_byte)); // form parameter
+            if (binary != null) localVarFormParams.Add("binary", ApiClient.ParameterToString(binary)); // form parameter
+            if (date != null) localVarFormParams.Add("date", ApiClient.ParameterToString(date)); // form parameter
+            if (dateTime != null) localVarFormParams.Add("dateTime", ApiClient.ParameterToString(dateTime)); // form parameter
+            if (password != null) localVarFormParams.Add("password", ApiClient.ParameterToString(password)); // form parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await ApiClient.CallApiAsync(localVarPath,
                 Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -541,7 +548,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/fake";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(ApiClient.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -550,26 +557,26 @@ namespace IO.Swagger.Api
             String[] localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (enumQueryInteger != null) localVarQueryParams.Add("enum_query_integer", Configuration.ApiClient.ParameterToString(enumQueryInteger)); // query parameter
-            if (enumQueryString != null) localVarFormParams.Add("enum_query_string", Configuration.ApiClient.ParameterToString(enumQueryString)); // form parameter
-            if (enumQueryDouble != null) localVarFormParams.Add("enum_query_double", Configuration.ApiClient.ParameterToString(enumQueryDouble)); // form parameter
+            if (enumQueryInteger != null) localVarQueryParams.Add("enum_query_integer", ApiClient.ParameterToString(enumQueryInteger)); // query parameter
+            if (enumQueryString != null) localVarFormParams.Add("enum_query_string", ApiClient.ParameterToString(enumQueryString)); // form parameter
+            if (enumQueryDouble != null) localVarFormParams.Add("enum_query_double", ApiClient.ParameterToString(enumQueryDouble)); // form parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) ApiClient.CallApi(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 
@@ -615,7 +622,7 @@ namespace IO.Swagger.Api
             var localVarPath = "/fake";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new Dictionary<String, String>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<String, String>(ApiClient.Configuration.DefaultHeader);
             var localVarFormParams = new Dictionary<String, String>();
             var localVarFileParams = new Dictionary<String, FileParameter>();
             Object localVarPostBody = null;
@@ -624,26 +631,26 @@ namespace IO.Swagger.Api
             String[] localVarHttpContentTypes = new String[] {
                 "application/json"
             };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+            String localVarHttpContentType = ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
             // to determine the Accept header
             String[] localVarHttpHeaderAccepts = new String[] {
                 "application/json"
             };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            String localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             // set "format" to json by default
             // e.g. /pet/{petId}.{format} becomes /pet/{petId}.json
             localVarPathParams.Add("format", "json");
-            if (enumQueryInteger != null) localVarQueryParams.Add("enum_query_integer", Configuration.ApiClient.ParameterToString(enumQueryInteger)); // query parameter
-            if (enumQueryString != null) localVarFormParams.Add("enum_query_string", Configuration.ApiClient.ParameterToString(enumQueryString)); // form parameter
-            if (enumQueryDouble != null) localVarFormParams.Add("enum_query_double", Configuration.ApiClient.ParameterToString(enumQueryDouble)); // form parameter
+            if (enumQueryInteger != null) localVarQueryParams.Add("enum_query_integer", ApiClient.ParameterToString(enumQueryInteger)); // query parameter
+            if (enumQueryString != null) localVarFormParams.Add("enum_query_string", ApiClient.ParameterToString(enumQueryString)); // form parameter
+            if (enumQueryDouble != null) localVarFormParams.Add("enum_query_double", ApiClient.ParameterToString(enumQueryDouble)); // form parameter
 
 
             // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+            IRestResponse localVarResponse = (IRestResponse) await ApiClient.CallApiAsync(localVarPath,
                 Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
                 localVarPathParams, localVarHttpContentType);
 

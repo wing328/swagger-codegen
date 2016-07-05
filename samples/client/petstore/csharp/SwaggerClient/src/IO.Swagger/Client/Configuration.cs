@@ -1,7 +1,7 @@
 /* 
  * Swagger Petstore
  *
- * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\ 
+ * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\
  *
  * OpenAPI spec version: 1.0.0
  * Contact: apiteam@swagger.io
@@ -48,7 +48,7 @@ namespace IO.Swagger.Client
         /// <param name="dateTimeFormat">DateTime format string</param>
         /// <param name="timeout">HTTP connection timeout (in milliseconds)</param>
         /// <param name="userAgent">HTTP user agent</param>
-        public Configuration(ApiClient apiClient = null,
+        public Configuration(//ApiClient apiClient = null,
                              Dictionary<String, String> defaultHeader = null,
                              string username = null,
                              string password = null,
@@ -61,7 +61,7 @@ namespace IO.Swagger.Client
                              string userAgent = "Swagger-Codegen/1.0.0/csharp"
                             )
         {
-            setApiClientUsingDefault(apiClient);
+            //setApiClientUsingDefault(apiClient);
 
             Username = username;
             Password = password;
@@ -84,10 +84,10 @@ namespace IO.Swagger.Client
         /// Initializes a new instance of the Configuration class.
         /// </summary>
         /// <param name="apiClient">Api client.</param>
-        public Configuration(ApiClient apiClient)
+        /*public Configuration(ApiClient apiClient)
         {
             setApiClientUsingDefault(apiClient);
-        }
+        }*/
 
         /// <summary>
         /// Version of the package.
@@ -131,14 +131,14 @@ namespace IO.Swagger.Client
         /// Gets or sets the default API client for making HTTP calls.
         /// </summary>
         /// <value>The API client.</value>
-        public ApiClient ApiClient;
+        //public ApiClient ApiClient;
 
         /// <summary>
         /// Set the ApiClient using Default or ApiClient instance.
         /// </summary>
         /// <param name="apiClient">An instance of ApiClient.</param>
         /// <returns></returns>
-        public void setApiClientUsingDefault (ApiClient apiClient = null)
+        /*public void setApiClientUsingDefault (ApiClient apiClient = null)
         {
             if (apiClient == null)
             {
@@ -154,7 +154,7 @@ namespace IO.Swagger.Client
 
                 ApiClient = apiClient;
             }
-        }
+        }*/
 
         private Dictionary<String, String> _defaultHeaderMap = new Dictionary<String, String>();
 

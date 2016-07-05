@@ -1,7 +1,7 @@
 /* 
  * Swagger Petstore
  *
- * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\ 
+ * This spec is mainly for testing Petstore server and contains fake endpoints, models. Please do not use this for any other purpose. Special characters: \" \\
  *
  * OpenAPI spec version: 1.0.0
  * Contact: apiteam@swagger.io
@@ -185,8 +185,6 @@ namespace IO.Swagger.Client
                 path, method, queryParams, postBody, headerParams, formParams, fileParams,
                 pathParams, contentType);
 
-            // set timeout
-            RestClient.Timeout = Configuration.Timeout;
             // set user agent
             RestClient.UserAgent = Configuration.UserAgent;
 
@@ -490,5 +488,17 @@ namespace IO.Swagger.Client
                 return filename;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
+        /// </summary>
+        /// <value>Timeout.</value>
+        public int Timeout
+        {
+            get { return RestClient.Timeout; }
+
+            set { RestClient.Timeout = value; } 
+        }
+
     }
 }

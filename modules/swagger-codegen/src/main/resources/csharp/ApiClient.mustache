@@ -173,8 +173,6 @@ namespace {{packageName}}.Client
                 path, method, queryParams, postBody, headerParams, formParams, fileParams,
                 pathParams, contentType);
 
-            // set timeout
-            RestClient.Timeout = Configuration.Timeout;
             // set user agent
             RestClient.UserAgent = Configuration.UserAgent;
 
@@ -485,6 +483,18 @@ namespace {{packageName}}.Client
                 return filename;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the HTTP timeout (milliseconds) of ApiClient. Default to 100000 milliseconds.
+        /// </summary>
+        /// <value>Timeout.</value>
+        public int Timeout
+        {
+            get { return RestClient.Timeout; }
+
+            set { RestClient.Timeout = value; } 
+        }
+
         {{#supportsUWP}}
         /// <summary>
         /// Convert stream to byte array

@@ -27,7 +27,7 @@ namespace {{packageName}}.Client
         /// <param name="dateTimeFormat">DateTime format string</param>
         /// <param name="timeout">HTTP connection timeout (in milliseconds)</param>
         /// <param name="userAgent">HTTP user agent</param>
-        public Configuration(ApiClient apiClient = null,
+        public Configuration(//ApiClient apiClient = null,
                              Dictionary<String, String> defaultHeader = null,
                              string username = null,
                              string password = null,
@@ -40,7 +40,7 @@ namespace {{packageName}}.Client
                              string userAgent = "{{#httpUserAgent}}{{.}}{{/httpUserAgent}}{{^httpUserAgent}}Swagger-Codegen/{{packageVersion}}/csharp{{/httpUserAgent}}"
                             )
         {
-            setApiClientUsingDefault(apiClient);
+            //setApiClientUsingDefault(apiClient);
 
             Username = username;
             Password = password;
@@ -63,10 +63,10 @@ namespace {{packageName}}.Client
         /// Initializes a new instance of the Configuration class.
         /// </summary>
         /// <param name="apiClient">Api client.</param>
-        public Configuration(ApiClient apiClient)
+        /*public Configuration(ApiClient apiClient)
         {
             setApiClientUsingDefault(apiClient);
-        }
+        }*/
 
         /// <summary>
         /// Version of the package.
@@ -110,14 +110,14 @@ namespace {{packageName}}.Client
         /// Gets or sets the default API client for making HTTP calls.
         /// </summary>
         /// <value>The API client.</value>
-        public ApiClient ApiClient;
+        //public ApiClient ApiClient;
 
         /// <summary>
         /// Set the ApiClient using Default or ApiClient instance.
         /// </summary>
         /// <param name="apiClient">An instance of ApiClient.</param>
         /// <returns></returns>
-        public void setApiClientUsingDefault (ApiClient apiClient = null)
+        /*public void setApiClientUsingDefault (ApiClient apiClient = null)
         {
             if (apiClient == null)
             {
@@ -133,7 +133,7 @@ namespace {{packageName}}.Client
 
                 ApiClient = apiClient;
             }
-        }
+        }*/
 
         private Dictionary<String, String> _defaultHeaderMap = new Dictionary<String, String>();
 
