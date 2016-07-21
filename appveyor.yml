@@ -2,6 +2,8 @@
 # Ref: http://www.yegor256.com/2015/01/10/windows-appveyor-maven.html
 version: '{branch}-{build}'
 os: Windows Server 2012
+hosts:
+  petstore.swagger.io: 127.0.0.1
 install:
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -15,7 +17,7 @@ install:
   - cmd: SET PATH=C:\maven\apache-maven-3.2.5\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx4g
   - cmd: SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx4g
-  - git clone https://github.com/swagger-api/swagger-samples && cd swagger-samples/java/java-jaxrs && mvn package -Dlog4j.configuration=file:./conf/log4j.properties jetty:run
+  - git clone https://github.com/wing328/swagger-samples && cd swagger-samples/java/java-jaxrs && START /B "" mvn package -Dlog4j.configuration=file:./conf/log4j.properties jetty:run
   - nuget restore samples/client/petstore/csharp/SwaggerClient/IO.Swagger.sln
 build_script:
   #- mvn clean install --batch-mode
