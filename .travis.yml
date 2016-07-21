@@ -18,6 +18,12 @@ before_install:
   - npm install -g typescript
   - sudo pip install virtualenv
   # to run petstore server locally via docker
+  # Install Docker
+  - brew install docker
+  # Install Docker Machine
+  - brew install docker-machine
+  # Install Docker Compose
+  - brew install docker-compose
   - docker pull swaggerapi/petstore
   - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
   - docker ps -a
