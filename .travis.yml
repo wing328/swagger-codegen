@@ -18,7 +18,7 @@ before_install:
   - npm install -g typescript
   - sudo pip install virtualenv
   # to run petstore server locally via docker
-  brew tap caskroom/cask
+  - brew tap caskroom/cask
   # Install Docker
   - brew install docker
   # Install Docker Machine
