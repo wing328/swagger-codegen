@@ -13,28 +13,28 @@ addons:
     - petstore.swagger.io
 
 before_install:
-  # required when sudo: required for the Ruby petstore tests
-  - gem install bundler
-  - npm install -g typescript
-  - sudo pip install virtualenv
-  # to run petstore server locally via docker
-  - brew tap caskroom/cask
-  # Install Docker
-  - brew install docker
-  # Install Docker Machine
-  - brew install docker-machine
-  # Install Docker Compose
-  - brew install docker-compose
-  - docker pull swaggerapi/petstore
-  - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
-  - docker ps -a
-  # Create a new Virtual machine for Boot2Docker
-  - docker-machine create --driver=virtualbox default
-  # Connect docker client and Docker Engine to the new created virtual Machine
-  - docker-machine env default
-  # show host table to confirm petstore.swagger.io is mapped to localhost
-  - cat /etc/hosts
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install xctool; fi
+#  # required when sudo: required for the Ruby petstore tests
+#  - gem install bundler
+#  - npm install -g typescript
+#  - sudo pip install virtualenv
+#  # to run petstore server locally via docker
+#  - brew tap caskroom/cask
+#  # Install Docker
+#  - brew install docker
+#  # Install Docker Machine
+#  - brew install docker-machine
+#  # Install Docker Compose
+#  - brew install docker-compose
+#  - docker pull swaggerapi/petstore
+#  - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
+#  - docker ps -a
+#  # Create a new Virtual machine for Boot2Docker
+#  - docker-machine create --driver=virtualbox default
+#  # Connect docker client and Docker Engine to the new created virtual Machine
+#  - docker-machine env default
+#  # show host table to confirm petstore.swagger.io is mapped to localhost
+#  - cat /etc/hosts
+#  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install xctool; fi
 
 
 install:
