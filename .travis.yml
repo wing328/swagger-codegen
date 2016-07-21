@@ -1,5 +1,7 @@
 sudo: required
 language: java
+os:
+  - osx
 jdk:
   - oraclejdk7
   - oraclejdk8
@@ -26,7 +28,8 @@ before_install:
   - docker ps -a
   # show host table to confirm petstore.swagger.io is mapped to localhost
   - cat /etc/hosts
-  - brew install xctool
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install xctool; fi
+
 
 install:
 
