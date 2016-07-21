@@ -1,6 +1,6 @@
 # for CI with appveyor.yml
 # Ref: http://www.yegor256.com/2015/01/10/windows-appveyor-maven.html
-version: '{build}'
+version: '{branch}-{build}'
 os: Windows Server 2012
 install:
   - ps: |
@@ -15,10 +15,13 @@ install:
   - cmd: SET PATH=C:\maven\apache-maven-3.2.5\bin;%JAVA_HOME%\bin;%PATH%
   - cmd: SET MAVEN_OPTS=-XX:MaxPermSize=2g -Xmx4g
   - cmd: SET JAVA_OPTS=-XX:MaxPermSize=2g -Xmx4g
+  - git clone https://github.com/swagger-api/swagger-samples && cd swagger-samples/tree/master/java/java-jaxrs && mvn package -Dlog4j.configuration=file:./conf/log4j.properties jetty:run
+  - nuget restore samples/client/petstore/csharp/SwaggerClient/IO.Swagger.sln
 build_script:
-  - mvn clean install --batch-mode
+  #- mvn clean install --batch-mode
 test_script:
-  - .\bin\windows\run-all-petstore.cmd
+  - msbuild samples/client/petstore/csharp/SwaggerClient/IO.Swagger.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  #- .\bin\windows\run-all-petstore.cmd
 cache:
   - C:\maven\
   - C:\Users\appveyor\.m2
