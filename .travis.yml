@@ -1,10 +1,5 @@
 sudo: required
-language: java
-os:
-  - osx
-jdk:
-  - oraclejdk7
-  - oraclejdk8
+language: objective-c 
 
 cache:
   directories:
