@@ -1,8 +1,8 @@
 package io.swagger.api;
 
 import io.swagger.model.Pet;
-import io.swagger.model.ModelApiResponse;
 import java.io.File;
+import io.swagger.model.ModelApiResponse;
 
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +64,7 @@ public interface PetApi {
         produces = "application/json",
         consumes = "application/json",
         method = RequestMethod.GET)
-    ResponseEntity<List<Pet>> findPetsByStatus(@ApiParam(value = "Status values that need to be considered for filter", required = true) @RequestParam(value = "status", required = true) List<String> status);
+    ResponseEntity<List<Pet>> findPetsByStatus(@ApiParam(value = "Status values that need to be considered for filter", required = true, allowableValues = "{values=[available, pending, sold], enumVars=[{name=AVAILABLE, value="available"}, {name=PENDING, value="pending"}, {name=SOLD, value="sold"}]}") @RequestParam(value = "status", required = true) List<String> status);
 
 
     @ApiOperation(value = "Finds Pets by tags", notes = "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.", response = Pet.class, responseContainer = "List", authorizations = {
