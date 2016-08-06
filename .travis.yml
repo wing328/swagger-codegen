@@ -19,6 +19,7 @@ before_install:
    - rvm use 2.2.2
    - sudo gem install cocoapods
    - pod --version
+   - pod setup
    - brew install xctool
 #  # required when sudo: required for the Ruby petstore tests
 #  - gem install bundler
