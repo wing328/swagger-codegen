@@ -14,8 +14,8 @@ addons:
     - petstore.swagger.io
 
 before_install:
-   - rvm use system
-   - sudo gem install cocoapods
+#   - rvm use system
+#   - sudo gem install cocoapods
    - pod --version
    - brew install xctool
 #  # required when sudo: required for the Ruby petstore tests
