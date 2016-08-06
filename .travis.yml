@@ -14,6 +14,7 @@ addons:
     - petstore.swagger.io
 
 before_install:
+   - brew install xctool
 #  # required when sudo: required for the Ruby petstore tests
 #  - gem install bundler
 #  - npm install -g typescript
@@ -37,11 +38,10 @@ before_install:
 #  - cat /etc/hosts
 #  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install xctool; fi
 
-
 install:
 
 script:
-   - cd samples/client/petstore/objc/default/SwaggerClientTests && pod install && xcodebuild -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" test -destination "platform:iOS Simulator,OS:8.1,name:iPhone 5s"
+   - cd samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" test
 
 #  - mvn verify -Psamples
 #  - if [ $DOCKER_HUB_USERNAME ]; then docker login --email=$DOCKER_HUB_EMAIL --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD && docker build -t $DOCKER_IMAGE_NAME ./modules/swagger-generator && if [ ! -z "$TRAVIS_TAG" ]; then docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_IMAGE_NAME:$TRAVIS_TAG; fi && docker push $DOCKER_IMAGE_NAME; fi
