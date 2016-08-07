@@ -16,6 +16,7 @@ addons:
 
 before_install:
 #   - rvm use system
+   - rvm list
    - rvm install 2.2.2
    - rvm use 2.2.2
    - sudo gem install cocoapods
