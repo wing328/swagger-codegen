@@ -18,6 +18,7 @@ addons:
     - petstore.swagger.io
 
 before_install:
+   - export SW=`pwd`
    # show host table to confirm petstore.swagger.io is mapped to localhost
    - cat /private/etc/hosts
    #- rvm install 2.2.2 > /dev/null 2>&1
@@ -28,20 +29,19 @@ before_install:
    - pod setup > /dev/null 2>&1
    - brew install xctool
    - git clone https://github.com/wing328/swagger-samples
-   - sudo echo $HOME
    - cd swagger-samples/java/java-jersey-jaxrs && sudo mvn jetty:run &
 
 install:
 
 script:
    # test default objc client
-   - cd $HOME/samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - cd $SW/samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
    # test objc client with coredata
-   - cd $HOME/samples/client/petstore/objc/core-data/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - cd $SW/samples/client/petstore/objc/core-data/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
    # test default swift client
-   - cd $HOME/samples/client/petstore/swit/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - cd $SW/samples/client/petstore/swit/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
    # test swift client with promisekit
-   - cd $HOME/samples/client/petstore/swit/promisekit/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - cd $SW/samples/client/petstore/swit/promisekit/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 
 env:
