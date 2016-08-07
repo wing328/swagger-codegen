@@ -24,7 +24,8 @@ before_install:
    - pod setup > /dev/null 2>&1
    - brew install xctool
    # Install Cask
-   - brew install caskroom/cask/brew-cask
+   - brew update
+   #- brew install caskroom/cask/brew-cask
    # Install docker toolbox
    - brew cask install dockertoolbox
    # to run petstore server locally via docker
