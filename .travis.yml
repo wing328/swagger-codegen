@@ -4,6 +4,7 @@ language: objective-c
 cache:
   directories:
   - $HOME/.m2
+  - $HOME/.cocoapods/repos/master/
   - samples/client/petstore/objc/default/SwaggerClientTests/Pods
 
 services:
