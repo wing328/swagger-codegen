@@ -37,7 +37,7 @@ before_install:
 install:
 
 script:
-   - cd samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" test
+   - cd samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 env:
   - DOCKER_IMAGE_NAME=swaggerapi/swagger-generator
