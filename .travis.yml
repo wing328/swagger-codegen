@@ -8,7 +8,10 @@ cache:
   - $HOME/.gem
   - $HOME/.rvm
   - $HOME/.cocoapods
-  - samples/client/petstore/objc/default/SwaggerClientTests/Pods
+  - swagger-api/swagger-codegen/samples/client/petstore/objc/default/SwaggerClientTests/Pods
+  - swagger-api/swagger-codegen/samples/client/petstore/objc/core-data/SwaggerClientTests/Pods
+  - swagger-api/swagger-codegen/samples/client/petstore/swift/default/SwaggerClientTests/Pods
+  - swagger-api/swagger-codegen/samples/client/petstore/swift/promisekit/SwaggerClientTests/Pods
 
 services:
   - docker
@@ -39,9 +42,9 @@ script:
    # test objc client with coredata
    - cd $SW/samples/client/petstore/objc/core-data/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
    # test default swift client
-   - cd $SW/samples/client/petstore/swit/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - cd $SW/samples/client/petstore/swift/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
    # test swift client with promisekit
-   - cd $SW/samples/client/petstore/swit/promisekit/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - cd $SW/samples/client/petstore/swift/promisekit/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 
 env:
