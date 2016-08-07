@@ -12,9 +12,9 @@ cache:
 services:
   - docker
 
-#addons:
-#  hosts:
-#    - petstore.swagger.io
+addons:
+  hosts:
+    - petstore.swagger.io
 
 before_install:
    - rvm list
@@ -24,20 +24,13 @@ before_install:
    - pod --version
    - pod setup > /dev/null 2>&1
    - brew install xctool
-   ## Install Cask
-   #- brew update
-   ##- brew install caskroom/cask/brew-cask
-   ## Install docker toolbox
-   #- brew install docker-toolbox
-   ## to run petstore server locally via docker
-   #- docker pull swaggerapi/petstore
-   #- docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
-   #- docker ps -a 
+   - git clone https://github.com/swagger-api/swagger-samples
+   - cd swagger-samples/java/java-jersey-jaxrs && sudo mvn jetty:run &
 
 install:
 
 script:
-   - cd samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - cd samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination "platform:iOS Simulator,OS:8.1,name:iPhone 5s" test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
 env:
   - DOCKER_IMAGE_NAME=swaggerapi/swagger-generator
