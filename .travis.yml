@@ -30,7 +30,7 @@ before_install:
    - gem install cocoapods -v 1.0.1 -N --no-ri --no-rdoc
    - gem install xcpretty -N --no-ri --no-rdoc
    - pod --version
-   - pod setup > /dev/null 2>&1
+   - pod setup --silent > /dev/null
    - brew install xctool
    - git clone https://github.com/wing328/swagger-samples
    - cd swagger-samples/java/java-jersey-jaxrs && sudo mvn jetty:run &
@@ -43,12 +43,10 @@ script:
    # test objc client with coredata
    - cd $SW/samples/client/petstore/objc/core-data/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
    # test default swift client
-   #- cd $SW/samples/client/petstore/swift/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -destination platform='iOS Simulator',OS=9.3,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
    - set -o pipefail
-    - xcodebuild clean test -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+    - cd $SW/samples/client/petstore/swift/default/SwaggerClientTests && pod install && xcodebuild clean test -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
    # test swift client with promisekit
-   #- cd $SW/samples/client/petstore/swift/promisekit/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -destination platform='iOS Simulator',OS=9.3,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-
+    - cd $SW/samples/client/petstore/swift/promisekit/SwaggerClientTests && pod install && xcodebuild clean test -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 env:
   - DOCKER_IMAGE_NAME=swaggerapi/swagger-generator
