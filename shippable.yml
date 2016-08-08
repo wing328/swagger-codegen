@@ -4,12 +4,27 @@ jdk:
 - openjdk7
 - openjdk8
 
+addons:
+  hosts:
+    - petstore.swagger.io
+
 build:
   cache: true
   cache_dir_list:
     - $HOME/.m2
+  pre_ci:
+    # required when sudo: required for the Ruby petstore tests
+    - gem install bundler
+    - npm install -g typescript
+    - sudo pip install virtualenv
+    # to run petstore server locally via docker
+    - docker pull swaggerapi/petstore
+    - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
+    - docker ps -a
+    # show host table to confirm petstore.swagger.io is mapped to localhost
+    - cat /etc/hosts
   ci:
     # generate all petstore sampless (client, servers, doc)
-    - ./bin/run-all-petstore 2>&1 > run-all-petstore.log
-  post_ci:
-    - tail run-all-petstore.log
+    - mvn -q verify -Psamples
+  #post_ci:
+  #  - tail run-all-petstore.log
