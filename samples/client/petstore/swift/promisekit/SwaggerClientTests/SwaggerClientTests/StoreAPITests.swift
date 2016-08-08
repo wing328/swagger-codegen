@@ -20,8 +20,8 @@ class StoreAPITests: XCTestCase {
     func test1PlaceOrder() {
         let order = Order()
         let shipDate = NSDate()
-        order.id = 1000
-        order.petId = 1000
+        order.id = 2000
+        order.petId = 2000
         order.complete = false
         order.quantity = 10
         order.shipDate = shipDate
@@ -29,7 +29,7 @@ class StoreAPITests: XCTestCase {
         order.status = Order.Status.Placed
         let expectation = self.expectationWithDescription("testPlaceOrder")
         StoreAPI.placeOrder(body: order).then { order -> Void in
-                XCTAssert(order.id == 1000, "invalid id")
+                XCTAssert(order.id == 2000, "invalid id")
                 XCTAssert(order.quantity == 10, "invalid quantity")
                 XCTAssert(order.status == .Placed, "invalid status")
                 XCTAssert(order.shipDate!.isEqual(shipDate, format: self.isoDateFormat),
@@ -46,8 +46,8 @@ class StoreAPITests: XCTestCase {
     
     func test2GetOrder() {
         let expectation = self.expectationWithDescription("testGetOrder")
-        StoreAPI.getOrderById(orderId: "1000").then { order -> Void in
-            XCTAssert(order.id == 1000, "invalid id")
+        StoreAPI.getOrderById(orderId: "2000").then { order -> Void in
+            XCTAssert(order.id == 2000, "invalid id")
             XCTAssert(order.quantity == 10, "invalid quantity")
             XCTAssert(order.status == .Placed, "invalid status")
             expectation.fulfill()
@@ -61,7 +61,7 @@ class StoreAPITests: XCTestCase {
     
     func test3DeleteOrder() {
         let expectation = self.expectationWithDescription("testDeleteOrder")
-        StoreAPI.deleteOrder(orderId: "1000").then {
+        StoreAPI.deleteOrder(orderId: "2000").then {
                 expectation.fulfill()
             }.always {
                 // Noop for now

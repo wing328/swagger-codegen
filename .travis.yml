@@ -33,7 +33,7 @@ before_install:
    - pod setup --silent > /dev/null
    - brew install xctool
    - git clone https://github.com/wing328/swagger-samples
-   - cd swagger-samples/java/java-jersey-jaxrs && sudo mvn jetty:run &
+   - cd swagger-samples/java/java-jersey-jaxrs && sudo mvn -q jetty:run &
 
 install:
 
