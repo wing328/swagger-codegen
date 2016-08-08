@@ -14,6 +14,7 @@ build:
     - $HOME/.m2
   pre_ci:
     # required when sudo: required for the Ruby petstore tests
+    - source ~/.rvm/scripts/rvm && rvm use 1.9.3
     - gem install bundler
     - npm install -g typescript
     - sudo pip install virtualenv
