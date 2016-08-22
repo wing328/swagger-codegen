@@ -175,6 +175,7 @@ public class ApiClient {
         authentications = new HashMap<String, Authentication>();
         authentications.put("api_key", new ApiKeyAuth("header", "api_key"));
         authentications.put("petstore_auth", new OAuth());
+        authentications.put("http_basic_test", new HttpBasicAuth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
     }
