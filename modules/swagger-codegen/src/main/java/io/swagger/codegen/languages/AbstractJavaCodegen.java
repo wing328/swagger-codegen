@@ -30,8 +30,10 @@ import io.swagger.models.Swagger;
 import io.swagger.models.parameters.FormParameter;
 import io.swagger.models.parameters.Parameter;
 import io.swagger.models.properties.ArrayProperty;
+import io.swagger.models.properties.BaseIntegerProperty;
 import io.swagger.models.properties.BooleanProperty;
 import io.swagger.models.properties.DoubleProperty;
+import io.swagger.models.properties.DecimalProperty;
 import io.swagger.models.properties.FloatProperty;
 import io.swagger.models.properties.IntegerProperty;
 import io.swagger.models.properties.LongProperty;
@@ -459,6 +461,8 @@ public abstract class AbstractJavaCodegen extends DefaultCodegen implements Code
                 return dp.getDefault().toString()+"l";
             }
            return "null";
+        } else if (p instanceof BaseIntegerProperty) {
+           return "null";
         } else if (p instanceof DoubleProperty) {
             DoubleProperty dp = (DoubleProperty) p;
             if (dp.getDefault() != null) {
@@ -470,6 +474,8 @@ public abstract class AbstractJavaCodegen extends DefaultCodegen implements Code
             if (dp.getDefault() != null) {
                 return dp.getDefault().toString() + "f";
             }
+            return "null";
+        } else if (p instanceof DecimalProperty) {
             return "null";
         } else if (p instanceof BooleanProperty) {
             BooleanProperty bp = (BooleanProperty) p;

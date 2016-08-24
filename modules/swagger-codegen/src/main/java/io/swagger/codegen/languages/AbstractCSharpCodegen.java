@@ -487,6 +487,8 @@ public abstract class AbstractCSharpCodegen extends DefaultCodegen implements Co
             if (dp.getDefault() != null) {
                 return String.format("%1$sF", dp.getDefault());
             }
+        } else if (p instanceof DecimalProperty) {
+            return null;
         } else if (p instanceof IntegerProperty) {
             IntegerProperty dp = (IntegerProperty) p;
             if (dp.getDefault() != null) {
@@ -497,6 +499,8 @@ public abstract class AbstractCSharpCodegen extends DefaultCodegen implements Co
             if (dp.getDefault() != null) {
                 return dp.getDefault().toString();
             }
+        } else if (p instanceof BaseIntegerProperty) {
+            return null;
         }
 
         return null;
