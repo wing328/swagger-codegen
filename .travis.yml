@@ -19,6 +19,9 @@ before_install:
   - gem install bundler
   - npm install -g npm
   - npm -v
+  - sudo add-apt-repository -y ppa:chris-lea/node.js
+  - sudo apt-get -y update
+  - sudo apt-get -y install nodejs
   #- sudo npm install -g n
   #- sudo n stable
   - node -v
