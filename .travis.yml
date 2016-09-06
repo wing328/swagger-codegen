@@ -3,8 +3,6 @@ language: java
 jdk:
   - oraclejdk7
   - oraclejdk8
-node_js:
-  - "5.11"
 cache:
   directories:
   - $HOME/.m2
