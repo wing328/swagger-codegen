@@ -13,6 +13,8 @@ import io.swagger.models.properties.*;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +55,7 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
         // clear import mapping (from default generator) as php does not use it
         // at the moment
         importMapping.clear();
-        
+
 
         supportsInheritance = true;
         outputFolder = "generated-code" + File.separator + "php";
@@ -101,7 +103,9 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
 
 
         // provide primitives to mustache template
-        String primitives = "'" + StringUtils.join(languageSpecificPrimitives, "', '") + "'";
+        List sortedLanguageSpecificPrimitives= new ArrayList(languageSpecificPrimitives);
+        Collections.sort(sortedLanguageSpecificPrimitives);
+        String primitives = "'" + StringUtils.join(sortedLanguageSpecificPrimitives, "', '") + "'";
         additionalProperties.put("primitives", primitives);
 
         // ref: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types
@@ -137,6 +141,8 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
         cliOptions.add(new CliOption(COMPOSER_PROJECT_NAME, "The project name used in the composer package name. The template uses {{composerVendorName}}/{{composerProjectName}} for the composer package name. e.g. petstore-client. IMPORTANT NOTE (2016/03): composerProjectName will be deprecated and replaced by gitRepoId in the next swagger-codegen release"));
         cliOptions.add(new CliOption(CodegenConstants.GIT_REPO_ID, CodegenConstants.GIT_REPO_ID_DESC));
         cliOptions.add(new CliOption(CodegenConstants.ARTIFACT_VERSION, "The version to use in the composer package version field. e.g. 1.2.3"));
+        cliOptions.add(new CliOption(CodegenConstants.HIDE_GENERATION_TIMESTAMP, "hides the timestamp when files were generated")
+                .defaultValue(Boolean.TRUE.toString()));
     }
 
     public String getPackagePath() {
@@ -144,6 +150,10 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
     }
 
     public String toPackagePath(String packageName, String basePath) {
+        return (getPackagePath() + File.separatorChar + toSrcPath(packageName, basePath));
+    }
+
+    public String toSrcPath(String packageName, String basePath) {
         packageName = packageName.replace(invokerPackage, ""); // FIXME: a parameter should not be assigned. Also declare the methods parameters as 'final'.
         if (basePath != null && basePath.length() > 0) {
             basePath = basePath.replaceAll("[\\\\/]?$", "") + File.separatorChar; // FIXME: a parameter should not be assigned. Also declare the methods parameters as 'final'.
@@ -163,13 +173,13 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
             regLastPathSeparator = "\\\\$";
         }
 
-        return (getPackagePath() + File.separatorChar + basePath
-                    // Replace period, backslash, forward slash with file separator in package name
-                    + packageName.replaceAll("[\\.\\\\/]", Matcher.quoteReplacement(File.separator))
-                    // Trim prefix file separators from package path
-                    .replaceAll(regFirstPathSeparator, ""))
-                    // Trim trailing file separators from the overall path
-                    .replaceAll(regLastPathSeparator+ "$", "");
+        return (basePath
+                // Replace period, backslash, forward slash with file separator in package name
+                + packageName.replaceAll("[\\.\\\\/]", Matcher.quoteReplacement(File.separator))
+                // Trim prefix file separators from package path
+                .replaceAll(regFirstPathSeparator, ""))
+                // Trim trailing file separators from the overall path
+                .replaceAll(regLastPathSeparator+ "$", "");
     }
 
     @Override
@@ -199,6 +209,14 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
     @Override
     public void processOpts() {
         super.processOpts();
+
+        // default HIDE_GENERATION_TIMESTAMP to true
+        if (!additionalProperties.containsKey(CodegenConstants.HIDE_GENERATION_TIMESTAMP)) {
+            additionalProperties.put(CodegenConstants.HIDE_GENERATION_TIMESTAMP, Boolean.TRUE.toString());
+        } else {
+            additionalProperties.put(CodegenConstants.HIDE_GENERATION_TIMESTAMP,
+                    Boolean.valueOf(additionalProperties().get(CodegenConstants.HIDE_GENERATION_TIMESTAMP).toString()));
+        }
 
         if (additionalProperties.containsKey(PACKAGE_PATH)) {
             this.setPackagePath((String) additionalProperties.get(PACKAGE_PATH));
@@ -262,6 +280,12 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
 
         additionalProperties.put("escapedInvokerPackage", invokerPackage.replace("\\", "\\\\"));
 
+        // make api and model src path available in mustache template
+        additionalProperties.put("apiSrcPath", "./" + toSrcPath(apiPackage, srcBasePath));
+        additionalProperties.put("modelSrcPath", "./" + toSrcPath(modelPackage, srcBasePath));
+        additionalProperties.put("apiTestPath", "./" + testBasePath + "/" + apiDirName);
+        additionalProperties.put("modelTestPath", "./" + testBasePath + "/" + modelDirName);
+
         // make api and model doc path available in mustache template
         additionalProperties.put("apiDocPath", apiDocPath);
         additionalProperties.put("modelDocPath", modelDocPath);
@@ -276,7 +300,9 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
         supportingFiles.add(new SupportingFile("composer.mustache", getPackagePath(), "composer.json"));
         supportingFiles.add(new SupportingFile("autoload.mustache", getPackagePath(), "autoload.php"));
         supportingFiles.add(new SupportingFile("README.mustache", getPackagePath(), "README.md"));
+        supportingFiles.add(new SupportingFile("phpunit.xml.mustache", getPackagePath(), "phpunit.xml.dist"));
         supportingFiles.add(new SupportingFile(".travis.yml", getPackagePath(), ".travis.yml"));
+        supportingFiles.add(new SupportingFile(".php_cs", getPackagePath(), ".php_cs"));
         supportingFiles.add(new SupportingFile("git_push.sh.mustache", getPackagePath(), "git_push.sh"));
         // apache v2 license
         supportingFiles.add(new SupportingFile("LICENSE", getPackagePath(), "LICENSE"));
@@ -433,7 +459,7 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
 
     @Override
     public String toModelName(String name) {
-        // remove [ 
+        // remove [
         name = name.replaceAll("\\]", "");
 
         // Note: backslash ("\\") is allowed for e.g. "\\DateTime"
@@ -458,7 +484,7 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
         if (!name.matches("^\\\\.*")) {
             name = modelNamePrefix + name + modelNameSuffix;
         }
-        
+
         // camelize the model name
         // phone_number => PhoneNumber
         return camelize(name);
@@ -503,7 +529,7 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
         if (p instanceof StringProperty) {
             StringProperty dp = (StringProperty) p;
             if (dp.getDefault() != null) {
-                return "'" + dp.getDefault().toString() + "'";
+                return "'" + dp.getDefault() + "'";
             }
         } else if (p instanceof BooleanProperty) {
             BooleanProperty dp = (BooleanProperty) p;
@@ -622,7 +648,7 @@ public class PhpClientCodegen extends DefaultCodegen implements CodegenConfig {
     public String toEnumVarName(String name, String datatype) {
         // number
         if ("int".equals(datatype) || "double".equals(datatype) || "float".equals(datatype)) {
-            String varName = new String(name);
+            String varName = name;
             varName = varName.replaceAll("-", "MINUS_");
             varName = varName.replaceAll("\\+", "PLUS_");
             varName = varName.replaceAll("\\.", "_DOT_");

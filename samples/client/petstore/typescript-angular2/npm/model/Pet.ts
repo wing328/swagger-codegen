@@ -22,7 +22,6 @@
  * limitations under the License.
  */
 
-'use strict';
 import * as models from './models';
 
 export interface Pet {
@@ -30,9 +29,9 @@ export interface Pet {
 
     category?: models.Category;
 
-    name?: string;
+    name: string;
 
-    photoUrls?: Array<string>;
+    photoUrls: Array<string>;
 
     tags?: Array<models.Tag>;
 

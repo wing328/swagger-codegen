@@ -413,7 +413,7 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
                     // Pass sortParamsByRequiredFlag through to the Mustache template...
                     boolean sortParamsByRequiredFlag = true;
                     if (this.config.additionalProperties().containsKey(CodegenConstants.SORT_PARAMS_BY_REQUIRED_FLAG)) {
-                        sortParamsByRequiredFlag = Boolean.valueOf((String)this.config.additionalProperties().get(CodegenConstants.SORT_PARAMS_BY_REQUIRED_FLAG).toString());
+                        sortParamsByRequiredFlag = Boolean.valueOf(this.config.additionalProperties().get(CodegenConstants.SORT_PARAMS_BY_REQUIRED_FLAG).toString());
                     }
                     operation.put("sortParamsByRequiredFlag", sortParamsByRequiredFlag);
 
@@ -507,6 +507,13 @@ public class DefaultGenerator extends AbstractGenerator implements Generator {
         bundle.put("modelPackage", config.modelPackage());
         List<CodegenSecurity> authMethods = config.fromSecurity(swagger.getSecurityDefinitions());
         if (authMethods != null && !authMethods.isEmpty()) {
+            // sort auth methods to maintain the same order
+            Collections.sort(authMethods, new Comparator<CodegenSecurity>() {
+                @Override
+                public int compare(CodegenSecurity one, CodegenSecurity another) {
+                    return ObjectUtils.compare(one.name, another.name);
+                }
+            });
             bundle.put("authMethods", authMethods);
             bundle.put("hasAuthMethods", true);
         }

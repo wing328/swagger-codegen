@@ -23,19 +23,14 @@
 """
 
 from __future__ import absolute_import
-import base64
-import urllib3
 
-try:
-    import httplib
-except ImportError:
-    # for python3
-    import http.client as httplib
+import urllib3
 
 import sys
 import logging
 
 from six import iteritems
+from six.moves import http_client as httplib
 
 
 def singleton(cls, *args, **kw):
@@ -228,20 +223,20 @@ class Configuration(object):
                     'key': 'api_key',
                     'value': self.get_api_key_with_prefix('api_key')
                 },
-
-            'petstore_auth': 
-                {
-                    'type': 'oauth2',
-                    'in': 'header',
-                    'key': 'Authorization',
-                    'value': 'Bearer ' + self.access_token
-                },
             'http_basic_test':
                 {
                     'type': 'basic',
                     'in': 'header',
                     'key': 'Authorization',
                     'value': self.get_basic_auth_token()
+                },
+
+            'petstore_auth':
+                {
+                    'type': 'oauth2',
+                    'in': 'header',
+                    'key': 'Authorization',
+                    'value': 'Bearer ' + self.access_token
                 },
 
         }

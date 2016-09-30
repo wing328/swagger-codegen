@@ -53,29 +53,27 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param body Pet object that needs to be added to the store 
    * @return void
    */
-  def addPet (body: Pet)  = {
+  def addPet(body: Pet) = {
     // create path and map variables
-    val path = "/pet".replaceAll("\\{format\\}","json")
-    val contentTypes = List("application/json", "application/xml", "application/json")
+    val path = "/pet".replaceAll("\\{format\\}", "json")
+
+    val contentTypes = List("application/json", "application/xml")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
     if (body == null) throw new Exception("Missing required parameter 'body' when calling PetApi->addPet")
 
-        
     
+
     var postBody: AnyRef = body
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
       postBody = mp
-    }
-    else {
+    } else {
     }
 
     try {
@@ -96,30 +94,26 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param apiKey  (optional)
    * @return void
    */
-  def deletePet (petId: Long, apiKey: String)  = {
+  def deletePet(petId: Long, apiKey: Option[String] = None) = {
     // create path and map variables
-    val path = "/pet/{petId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
-
+    val path = "/pet/{petId}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
 
     val contentTypes = List("application/json")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
-        
-    headerParams += "api_key" -> apiKey
+    
+    apiKey.map(paramVal => headerParams += "api_key" -> paramVal)
 
     var postBody: AnyRef = null
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
       postBody = mp
-    }
-    else {
+    } else {
     }
 
     try {
@@ -139,30 +133,28 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param status Status values that need to be considered for filter 
    * @return List[Pet]
    */
-  def findPetsByStatus (status: List[String]) : Option[List[Pet]] = {
+  def findPetsByStatus(status: List[String]): Option[List[Pet]] = {
     // create path and map variables
-    val path = "/pet/findByStatus".replaceAll("\\{format\\}","json")
+    val path = "/pet/findByStatus".replaceAll("\\{format\\}", "json")
+
     val contentTypes = List("application/json")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
     if (status == null) throw new Exception("Missing required parameter 'status' when calling PetApi->findPetsByStatus")
 
-    if(String.valueOf(status) != "null") queryParams += "status" -> status.toString
+    queryParams += "status" -> status.toString
     
-    
+
     var postBody: AnyRef = null
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
       postBody = mp
-    }
-    else {
+    } else {
     }
 
     try {
@@ -183,30 +175,28 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param tags Tags to filter by 
    * @return List[Pet]
    */
-  def findPetsByTags (tags: List[String]) : Option[List[Pet]] = {
+  def findPetsByTags(tags: List[String]): Option[List[Pet]] = {
     // create path and map variables
-    val path = "/pet/findByTags".replaceAll("\\{format\\}","json")
+    val path = "/pet/findByTags".replaceAll("\\{format\\}", "json")
+
     val contentTypes = List("application/json")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
     if (tags == null) throw new Exception("Missing required parameter 'tags' when calling PetApi->findPetsByTags")
 
-    if(String.valueOf(tags) != "null") queryParams += "tags" -> tags.toString
+    queryParams += "tags" -> tags.toString
     
-    
+
     var postBody: AnyRef = null
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
       postBody = mp
-    }
-    else {
+    } else {
     }
 
     try {
@@ -227,29 +217,25 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param petId ID of pet to return 
    * @return Pet
    */
-  def getPetById (petId: Long) : Option[Pet] = {
+  def getPetById(petId: Long): Option[Pet] = {
     // create path and map variables
-    val path = "/pet/{petId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
-
+    val path = "/pet/{petId}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
 
     val contentTypes = List("application/json")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
-        
     
+
     var postBody: AnyRef = null
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
       postBody = mp
-    }
-    else {
+    } else {
     }
 
     try {
@@ -270,29 +256,27 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param body Pet object that needs to be added to the store 
    * @return void
    */
-  def updatePet (body: Pet)  = {
+  def updatePet(body: Pet) = {
     // create path and map variables
-    val path = "/pet".replaceAll("\\{format\\}","json")
-    val contentTypes = List("application/json", "application/xml", "application/json")
+    val path = "/pet".replaceAll("\\{format\\}", "json")
+
+    val contentTypes = List("application/json", "application/xml")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
     if (body == null) throw new Exception("Missing required parameter 'body' when calling PetApi->updatePet")
 
-        
     
+
     var postBody: AnyRef = body
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
       postBody = mp
-    }
-    else {
+    } else {
     }
 
     try {
@@ -314,35 +298,29 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param status Updated status of the pet (optional)
    * @return void
    */
-  def updatePetWithForm (petId: Long, name: String, status: String)  = {
+  def updatePetWithForm(petId: Long, name: Option[String] = None, status: Option[String] = None) = {
     // create path and map variables
-    val path = "/pet/{petId}".replaceAll("\\{format\\}","json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
+    val path = "/pet/{petId}".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
 
-
-    val contentTypes = List("application/x-www-form-urlencoded", "application/json")
+    val contentTypes = List("application/x-www-form-urlencoded")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
-        
     
+
     var postBody: AnyRef = null
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
-      mp.field("name", name.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("status", status.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
+      name.map(paramVal => mp.field("name", paramVal.toString, MediaType.MULTIPART_FORM_DATA_TYPE))
+      status.map(paramVal => mp.field("status", paramVal.toString, MediaType.MULTIPART_FORM_DATA_TYPE))
       postBody = mp
-    }
-    else {
-      formParams += "name" -> name.toString()
-      formParams += "status" -> status.toString()
+    } else {
+      name.map(paramVal => formParams += "name" -> paramVal.toString)
+      status.map(paramVal => formParams += "status" -> paramVal.toString)
     }
 
     try {
@@ -364,36 +342,29 @@ class PetApi(val defBasePath: String = "http://petstore.swagger.io/v2",
    * @param file file to upload (optional)
    * @return ApiResponse
    */
-  def uploadFile (petId: Long, additionalMetadata: String, file: File) : Option[ApiResponse] = {
+  def uploadFile(petId: Long, additionalMetadata: Option[String] = None, file: Option[File] = None): Option[ApiResponse] = {
     // create path and map variables
-    val path = "/pet/{petId}/uploadImage".replaceAll("\\{format\\}","json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
+    val path = "/pet/{petId}/uploadImage".replaceAll("\\{format\\}", "json").replaceAll("\\{" + "petId" + "\\}",apiInvoker.escape(petId))
 
-
-    val contentTypes = List("multipart/form-data", "application/json")
+    val contentTypes = List("multipart/form-data")
     val contentType = contentTypes(0)
 
-    // query params
     val queryParams = new HashMap[String, String]
     val headerParams = new HashMap[String, String]
     val formParams = new HashMap[String, String]
 
-        
     
+
     var postBody: AnyRef = null
 
-    if(contentType.startsWith("multipart/form-data")) {
-      val mp = new FormDataMultiPart()
-      
-      mp.field("additionalMetadata", additionalMetadata.toString(), MediaType.MULTIPART_FORM_DATA_TYPE)
-      
-      mp.field("file", file.getName)
-      mp.bodyPart(new FileDataBodyPart("file", file, MediaType.MULTIPART_FORM_DATA_TYPE))
-      
+    if (contentType.startsWith("multipart/form-data")) {
+      val mp = new FormDataMultiPart
+      additionalMetadata.map(paramVal => mp.field("additionalMetadata", paramVal.toString, MediaType.MULTIPART_FORM_DATA_TYPE))
+      file.map(fileVal => mp.field("file", fileVal.getName))
+      file.map(paramVal => mp.bodyPart(new FileDataBodyPart("file", paramVal, MediaType.MULTIPART_FORM_DATA_TYPE)))
       postBody = mp
-    }
-    else {
-      formParams += "additionalMetadata" -> additionalMetadata.toString()
-      
+    } else {
+      additionalMetadata.map(paramVal => formParams += "additionalMetadata" -> paramVal.toString)
     }
 
     try {

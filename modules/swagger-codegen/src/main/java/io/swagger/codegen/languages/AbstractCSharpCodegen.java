@@ -466,7 +466,7 @@ public abstract class AbstractCSharpCodegen extends DefaultCodegen implements Co
         if (p instanceof StringProperty) {
             StringProperty dp = (StringProperty) p;
             if (dp.getDefault() != null) {
-                return "\"" + dp.getDefault().toString() + "\"";
+                return "\"" + dp.getDefault() + "\"";
             }
         } else if (p instanceof BooleanProperty) {
             BooleanProperty dp = (BooleanProperty) p;
@@ -615,6 +615,11 @@ public abstract class AbstractCSharpCodegen extends DefaultCodegen implements Co
 
     @Override
     public String toEnumVarName(String name, String datatype) {
+        // for symbol, e.g. $, #
+        if (getSymbolName(name) != null) {
+            return camelize(getSymbolName(name));
+        }
+
         String enumName = sanitizeName(name);
 
         enumName = enumName.replaceFirst("^_", "");

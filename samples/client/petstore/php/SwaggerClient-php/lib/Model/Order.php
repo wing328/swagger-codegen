@@ -7,7 +7,7 @@
  * @category Class
  * @package  Swagger\Client
  * @author   http://github.com/swagger-api/swagger-codegen
- * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
+ * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
 
@@ -47,10 +47,10 @@ use \ArrayAccess;
  * Order Class Doc Comment
  *
  * @category    Class */
-/** 
+/**
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
- * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
+ * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
 class Order implements ArrayAccess
@@ -65,14 +65,14 @@ class Order implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $swaggerTypes = [
         'id' => 'int',
         'pet_id' => 'int',
         'quantity' => 'int',
         'ship_date' => '\DateTime',
         'status' => 'string',
         'complete' => 'bool'
-    );
+    ];
 
     public static function swaggerTypes()
     {
@@ -83,50 +83,52 @@ class Order implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = array(
+    protected static $attributeMap = [
         'id' => 'id',
         'pet_id' => 'petId',
         'quantity' => 'quantity',
         'ship_date' => 'shipDate',
         'status' => 'status',
         'complete' => 'complete'
-    );
+    ];
 
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = array(
+    protected static $setters = [
         'id' => 'setId',
         'pet_id' => 'setPetId',
         'quantity' => 'setQuantity',
         'ship_date' => 'setShipDate',
         'status' => 'setStatus',
         'complete' => 'setComplete'
-    );
+    ];
 
-    public static function setters()
-    {
-        return self::$setters;
-    }
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = array(
+    protected static $getters = [
         'id' => 'getId',
         'pet_id' => 'getPetId',
         'quantity' => 'getQuantity',
         'ship_date' => 'getShipDate',
         'status' => 'getStatus',
         'complete' => 'getComplete'
-    );
+    ];
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    public static function setters()
+    {
+        return self::$setters;
+    }
 
     public static function getters()
     {
@@ -157,11 +159,11 @@ class Order implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property value initalizing the model
+     * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
     {
@@ -180,8 +182,8 @@ class Order implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
-        $allowed_values = array("placed", "approved", "delivered");
+        $invalid_properties = [];
+        $allowed_values = ["placed", "approved", "delivered"];
         if (!in_array($this->container['status'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'status', must be one of #{allowed_values}.";
         }
@@ -197,7 +199,7 @@ class Order implements ArrayAccess
      */
     public function valid()
     {
-        $allowed_values = array("placed", "approved", "delivered");
+        $allowed_values = ["placed", "approved", "delivered"];
         if (!in_array($this->container['status'], $allowed_values)) {
             return false;
         }
@@ -306,7 +308,7 @@ class Order implements ArrayAccess
     public function setStatus($status)
     {
         $allowed_values = array('placed', 'approved', 'delivered');
-        if (!in_array($status, $allowed_values)) {
+        if (!is_null($status) && (!in_array($status, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'placed', 'approved', 'delivered'");
         }
         $this->container['status'] = $status;
@@ -392,5 +394,3 @@ class Order implements ArrayAccess
         return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

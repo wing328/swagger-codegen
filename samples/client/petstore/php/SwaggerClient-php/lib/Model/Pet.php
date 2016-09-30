@@ -7,7 +7,7 @@
  * @category Class
  * @package  Swagger\Client
  * @author   http://github.com/swagger-api/swagger-codegen
- * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
+ * @license  http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  * @link     https://github.com/swagger-api/swagger-codegen
  */
 
@@ -47,10 +47,10 @@ use \ArrayAccess;
  * Pet Class Doc Comment
  *
  * @category    Class */
-/** 
+/**
  * @package     Swagger\Client
  * @author      http://github.com/swagger-api/swagger-codegen
- * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
+ * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache License v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
 class Pet implements ArrayAccess
@@ -65,14 +65,14 @@ class Pet implements ArrayAccess
       * Array of property to type mappings. Used for (de)serialization
       * @var string[]
       */
-    protected static $swaggerTypes = array(
+    protected static $swaggerTypes = [
         'id' => 'int',
         'category' => '\Swagger\Client\Model\Category',
         'name' => 'string',
         'photo_urls' => 'string[]',
         'tags' => '\Swagger\Client\Model\Tag[]',
         'status' => 'string'
-    );
+    ];
 
     public static function swaggerTypes()
     {
@@ -83,50 +83,52 @@ class Pet implements ArrayAccess
      * Array of attributes where the key is the local name, and the value is the original name
      * @var string[]
      */
-    protected static $attributeMap = array(
+    protected static $attributeMap = [
         'id' => 'id',
         'category' => 'category',
         'name' => 'name',
         'photo_urls' => 'photoUrls',
         'tags' => 'tags',
         'status' => 'status'
-    );
+    ];
 
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @var string[]
      */
-    protected static $setters = array(
+    protected static $setters = [
         'id' => 'setId',
         'category' => 'setCategory',
         'name' => 'setName',
         'photo_urls' => 'setPhotoUrls',
         'tags' => 'setTags',
         'status' => 'setStatus'
-    );
+    ];
 
-    public static function setters()
-    {
-        return self::$setters;
-    }
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @var string[]
      */
-    protected static $getters = array(
+    protected static $getters = [
         'id' => 'getId',
         'category' => 'getCategory',
         'name' => 'getName',
         'photo_urls' => 'getPhotoUrls',
         'tags' => 'getTags',
         'status' => 'getStatus'
-    );
+    ];
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    public static function setters()
+    {
+        return self::$setters;
+    }
 
     public static function getters()
     {
@@ -157,11 +159,11 @@ class Pet implements ArrayAccess
      * Associative array for storing property values
      * @var mixed[]
      */
-    protected $container = array();
+    protected $container = [];
 
     /**
      * Constructor
-     * @param mixed[] $data Associated array of property value initalizing the model
+     * @param mixed[] $data Associated array of property values initializing the model
      */
     public function __construct(array $data = null)
     {
@@ -180,14 +182,14 @@ class Pet implements ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalid_properties = array();
+        $invalid_properties = [];
         if ($this->container['name'] === null) {
             $invalid_properties[] = "'name' can't be null";
         }
         if ($this->container['photo_urls'] === null) {
             $invalid_properties[] = "'photo_urls' can't be null";
         }
-        $allowed_values = array("available", "pending", "sold");
+        $allowed_values = ["available", "pending", "sold"];
         if (!in_array($this->container['status'], $allowed_values)) {
             $invalid_properties[] = "invalid value for 'status', must be one of #{allowed_values}.";
         }
@@ -209,7 +211,7 @@ class Pet implements ArrayAccess
         if ($this->container['photo_urls'] === null) {
             return false;
         }
-        $allowed_values = array("available", "pending", "sold");
+        $allowed_values = ["available", "pending", "sold"];
         if (!in_array($this->container['status'], $allowed_values)) {
             return false;
         }
@@ -339,7 +341,7 @@ class Pet implements ArrayAccess
     public function setStatus($status)
     {
         $allowed_values = array('available', 'pending', 'sold');
-        if (!in_array($status, $allowed_values)) {
+        if (!is_null($status) && (!in_array($status, $allowed_values))) {
             throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'available', 'pending', 'sold'");
         }
         $this->container['status'] = $status;
@@ -404,5 +406,3 @@ class Pet implements ArrayAccess
         return json_encode(\Swagger\Client\ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-

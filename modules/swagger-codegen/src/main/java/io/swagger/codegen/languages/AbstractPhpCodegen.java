@@ -56,7 +56,7 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
         apiTestTemplateFiles.put("api_test.mustache", ".php");
         modelDocTemplateFiles.put("model_doc.mustache", ".md");
         apiDocTemplateFiles.put("api_doc.mustache", ".md");
-       
+
         apiPackage = invokerPackage + "\\" + apiDirName;
         modelPackage = invokerPackage + "\\" + modelDirName;
 
@@ -197,6 +197,12 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
 
         additionalProperties.put("escapedInvokerPackage", invokerPackage.replace("\\", "\\\\"));
 
+        // make api and model src path available in mustache template
+        additionalProperties.put("apiSrcPath", "./" + toSrcPath(apiPackage, srcBasePath));
+        additionalProperties.put("modelSrcPath", "./" + toSrcPath(modelPackage, srcBasePath));
+        additionalProperties.put("apiTestPath", "./" + testBasePath + "/" + apiDirName);
+        additionalProperties.put("modelTestPath", "./" + testBasePath + "/" + modelDirName);
+
         // make api and model doc path available in mustache template
         additionalProperties.put("apiDocPath", apiDocPath);
         additionalProperties.put("modelDocPath", modelDocPath);
@@ -213,6 +219,10 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
     }
 
     public String toPackagePath(String packageName, String basePath) {
+        return (getPackagePath() + File.separatorChar + toSrcPath(packageName, basePath));
+    }
+
+    public String toSrcPath(String packageName, String basePath) {
         packageName = packageName.replace(invokerPackage, ""); // FIXME: a parameter should not be assigned. Also declare the methods parameters as 'final'.
         if (basePath != null && basePath.length() > 0) {
             basePath = basePath.replaceAll("[\\\\/]?$", "") + File.separatorChar; // FIXME: a parameter should not be assigned. Also declare the methods parameters as 'final'.
@@ -232,13 +242,13 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
             regLastPathSeparator = "\\\\$";
         }
 
-        return (getPackagePath() + File.separatorChar + basePath
-                    // Replace period, backslash, forward slash with file separator in package name
-                    + packageName.replaceAll("[\\.\\\\/]", Matcher.quoteReplacement(File.separator))
-                    // Trim prefix file separators from package path
-                    .replaceAll(regFirstPathSeparator, ""))
-                    // Trim trailing file separators from the overall path
-                    .replaceAll(regLastPathSeparator+ "$", "");
+        return (basePath
+                // Replace period, backslash, forward slash with file separator in package name
+                + packageName.replaceAll("[\\.\\\\/]", Matcher.quoteReplacement(File.separator))
+                // Trim prefix file separators from package path
+                .replaceAll(regFirstPathSeparator, ""))
+                // Trim trailing file separators from the overall path
+                .replaceAll(regLastPathSeparator+ "$", "");
     }
 
     @Override
@@ -392,7 +402,7 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
 
     @Override
     public String toModelName(String name) {
-        // remove [ 
+        // remove [
         name = name.replaceAll("\\]", "");
 
         // Note: backslash ("\\") is allowed for e.g. "\\DateTime"
@@ -417,7 +427,7 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
         if (!name.matches("^\\\\.*")) {
             name = modelNamePrefix + name + modelNameSuffix;
         }
-        
+
         // camelize the model name
         // phone_number => PhoneNumber
         return camelize(name);
@@ -462,7 +472,7 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
         if (p instanceof StringProperty) {
             StringProperty dp = (StringProperty) p;
             if (dp.getDefault() != null) {
-                return "'" + dp.getDefault().toString() + "'";
+                return "'" + dp.getDefault() + "'";
             }
         } else if (p instanceof BooleanProperty) {
             BooleanProperty dp = (BooleanProperty) p;
@@ -586,7 +596,7 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
 
         // number
         if ("int".equals(datatype) || "double".equals(datatype) || "float".equals(datatype)) {
-            String varName = new String(name);
+            String varName = name;
             varName = varName.replaceAll("-", "MINUS_");
             varName = varName.replaceAll("\\+", "PLUS_");
             varName = varName.replaceAll("\\.", "_DOT_");
@@ -642,5 +652,5 @@ public abstract class AbstractPhpCodegen extends DefaultCodegen implements Codeg
     public String escapeUnsafeCharacters(String input) {
         return input.replace("*/", "");
     }
-    
+
 }

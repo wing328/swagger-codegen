@@ -208,19 +208,19 @@ module Petstore
             key: 'api_key',
             value: api_key_with_prefix('api_key')
           },
-        'petstore_auth' =>
-          {
-            type: 'oauth2',
-            in: 'header',
-            key: 'Authorization',
-            value: "Bearer #{access_token}"
-          },
         'http_basic_test' =>
           {
             type: 'basic',
             in: 'header',
             key: 'Authorization',
             value: basic_auth_token
+          },
+        'petstore_auth' =>
+          {
+            type: 'oauth2',
+            in: 'header',
+            key: 'Authorization',
+            value: "Bearer #{access_token}"
           },
       }
     end

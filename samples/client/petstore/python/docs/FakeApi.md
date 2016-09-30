@@ -16,6 +16,7 @@ To test \"client\" model
 
 ### Example 
 ```python
+from __future__ import print_statement
 import time
 import petstore_api
 from petstore_api.rest import ApiException
@@ -30,7 +31,7 @@ try:
     api_response = api_instance.test_client_model(body)
     pprint(api_response)
 except ApiException as e:
-    print "Exception when calling FakeApi->test_client_model: %s\n" % e
+    print("Exception when calling FakeApi->test_client_model: %s\n" % e)
 ```
 
 ### Parameters
@@ -55,7 +56,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **test_endpoint_parameters**
-> test_endpoint_parameters(number, double, pattern_without_delimiter, byte, integer=integer, int32=int32, int64=int64, float=float, string=string, binary=binary, date=date, date_time=date_time, password=password)
+> test_endpoint_parameters(number, double, pattern_without_delimiter, byte, integer=integer, int32=int32, int64=int64, float=float, string=string, binary=binary, date=date, date_time=date_time, password=password, param_callback=param_callback)
 
 Fake endpoint for testing various parameters 假端點 偽のエンドポイント 가짜 엔드 포인트 
 
@@ -63,6 +64,7 @@ Fake endpoint for testing various parameters 假端點 偽のエンドポイン�
 
 ### Example 
 ```python
+from __future__ import print_statement
 import time
 import petstore_api
 from petstore_api.rest import ApiException
@@ -87,12 +89,13 @@ binary = 'B' # str | None (optional)
 date = '2013-10-20' # date | None (optional)
 date_time = '2013-10-20T19:20:30+01:00' # datetime | None (optional)
 password = 'password_example' # str | None (optional)
+param_callback = 'param_callback_example' # str | None (optional)
 
 try: 
     # Fake endpoint for testing various parameters 假端點 偽のエンドポイント 가짜 엔드 포인트 
-    api_instance.test_endpoint_parameters(number, double, pattern_without_delimiter, byte, integer=integer, int32=int32, int64=int64, float=float, string=string, binary=binary, date=date, date_time=date_time, password=password)
+    api_instance.test_endpoint_parameters(number, double, pattern_without_delimiter, byte, integer=integer, int32=int32, int64=int64, float=float, string=string, binary=binary, date=date, date_time=date_time, password=password, param_callback=param_callback)
 except ApiException as e:
-    print "Exception when calling FakeApi->test_endpoint_parameters: %s\n" % e
+    print("Exception when calling FakeApi->test_endpoint_parameters: %s\n" % e)
 ```
 
 ### Parameters
@@ -112,6 +115,7 @@ Name | Type | Description  | Notes
  **date** | **date**| None | [optional] 
  **date_time** | **datetime**| None | [optional] 
  **password** | **str**| None | [optional] 
+ **param_callback** | **str**| None | [optional] 
 
 ### Return type
 
@@ -135,6 +139,7 @@ To test enum parameters
 
 ### Example 
 ```python
+from __future__ import print_statement
 import time
 import petstore_api
 from petstore_api.rest import ApiException
@@ -155,7 +160,7 @@ try:
     # To test enum parameters
     api_instance.test_enum_parameters(enum_form_string_array=enum_form_string_array, enum_form_string=enum_form_string, enum_header_string_array=enum_header_string_array, enum_header_string=enum_header_string, enum_query_string_array=enum_query_string_array, enum_query_string=enum_query_string, enum_query_integer=enum_query_integer, enum_query_double=enum_query_double)
 except ApiException as e:
-    print "Exception when calling FakeApi->test_enum_parameters: %s\n" % e
+    print("Exception when calling FakeApi->test_enum_parameters: %s\n" % e)
 ```
 
 ### Parameters

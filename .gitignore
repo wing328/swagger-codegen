@@ -57,6 +57,7 @@ samples/client/petstore/qt5cpp/PetStore/Makefile
 **/.gradle
 samples/client/petstore/java/hello.txt
 samples/client/petstore/java/okhttp-gson/hello.txt
+samples/client/petstore/java/jersey1/hello.txt
 samples/client/petstore/java/jersey2-java8/hello.txt
 samples/client/petstore/android/default/hello.txt
 samples/client/petstore/android/volley/.gradle/
@@ -123,6 +124,7 @@ samples/client/petstore/csharp/SwaggerClient/obj/Debug/
 samples/client/petstore/csharp/SwaggerClient/bin/Debug/
 samples/client/petstore/csharp/SwaggerClient/packages
 samples/client/petstore/csharp/SwaggerClient/TestResult.xml
+samples/client/petstore/csharp/SwaggerClientWithPropertyChanged/IO.Swagger.userprefs
 
 # Python
 *.pyc
