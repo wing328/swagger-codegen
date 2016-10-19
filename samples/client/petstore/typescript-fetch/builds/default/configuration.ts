@@ -1,7 +1,7 @@
-export interface Dictionary<T> { [index: string]: T; }
-
 export class Configuration {
-    apiKey: Dictionary<string> = {};
+    apiKey: {
+        api_key: string;
+    };
     username: string;
     password: string;
     accessToken: string;
