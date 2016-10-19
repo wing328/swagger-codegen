@@ -1,7 +1,11 @@
-export interface Dictionary<T> { [index: string]: T; }
-
 export class Configuration {
-    apiKey: Dictionary<string> = {};
+    apiKey: {
+{{#authMethods}}
+{{#isApiKey}}
+        {{keyParamName}}: string;
+{{/isApiKey}}
+{{/authMethods}}
+    };
     username: string;
     password: string;
     accessToken: string;
