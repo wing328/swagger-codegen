@@ -1,12 +1,17 @@
 sudo: required
-language: java
-jdk:
-  - oraclejdk7
-  - oraclejdk8
+language: objective-c 
+osx_image: xcode7.3 
 
 cache:
   directories:
   - $HOME/.m2
+  - $HOME/.gem
+  - $HOME/.rvm
+  - $HOME/.cocoapods
+  - swagger-api/swagger-codegen/samples/client/petstore/objc/default/SwaggerClientTests/Pods
+  - swagger-api/swagger-codegen/samples/client/petstore/objc/core-data/SwaggerClientTests/Pods
+  - swagger-api/swagger-codegen/samples/client/petstore/swift/default/SwaggerClientTests/Pods
+  - swagger-api/swagger-codegen/samples/client/petstore/swift/promisekit/SwaggerClientTests/Pods
 
 services:
   - docker
@@ -16,26 +21,37 @@ addons:
     - petstore.swagger.io
 
 before_install:
-  # required when sudo: required for the Ruby petstore tests
-  - gem install bundler
-  - npm install -g typescript
-  - sudo pip install virtualenv
-  # to run petstore server locally via docker
-  - docker pull swaggerapi/petstore
-  - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
-  - docker ps -a
-  # show host table to confirm petstore.swagger.io is mapped to localhost
-  - cat /etc/hosts
+   - export SW=`pwd`
+   # show host table to confirm petstore.swagger.io is mapped to localhost
+   - cat /private/etc/hosts
+   #- rvm install 2.2.2 > /dev/null 2>&1
+   - rvm use 2.2.4
+   - gem environment 
+   - gem install cocoapods -v 1.0.1 -N --no-ri --no-rdoc
+   - gem install xcpretty -N --no-ri --no-rdoc
+   - pod --version
+   - pod setup --silent > /dev/null
+   # xctool already pre-installed
+   #- brew install xctool
+   - git clone https://github.com/wing328/swagger-samples
+   - cd swagger-samples/java/java-jersey-jaxrs && sudo mvn -q jetty:run &
 
 install:
-  # Add Godeps dependencies to GOPATH and PATH
-   - eval "$(curl -sL https://raw.githubusercontent.com/travis-ci/gimme/master/gimme | GIMME_GO_VERSION=1.4 bash)"
-   - export GOPATH="${TRAVIS_BUILD_DIR}/Godeps/_workspace"
-   - export PATH="${TRAVIS_BUILD_DIR}/Godeps/_workspace/bin:$PATH"
 
 script:
-  - mvn verify -Psamples
-  - if [ $DOCKER_HUB_USERNAME ]; then docker login --email=$DOCKER_HUB_EMAIL --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_PASSWORD && docker build -t $DOCKER_IMAGE_NAME ./modules/swagger-generator && if [ ! -z "$TRAVIS_TAG" ]; then docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_IMAGE_NAME:$TRAVIS_TAG; fi && docker push $DOCKER_IMAGE_NAME; fi
+   # test default objc client
+   - cd $SW/samples/client/petstore/objc/default/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   # test objc client with coredata
+   - cd $SW/samples/client/petstore/objc/core-data/SwaggerClientTests && pod install && xctool -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient-Example" -destination platform='iOS Simulator',OS=8.4,name='iPhone 6' test -test-sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+   - set -o pipefail
+   # test swift client with promisekit
+   - cd $SW/samples/client/petstore/swift/promisekit/SwaggerClientTests && pod install && xcodebuild clean test -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+   # test default swift client
+   - cd $SW/samples/client/petstore/swift/default/SwaggerClientTests && pod install && xcodebuild clean test -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+   # test swift3 client with promisekit
+   - cd $SW/samples/client/petstore/swift3/promisekit/SwaggerClientTests && pod install && xcodebuild clean test -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+   # test default swift3 client
+   - cd $SW/samples/client/petstore/swift3/default/SwaggerClientTests && pod install && xcodebuild clean test -workspace "SwaggerClient.xcworkspace" -scheme "SwaggerClient" -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 env:
   - DOCKER_IMAGE_NAME=swaggerapi/swagger-generator
