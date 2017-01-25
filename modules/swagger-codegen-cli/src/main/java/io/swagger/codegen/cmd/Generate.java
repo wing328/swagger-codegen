@@ -122,6 +122,9 @@ public class Generate implements Runnable {
             description = "specifies how a reserved name should be escaped to. Otherwise, the default _<name> is used. For example id=identifier")
     private String reservedWordsMappings;
 
+    @Option(name = {"--use-enum-common-prefix"}, title = "use enum common prefix", description = CodegenConstants.USE_ENUM_COMMON_PREFIX)
+    private Boolean useEnumCommonPrefix;
+
     @Option(name = {"--ignore-file-override"}, title = "ignore file override location", description = CodegenConstants.IGNORE_FILE_OVERRIDE_DESC)
     private String ignoreFileOverride;
     
@@ -220,6 +223,9 @@ public class Generate implements Runnable {
 
         if (isNotEmpty(ignoreFileOverride)) {
             configurator.setIgnoreFileOverride(ignoreFileOverride);
+
+        if (useEnumCommonPrefix != null) {
+            configurator.setUseEnumCommonPrefix(useEnumCommonPrefix);
         }
 
         applySystemPropertiesKvp(systemProperties, configurator);

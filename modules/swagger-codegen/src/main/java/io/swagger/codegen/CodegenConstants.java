@@ -186,4 +186,6 @@ public class CodegenConstants {
     public static final String IGNORE_FILE_OVERRIDE = "ignoreFileOverride";
     public static final String IGNORE_FILE_OVERRIDE_DESC = "Specifies an override location for the .swagger-codegen-ignore file. Most useful on initial generation.";
 
+    public static final String USE_ENUM_COMMON_PREFIX = "useEnumCommonPrefix";
+    public static final String USE_ENUM_COMMON_PREFIX_DESC = "Use common prefix from Enum names.";
 }

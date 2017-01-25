@@ -111,6 +111,7 @@ public class DefaultCodegen {
     protected String gitUserId, gitRepoId, releaseNote;
     protected String httpUserAgent;
     protected Boolean hideGenerationTimestamp = true;
+    protected Boolean useEnumCommonPrefix = false;
     // How to encode special characters like $
     // They are translated to words like "Dollar" and prefixed with '
     // Then translated back during JSON encoding and decoding
@@ -156,6 +157,11 @@ public class DefaultCodegen {
 
         if(additionalProperties.containsKey(CodegenConstants.MODEL_NAME_SUFFIX)){
             this.setModelNameSuffix((String) additionalProperties.get(CodegenConstants.MODEL_NAME_SUFFIX));
+        }
+
+        if(additionalProperties.containsKey(CodegenConstants.USE_ENUM_COMMON_PREFIX)){
+            LOGGER.info(" ##### additionalProperties.get(CodegenConstants.USE_ENUM_COMMON_PREFIX)" + (String) additionalProperties.get(CodegenConstants.USE_ENUM_COMMON_PREFIX));
+            this.setUseEnumCommonPrefix(Boolean.valueOf((String) additionalProperties.get(CodegenConstants.USE_ENUM_COMMON_PREFIX)));
         }
     }
 
@@ -234,7 +240,12 @@ public class DefaultCodegen {
                 Map<String, Object> allowableValues = cm.allowableValues;
                 List<Object> values = (List<Object>) allowableValues.get("values");
                 List<Map<String, String>> enumVars = new ArrayList<Map<String, String>>();
-                String commonPrefix = findCommonPrefixOfVars(values);
+                String commonPrefix;
+                if (useEnumCommonPrefix) { // find common prefix for enum names
+                    commonPrefix = findCommonPrefixOfVars(values);
+                } else {
+                    commonPrefix = ""; 
+                }
                 int truncateIdx = commonPrefix.length();
                 for (Object value : values) {
                     Map<String, String> enumVar = new HashMap<String, String>();
@@ -3144,6 +3155,24 @@ public class DefaultCodegen {
     }
 
     /**
+     * Set boolean value to enable common prefix for enum names
+     *
+     * @param useEnumCommonPrefix Boolean value for useEnumCommonPrefix
+     */
+    public void setUseEnumCommonPrefix(Boolean useEnumCommonPrefix) {
+        this.useEnumCommonPrefix = useEnumCommonPrefix;
+    }
+
+    /**
+     * Get boolean value to enable common prefix for enum names
+     *
+     * @return True if using common prefix for enum names
+     */
+    public Boolean getUseEnumCommonPrefix() {
+        return useEnumCommonPrefix;
+    }
+
+    /**
      * Set Git user ID.
      *
      * @param gitUserId Git user ID 
@@ -3410,7 +3439,13 @@ public class DefaultCodegen {
 
         // put "enumVars" map into `allowableValues", including `name` and `value`
         List<Map<String, String>> enumVars = new ArrayList<Map<String, String>>();
-        String commonPrefix = findCommonPrefixOfVars(values);
+        LOGGER.info("### useEnumCommonPrefix = " + useEnumCommonPrefix);
+        String commonPrefix;
+        if (useEnumCommonPrefix) { // use common prefix for enum names
+            commonPrefix = findCommonPrefixOfVars(values);
+        } else {
+            commonPrefix = "";
+        }
         int truncateIdx = commonPrefix.length();
         for (Object value : values) {
             Map<String, String> enumVar = new HashMap<String, String>();
