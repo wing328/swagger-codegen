@@ -2,5 +2,5 @@ node_js: 0.8
 install:
     - npm install -g typescript
 script:
-    - cd ~/samples/client/petstore/javascript/ && npm install && npm test
-    - cd ~/samples/client/petstore/typescript-jquery/npm/ && npm install
+    - cd ~/swagger-codegen/samples/client/petstore/javascript/ && npm install && npm test
+    - cd ~/swagger-codegen/samples/client/petstore/typescript-jquery/npm/ && npm install
