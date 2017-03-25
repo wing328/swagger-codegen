@@ -1,5 +1,5 @@
 install:
     - npm install -g typescript
 script:
-    - cd ~/swagger-codegen/samples/client/petstore/javascript/ && npm install && npm test
     - cd ~/swagger-codegen/samples/client/petstore/typescript-jquery/npm/ && npm install
+    - cd ~/swagger-codegen/samples/client/petstore/javascript/ && npm install && npm test
