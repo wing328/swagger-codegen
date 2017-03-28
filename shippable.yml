@@ -9,7 +9,20 @@ build:
   cache: true
   cache_dir_list:
     - $HOME/.m2
+  pre_ci:
+    # install typescript
+    - npm install -g typescript
+    # start petstore
+    - docker pull swaggerapi/petstore
+    - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
+    - docker ps -a
+
   ci:
+    ### test JS/TS clients
+    # test TS jquery
+    - cd "${HOME}/clone/samples/client/petstore/typescript-jquery/npm/" && npm install
+    # test TS fetch
+    - cd "${HOME}/clone/samples/client/petstore/typescript-fetch/builds/default" && npm install
     # generate all petstore sampless (client, servers, doc)
     - ./bin/run-all-petstore 2>&1 > run-all-petstore.log
   post_ci:
