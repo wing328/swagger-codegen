@@ -5,6 +5,10 @@ jdk:
 # no need to test jdk7 as smoke test is already covered by travis-ci
 #- openjdk7
 
+addons:
+  hosts:
+    - petstore.swagger.io
+
 build:
   cache: true
   cache_dir_list:
@@ -23,15 +27,16 @@ build:
     - docker pull swaggerapi/petstore
     - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
     - docker ps -a
-
   ci:
     ### test JS/TS clients
     # test TS jquery
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/" && npm install
     # test TS fetch
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default" && npm install
+    # test JS client
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/javascript/" && npm install && npm test
     # generate all petstore sampless (client, servers, doc)
-    - ./bin/run-all-petstore 2>&1 > run-all-petstore.log
+    - cd $SHIPPABLE_BUILD_DIR && ./bin/run-all-petstore 2>&1 > run-all-petstore.log
   post_ci:
     - tail run-all-petstore.log
     - docker stop `docker ps -q -f "name=swaggerapi/petstore"`
