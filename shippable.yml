@@ -18,6 +18,7 @@ build:
     # start petstore
     - docker ps -a
     #- docker stop `docker ps -q -f "name=swaggerapi/petstore"` || 1
+    - if docker ps -a | grep "swaggerapi/petstore"; then docker stop `docker ps -q -f "name=swaggerapi/petstore"`; fi
     - docker ps -a
     - docker pull swaggerapi/petstore
     - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
