@@ -26,9 +26,9 @@ build:
   ci:
     ### test JS/TS clients
     # test TS jquery
-    - cd "${SHIPPABLE_BUILD_DIR }/samples/client/petstore/typescript-jquery/npm/" && npm install
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/" && npm install
     # test TS fetch
-    - cd "${SHIPPABLE_BUILD_DIR }/samples/client/petstore/typescript-fetch/builds/default" && npm install
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default" && npm install
     # generate all petstore sampless (client, servers, doc)
     - ./bin/run-all-petstore 2>&1 > run-all-petstore.log
   post_ci:
