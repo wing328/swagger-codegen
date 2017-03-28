@@ -14,9 +14,8 @@ build:
   cache_dir_list:
     - $HOME/.m2
   pre_ci:
-    - echo $PWD
-    - pwd
-    - echo $HOME
+    # use node 4
+    - nvm install 4.0
     # install typescript
     - npm install -g typescript
     # start petstore
