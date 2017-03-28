@@ -16,6 +16,9 @@ build:
     - docker pull swaggerapi/petstore
     - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
     - docker ps -a
+    - echo $PWD
+    - pwd
+    - echo $HOME
 
   ci:
     ### test JS/TS clients
