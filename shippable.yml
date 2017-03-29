@@ -15,6 +15,7 @@ build:
   cache: true
   cache_dir_list:
     - $HOME/.m2
+    - $SHIPPABLE_BUILD_DIR/node_modules
   pre_ci:
     # use node 4
     #- nvm install 4.0
@@ -31,22 +32,20 @@ build:
   ci:
     ### test JS/TS clients
     # test TS jquery
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/" && npm install
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
     # test TS fetch
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default" && npm install
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/es6-target" && npm install
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/with-npm-version" && npm install
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/tests/default" && npm install && npm test
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/es6-target" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/with-npm-version" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/tests/default" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules && npm test
     # test TS angualr
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-angular" && npm install
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-angular" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
     # test TS node
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-node/npm" && npm install && npm build && npm test
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-node/npm" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules && npm build && npm test
     # test JS client
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/javascript/" && npm install && npm test
+    #- cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/javascript/" && npm install && npm test
     # test NodeJS server
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/server/petstore/nodejs/" && npm install 
-    # test JS client
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/javascript/" && npm install && npm test
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/server/petstore/nodejs/" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
     # generate all petstore sampless (client, servers, doc)
     - cd $SHIPPABLE_BUILD_DIR && ./bin/run-all-petstore 2>&1 > run-all-petstore.log
   post_ci:
