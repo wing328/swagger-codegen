@@ -29,15 +29,13 @@ build:
     - docker pull swaggerapi/petstore
     - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
     - docker ps -a
-    # create node_modules for caching
-    - mkdir "${SHIPPABLE_BUILD_DIR}/node_modules"
   ci:
     ### test JS/TS clients
     # test TS jquery
-    - ln -s  "${SHIPPABLE_BUILD_DIR}/node_modules" "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/node_modules"
+    #- ln -s  "${SHIPPABLE_BUILD_DIR}/node_modules" "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/node_modules"
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/" && npm install
     # test TS fetch
-    - ln -s  "${SHIPPABLE_BUILD_DIR}/node_modules" "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default/node_modules"
+    #- ln -s  "${SHIPPABLE_BUILD_DIR}/node_modules" "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default/node_modules"
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/es6-target" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/with-npm-version" && npm install --prefix $SHIPPABLE_BUILD_DIR/node_modules
