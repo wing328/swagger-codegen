@@ -18,9 +18,6 @@
   },
   "name": "typescript-fetch-test",
   "version": "1.0.0",
-  "directories": {
-    "test": "test"
-  },
   "author": "",
   "license": "ISC",
   "description": ""
