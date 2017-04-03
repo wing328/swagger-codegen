@@ -14,7 +14,7 @@
   "scripts": {
     "prepublish": "./scripts/prepublish.sh",
     "pretest": "npm install mocha",
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "name": "typescript-fetch-test",
   "version": "1.0.0",
