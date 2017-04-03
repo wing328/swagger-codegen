@@ -32,18 +32,16 @@ build:
   ci:
     ### test JS/TS clients
     # test TS jquery
-    #- ln -s  "${SHIPPABLE_BUILD_DIR}/node_modules" "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/node_modules"
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-jquery/npm/" && npm install
     # test TS fetch
-    #- ln -s  "${SHIPPABLE_BUILD_DIR}/node_modules" "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default/node_modules"
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/default" && npm install
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/es6-target" && npm install
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/builds/with-npm-version" && npm install
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/tests/default" && npm install && npm test
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-fetch/tests/default" && npm install &&  npm test
     # test TS angualr
     - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-angular" && npm install
     # test TS node
-    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-node/npm" && npm install && npm build && npm test
+    - cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/typescript-node/npm" && npm install && npm test
     # test JS client
     #- cd "${SHIPPABLE_BUILD_DIR}/samples/client/petstore/javascript/" && npm install && npm test
     # test NodeJS server
