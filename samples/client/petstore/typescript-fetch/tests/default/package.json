@@ -17,6 +17,9 @@
     "test": "mocha --recursive"
   },
   "name": "typescript-fetch-test",
+  "directories": {
+      "test": "test"
+  },
   "version": "1.0.0",
   "author": "",
   "license": "ISC",
