@@ -1,11 +1,7 @@
-# work in progress: the goal is to move all the existing tests
-# handled by travis-ci to circle CI so that travis-ci can test
-# objc/swift API client instead
 machine:
     #environment:
     #en_JAVA_OPTIONS: "-Xms512m -Xmx1024m"
   java:
-    # TODO we also need to test oraclejdk8
     version: openjdk7
   services:
     - docker
