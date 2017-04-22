@@ -6,7 +6,7 @@ machine:
     _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
   java:
     # TODO we also need to test oraclejdk8
-    version: oraclejdk7
+    version: openjdk8 
   node:
     version: 5.0.0
   services:
@@ -23,9 +23,9 @@ dependencies:
     - ~/.m2
   pre:
     - export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=256m"
-    - gem install bundler
-    - npm install -g typescript
-    - sudo pip install virtualenv
+      #- gem install bundler
+      #- npm install -g typescript
+      #- sudo pip install virtualenv
     # to run petstore server locally via docker
     - docker pull swaggerapi/petstore
     - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
