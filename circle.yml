@@ -12,10 +12,6 @@ dependencies:
   cache_directories:
     - ~/.m2
   pre:
-      #- export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=256m"
-      #- gem install bundler
-      #- npm install -g typescript
-      #- sudo pip install virtualenv
     # to run petstore server locally via docker
     - docker pull swaggerapi/petstore
     - docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
@@ -25,8 +21,10 @@ dependencies:
 
 test:
   override:
-      #- java -version
-      #- mvn -q clean verify -Psamples
+    # test with jdk8
+    - java -version
+    - mvn -q clean verify -Psamples
+    # test with jdk7
     - sudo update-java-alternatives -s java-1.7.0-openjdk-amd64
     - java -version
     - mvn -q clean verify -Psamples
