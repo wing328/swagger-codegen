@@ -22,7 +22,6 @@ dependencies:
     - docker ps -a
     # show host table to confirm petstore.swagger.io is mapped to localhost
     - cat /etc/hosts
-    - update-java-alternatives --list
 
 test:
   override:
