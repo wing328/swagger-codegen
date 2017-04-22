@@ -15,8 +15,6 @@ machine:
 
 dependencies:
   cache_directories:
-    - ~/.jspm
-    - ~/builder
     - ~/.m2
   pre:
       #- export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=256m"
