@@ -1,3 +1,4 @@
+# Java client, server tests
 machine:
     #environment:
     #en_JAVA_OPTIONS: "-Xms512m -Xmx1024m"
