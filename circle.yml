@@ -24,6 +24,7 @@ dependencies:
     - cat /etc/hosts
     - git clone https://github.com/michaelklishin/jdk_switcher.git
     - cd jdk_switcher && . ./jdk_switcher.sh
+    - jdk_switcher use oraclejdk7
   override:
     #- rvm --default use 2.1.0
     #- ruby -v
