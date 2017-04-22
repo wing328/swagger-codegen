@@ -22,12 +22,14 @@ dependencies:
     - docker ps -a
     # show host table to confirm petstore.swagger.io is mapped to localhost
     - cat /etc/hosts
+    - git clone https://github.com/michaelklishin/jdk_switcher.git
+    - cd jdk_switcher && . ./jdk_switcher.sh
   override:
     #- rvm --default use 2.1.0
     #- ruby -v
 
 test:
   override:
-    - mvn clean verify -Psamples
+      #- mvn clean verify -Psamples
     - jdk_switcher use openjdk8 
     - mvn clean verify -Psamples
