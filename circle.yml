@@ -18,6 +18,8 @@ dependencies:
     - docker ps -a
     # show host table to confirm petstore.swagger.io is mapped to localhost
     - cat /etc/hosts
+  override:
+    - cp pom.xml.circleci pom.xml
 
 test:
   override:
