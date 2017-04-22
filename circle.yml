@@ -33,6 +33,8 @@ test:
   override:
     #- mvn clean verify -Psamples
     # set java version
-    - update-alternatives --set java /usr/lib/jvm/jdk1.7.0/bin/java
-    - update-alternatives --set javac /usr/lib/jvm/jdk1.7.0/bin/javac
+    #- update-alternatives --set java /usr/lib/jvm/jdk1.7.0/bin/java
+    #- update-alternatives --set javac /usr/lib/jvm/jdk1.7.0/bin/javac
+    - update-java-alternatives --list
+    - update-java-alternatives -s java-1.7.0-openjdk-amd64
     - mvn clean verify -Psamples
