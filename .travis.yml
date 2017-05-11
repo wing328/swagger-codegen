@@ -70,6 +70,9 @@ before_install:
   - brew install leiningen
   - brew install bats
   - brew install curl 
+  - brew install python
+  - brew install python3
+  - pip install virtualenv
 
   # show host table to confirm petstore.swagger.io is mapped to localhost
   - cat /etc/hosts
