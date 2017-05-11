@@ -37,6 +37,7 @@ before_install:
   # show host table to confirm petstore.swagger.io is mapped to localhost
   - cat /private/etc/hosts
   #- rvm install 2.2.2 > /dev/null 2>&1
+  - rvm list
   - rvm use 2.2.4
   - gem environment 
   - gem install bundler
