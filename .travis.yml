@@ -40,10 +40,10 @@ before_install:
   #- docker run -d -e SWAGGER_HOST=http://petstore.swagger.io -e SWAGGER_BASE_PATH=/v2 -p 80:8080 swaggerapi/petstore
   #- docker ps -a
   # Add bats test framework and cURL for Bash script integration tests
-  - sudo add-apt-repository ppa:duggan/bats --yes
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq bats
-  - sudo apt-get install -qq curl
+  #- sudo add-apt-repository ppa:duggan/bats --yes
+  #- sudo apt-get update -qq
+  #- sudo apt-get install -qq bats
+  #- sudo apt-get install -qq curl
   # Add rebar3 build tool and recent Erlang/OTP for Erlang petstore server tests.
   # - Travis CI does not support rebar3 [yet](https://github.com/travis-ci/travis-ci/issues/6506#issuecomment-275189490).
   # - Rely on `kerl` for [pre-compiled versions available](https://docs.travis-ci.com/user/languages/erlang#Choosing-OTP-releases-to-test-against). Rely on installation path chosen by [`travis-erlang-builder`](https://github.com/travis-ci/travis-erlang-builder/blob/e6d016b1a91ca7ecac5a5a46395bde917ea13d36/bin/compile#L18).
@@ -54,6 +54,7 @@ before_install:
   - cat /etc/hosts
   # show java version
   - java -version
+  - brew --version
 
 install:
   # Add Godeps dependencies to GOPATH and PATH
