@@ -805,8 +805,8 @@
                 <module>samples/client/petstore/android/volley</module>-->
                 <module>samples/client/petstore/scala</module>
                 <module>samples/client/petstore/akka-scala</module>
-                <!--<module>samples/client/petstore/ruby</module>-->
-                <module>samples/client/petstore/bash</module>
+                <!--<module>samples/client/petstore/ruby</module>
+                <module>samples/client/petstore/bash</module>-->
                 <module>samples/client/petstore/go</module>
                 <module>samples/client/petstore/javascript</module>
                 <module>samples/client/petstore/python</module>
