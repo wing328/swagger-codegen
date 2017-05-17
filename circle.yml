@@ -14,7 +14,7 @@ dependencies:
     - "~/.sbt"
 
   pre:
-    - sudo add-apt-repository ppa:duggan/bats
+    - sudo add-apt-repository ppa:duggan/bats -y
     - sudo apt-get update
     - sudo apt-get install bats
     - sudo apt-get install curl
