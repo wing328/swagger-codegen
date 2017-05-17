@@ -803,8 +803,8 @@
                 <module>samples/client/petstore/jaxrs-cxf-client</module>
                 <module>samples/client/petstore/java/resttemplate</module>
                 <module>samples/client/petstore/ruby</module>
-                <module>samples/client/petstore/bash</module>
                 <!-- only test java-related projects 
+                <module>samples/client/petstore/bash</module>
                 <module>samples/client/petstore/scala</module>
                 <module>samples/client/petstore/akka-scala</module>
                 <module>samples/client/petstore/android/volley</module>
