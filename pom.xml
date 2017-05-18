@@ -792,13 +792,19 @@
             </activation>
             <modules>
                 <!-- clients -->
-                <!--<module>samples/client/petstore/objc/default/SwaggerClientTests</module>-->
+                <!--<module>samples/client/petstore/objc/default/SwaggerClientTests</module>
+                <module>samples/client/petstore/objc/core-data/SwaggerClientTests</module>
+                <module>samples/client/petstore/swift/default/SwaggerClientTests</module>
+                <module>samples/client/petstore/swift/promisekit/SwaggerClientTests</module>
+                <module>samples/client/petstore/swift/rxswift/SwaggerClientTests</module>
                 <module>samples/client/petstore/swift3/default/SwaggerClientTests</module>
+                <module>samples/client/petstore/swift3/promisekit/SwaggerClientTests</module>
+                <module>samples/client/petstore/swift3/rxswift/SwaggerClientTests</module>-->
                 <module>samples/client/petstore/clojure</module>
                 <module>samples/client/petstore/scala</module>
                 <module>samples/client/petstore/akka-scala</module>
-                <!--<module>samples/client/petstore/ruby</module>
-                <module>samples/client/petstore/bash</module>-->
+                <!--<module>samples/client/petstore/ruby</module>-->
+                <module>samples/client/petstore/bash</module>
                 <module>samples/client/petstore/go</module>
                 <module>samples/client/petstore/javascript</module>
                 <module>samples/client/petstore/python</module>
@@ -810,6 +816,7 @@
                 <module>samples/client/petstore/typescript-node/npm</module>
                 <module>samples/client/petstore/typescript-jquery/npm</module>
                 <!-- servers -->
+                <module>samples/server/petstore/scalatra</module>
                 <!--<module>samples/server/petstore/java-inflector</module>
                 <module>samples/server/petstore/java-play-framework</module>
                 <module>samples/server/petstore/undertow</module>
@@ -819,7 +826,6 @@
                 <module>samples/server/petstore/jaxrs-resteasy/eap</module>
                 <module>samples/server/petstore/jaxrs-resteasy/eap-joda</module>
                 <module>samples/server/petstore/jaxrs-resteasy/joda</module>
-                <module>samples/server/petstore/scalatra</module>
                 <module>samples/server/petstore/spring-mvc</module>
                 <module>samples/client/petstore/spring-cloud</module>
                 <module>samples/server/petstore/springboot</module>
@@ -829,7 +835,7 @@
                 <module>samples/server/petstore/jaxrs-cxf-cdi</module>
                 <module>samples/server/petstore/jaxrs-cxf-non-spring-app</module>-->
                 <!--<module>samples/server/petstore/java-msf4j</module> note: JDK8 only -->
-                <!-- <module>samples/server/petstore/erlang-server</module> note: make sample compilation work -->
+                <!--<module>samples/server/petstore/erlang-server</module> note: make sample compilation work -->
             </modules>
         </profile>
     </profiles>
