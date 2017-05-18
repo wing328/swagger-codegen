@@ -792,19 +792,9 @@
             </activation>
             <modules>
                 <!-- clients -->
-                <module>samples/client/petstore/objc/default/SwaggerClientTests</module>
+                <!--<module>samples/client/petstore/objc/default/SwaggerClientTests</module>-->
                 <module>samples/client/petstore/swift3/default/SwaggerClientTests</module>
                 <module>samples/client/petstore/clojure</module>
-                <!--<module>samples/client/petstore/java/feign</module>
-                <module>samples/client/petstore/java/jersey1</module>
-                <module>samples/client/petstore/java/jersey2</module>
-                <module>samples/client/petstore/java/okhttp-gson</module>
-                <module>samples/client/petstore/java/retrofit</module>
-                <module>samples/client/petstore/java/retrofit2</module>
-                <module>samples/client/petstore/java/retrofit2rx</module>
-                <module>samples/client/petstore/jaxrs-cxf-client</module>
-                <module>samples/client/petstore/java/resttemplate</module>
-                <module>samples/client/petstore/android/volley</module>-->
                 <module>samples/client/petstore/scala</module>
                 <module>samples/client/petstore/akka-scala</module>
                 <!--<module>samples/client/petstore/ruby</module>
