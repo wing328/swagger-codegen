@@ -804,23 +804,6 @@
                 <module>samples/client/petstore/java/resttemplate</module>
                 <module>samples/client/petstore/ruby</module>
                 <module>samples/client/petstore/bash</module>
-                <!-- only test java-related projects 
-                <module>samples/client/petstore/scala</module>
-                <module>samples/client/petstore/akka-scala</module>
-                <module>samples/client/petstore/android/volley</module>
-                <module>samples/client/petstore/go</module>
-                <module>samples/client/petstore/javascript</module>
-                <module>samples/client/petstore/python</module>
-                <module>samples/client/petstore/typescript-fetch/builds/default</module>
-                <module>samples/client/petstore/typescript-fetch/builds/es6-target</module>
-                <module>samples/client/petstore/typescript-fetch/builds/with-npm-version</module>
-                <module>samples/client/petstore/typescript-fetch/tests/default</module>
-                <module>samples/client/petstore/typescript-angular</module>
-                <module>samples/client/petstore/typescript-node/npm</module>
-                <module>samples/client/petstore/typescript-jquery/npm</module>
-                -->
-                <!--module>samples/client/petstore/objc/SwaggerClientTests</module-->
-                <!--module>samples/client/petstore/swift/SwaggerClientTests</module-->
                 <!-- servers -->
                 <module>samples/server/petstore/java-inflector</module>
                 <module>samples/server/petstore/java-play-framework</module>
@@ -831,7 +814,6 @@
                 <module>samples/server/petstore/jaxrs-resteasy/eap</module>
                 <module>samples/server/petstore/jaxrs-resteasy/eap-joda</module>
                 <module>samples/server/petstore/jaxrs-resteasy/joda</module>
-                <!--<module>samples/server/petstore/scalatra</module>-->
                 <module>samples/server/petstore/spring-mvc</module>
                 <module>samples/client/petstore/spring-cloud</module>
                 <module>samples/server/petstore/springboot</module>
