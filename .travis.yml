@@ -27,9 +27,9 @@ cache:
 services:
   - docker
 
-addons:
-  hosts:
-    - petstore.swagger.io
+#addons:
+#  hosts:
+#    - petstore.swagger.io
 
 before_install:
   # required when sudo: required for the Ruby petstore tests
