@@ -794,7 +794,7 @@
                 <!-- clients -->
                 <module>samples/client/petstore/swift/default/SwaggerClientTests</module>
                 <module>samples/client/petstore/swift/promisekit/SwaggerClientTests</module>
-                <module>samples/client/petstore/swift/rxswift/SwaggerClientTests</module>
+                <!--<module>samples/client/petstore/swift/rxswift/SwaggerClientTests</module>-->
                 <module>samples/client/petstore/objc/core-data/SwaggerClientTests</module>
                 <!--<module>samples/client/petstore/objc/default/SwaggerClientTests</module>
                 <module>samples/client/petstore/swift3/default/SwaggerClientTests</module>
