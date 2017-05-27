@@ -75,7 +75,7 @@ before_install:
   - pip install virtualenv
   # start local petstore server
   - git clone https://github.com/swagger-api/swagger-samples
-  - cd swagger-samples/java?java-jersey-jaxrs
+  - cd swagger-samples/java/java-jersey-jaxrs
   - mvn jetty:run -Djetty.http.port=80 &
   - cd $SW
   # show host table to confirm petstore.swagger.io is mapped to localhost
@@ -83,6 +83,8 @@ before_install:
   # show java version
   - java -version
   - brew --version
+  # show listening ports
+  - sudo netstat -nat | grep LISTEN
 
 install:
   # Add Godeps dependencies to GOPATH and PATH
