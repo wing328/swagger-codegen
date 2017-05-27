@@ -40,15 +40,15 @@ before_install:
   - rvm list
   - rvm use 2.2.4
   - gem environment 
-  - gem install bundler
-  - gem install cocoapods -v 1.0.1 -N --no-ri --no-rdoc
+  - gem install bundler -N --no-ri --no-rdoc
+  - gem install cocoapods -v 1.2.1 -N --no-ri --no-rdoc
   - gem install xcpretty -N --no-ri --no-rdoc
   - pod --version
   - pod setup --silent > /dev/null
   # xctool already pre-installed
   #- brew install xctool
-  - git clone https://github.com/wing328/swagger-samples
-  - cd swagger-samples/java/java-jersey-jaxrs && sudo mvn -q jetty:run &
+  #- git clone https://github.com/wing328/swagger-samples
+  #- cd swagger-samples/java/java-jersey-jaxrs && sudo mvn -q jetty:run &
 
   - npm install -g typescript
 
