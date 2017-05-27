@@ -27,9 +27,9 @@ cache:
 services:
   - docker
 
-#addons:
-#  hosts:
-#    - petstore.swagger.io
+addons:
+  hosts:
+    - petstore.swagger.io
 
 before_install:
   # required when sudo: required for the Ruby petstore tests
@@ -73,7 +73,11 @@ before_install:
   - brew install curl 
   - brew install python3
   - pip install virtualenv
-
+  # start local petstore server
+  - git clone https://github.com/swagger-api/swagger-samples
+  - cd swagger-samples/java?java-jersey-jaxrs
+  - mvn jetty:run -Djetty.http.port=80 &
+  - cd $SW
   # show host table to confirm petstore.swagger.io is mapped to localhost
   - cat /etc/hosts
   # show java version
