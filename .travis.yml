@@ -76,7 +76,7 @@ before_install:
   # start local petstore server
   - git clone https://github.com/wing328/swagger-samples
   - cd swagger-samples/java/java-jersey-jaxrs
-  - mvn jetty:run &
+  - mvn jetty:run
   - cd $SW
   # show host table to confirm petstore.swagger.io is mapped to localhost
   - cat /etc/hosts
