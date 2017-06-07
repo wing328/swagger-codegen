@@ -5,7 +5,7 @@ $BinPath = "$ScriptDir\src\{{{packageName}}}\Bin"
 
 Start-Process -FilePath "$ClientPath\build.bat" -WorkingDirectory $ClientPath -Wait -NoNewWindow
 
-if (!(Test-Path "$ScriptDir\src\{{{packageName}}}r\Bin" -PathType Container)) {
+if (!(Test-Path "$ScriptDir\src\{{{packageName}}}\Bin" -PathType Container)) {
     New-Item "$ScriptDir\src\{{{packageName}}}\Bin" -ItemType Directory > $null
 }
 
