@@ -1,5 +1,5 @@
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
-$ClientPath = "$ScriptDir\..\..\petstore\csharp\SwaggerClient"
+$ClientPath = ("$ScriptDir\..\..\petstore\csharp\SwaggerClient" | Resolve-Path).ProviderPath
 $PublicPath = "$ScriptDir\src\{{{packageName}}}\Public"
 $BinPath = "$ScriptDir\src\{{{packageName}}}\Bin"
 
