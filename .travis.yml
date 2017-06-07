@@ -16,6 +16,7 @@ addons:
     - petstore.swagger.io
 
 before_install:
+  - docker --version
   # required when sudo: required for the Ruby petstore tests
   - gem install bundler
   - npm install -g typescript
